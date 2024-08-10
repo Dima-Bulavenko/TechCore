@@ -1,0 +1,43 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>
+            {% block title %}
+            {% endblock title %}
+        </title>
+        <!-- CSS -->
+        {% block basic_css %}
+            <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+        {% endblock basic_css %}
+        {% block css_block %}
+        {% endblock css_block %}
+        <!-- Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap"
+              rel="stylesheet" />
+        <!-- JS (use "defer" inside "script" tag) -->
+        {% block basic_js %}
+            <script src="{% static 'js/script.js' %}" defer></script>
+        {% endblock basic_js %}
+        {% block js_block %}
+        {% endblock js_block %}
+    </head>
+    <body>
+        <header>
+            {% block header %}
+            {% endblock header %}
+        </header>
+        <main>
+            {% block content %}
+            {% endblock content %}
+        </main>
+        <footer>
+            {% block footer %}
+            {% endblock footer %}
+        </footer>
+    </body>
+</html>
