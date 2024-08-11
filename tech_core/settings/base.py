@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 from pathlib import Path
 
 from decouple import config
+from django.urls import reverse_lazy
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
@@ -40,6 +41,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    # Allauth apps
+    'allauth',
+    'allauth.account',
+
     # Local apps
     'users',
 ]
@@ -52,6 +57,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    # Allauth middleware
+    "allauth.account.middleware.AccountMiddleware",
 ]
 
 ROOT_URLCONF = 'tech_core.urls'
@@ -132,3 +140,29 @@ STATICFILES_DIRS = [
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'users.User'
+
+# Allauth settings
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
+
+ACCOUNT_AUTHENTICATION_METHOD = "email"
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_USER_MODEL_USERNAME_FIELD = None
+ACCOUNT_USER_MODEL_EMAIL_FIELD = "email"
+ACCOUNT_EMAIL_VERIFICATION = "mandatory"
+# ACCOUNT_FORMS = {"login": "dictionary.forms.LoginForm"}  # https://docs.allauth.org/en/latest/account/forms.html
+# Determines where user be redirected if he is signed in and try to reach sign up/in links.
+# LOGIN_REDIRECT_URL = reverse_lazy("home")
+# User automatically confirm email when follow by a confirm link
+ACCOUNT_CONFIRM_EMAIL_ON_GET = True
+ACCOUNT_EMAIL_SUBJECT_PREFIX = "TechCore "
+# If the value is 1, users won't be able to change email
+ACCOUNT_MAX_EMAIL_ADDRESSES = 1
+# Automatically log user in when he follow by confirm-email link
+ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = True
+# Log user out without confirmation when he follow by logout link
+ACCOUNT_LOGOUT_ON_GET = True
+
