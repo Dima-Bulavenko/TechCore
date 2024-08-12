@@ -47,7 +47,12 @@ INSTALLED_APPS = [
 
     # Local apps
     'users',
-]
+
+    # Tailwind app
+    'tailwind',
+    'theme',
+    'django_browser_reload',
+    ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -58,6 +63,8 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 
+    # Browser reload middleware
+    'django_browser_reload.middleware.BrowserReloadMiddleware',
     # Allauth middleware
     "allauth.account.middleware.AccountMiddleware",
 ]
@@ -166,3 +173,9 @@ ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = True
 # Log user out without confirmation when he follow by logout link
 ACCOUNT_LOGOUT_ON_GET = True
 
+
+# Tailwind settings
+INTERNAL_IPS = [
+    "127.0.0.1",
+]
+TAILWIND_APP_NAME = 'theme'
