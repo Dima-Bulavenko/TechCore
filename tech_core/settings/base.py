@@ -47,6 +47,7 @@ INSTALLED_APPS = [
 
     # Local apps
     'users',
+    'crispy_forms',
 
     # Tailwind app
     'tailwind',
