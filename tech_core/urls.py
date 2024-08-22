@@ -15,8 +15,12 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import include, path, re_path
+from django.views.defaults import page_not_found
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    re_path(r"^accounts/email/$", page_not_found, {"exception": Exception("Not Found")}),
+    path('accounts/', include('allauth.urls')),
+    path("__reload__/", include("django_browser_reload.urls")),
 ]

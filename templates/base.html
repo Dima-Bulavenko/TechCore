@@ -1,18 +1,20 @@
 {% load static %}
+{% load static tailwind_tags %}
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>
-            {% block title %}
-            {% endblock title %}
+            {% block head_title %}
+            {% endblock head_title %}
         </title>
         <!-- CSS -->
         {% block basic_css %}
             <link rel="stylesheet" href="{% static 'css/style.css' %}" />
         {% endblock basic_css %}
         {% block css_block %}
+            {% tailwind_css %}
         {% endblock css_block %}
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -32,8 +34,10 @@
             {% endblock header %}
         </header>
         <main>
-            {% block content %}
-            {% endblock content %}
+            {% block main %}
+                {% block content %}
+                {% endblock content %}
+            {% endblock main %}
         </main>
         <footer>
             {% block footer %}
