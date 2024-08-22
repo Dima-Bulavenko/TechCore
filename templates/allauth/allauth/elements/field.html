@@ -1,0 +1,88 @@
+{% load allauth %}
+{% if attrs.type == "checkbox" or attrs.type == "radio" %}
+    <div class="flex items-center mb-4">
+        <input {% if attrs.required %}required{% endif %}
+               name="{{ attrs.name }}"
+               {% if attrs.type == "checkbox" %} 
+               class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" 
+               {% else %} 
+               class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" 
+               {% endif %}
+               id="{{ attrs.id }}"
+               {% if attrs.value is not None %}value="{{ attrs.value }}"{% endif %}
+               {% if attrs.disabled %}disabled{% endif %}
+               type="{{ attrs.type }}">
+        <label class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+               for="{{ attrs.id }}">
+            {% slot label %}
+        {% endslot %}
+    </label>
+    {% if slots.help_text %}
+        <div class="mt-2 text-sm text-gray-500 dark:text-gray-400">
+            {% slot help_text %}
+        {% endslot %}
+    </div>
+{% endif %}
+</div>
+{% elif attrs.type == "textarea" %}
+<div>
+    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+           for="{{ attrs.id }}">
+        {% slot label %}
+    {% endslot %}
+</label>
+<textarea {% if attrs.required %}required{% endif %}
+          {% if attrs.rows %}rows="{{ attrs.rows }}"{% endif %}
+          class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          name="{{ attrs.name }}"
+          {% if attrs.readonly %}readonly{% endif %}
+          id="{{ attrs.id }}"
+          {% if attrs.disabled %}disabled{% endif %}>{% slot value %}{% endslot %}</textarea>
+</div>
+{% elif attrs.type == "hidden" %}
+<input {% if attrs.required %}required{% endif %}
+       name="{{ attrs.name }}"
+       id="{{ attrs.id }}"
+       {% if attrs.value is not None %}value="{{ attrs.value }}"{% endif %}
+       type="hidden">
+{% else %}
+<div>
+    {% if attrs.unlabeled %}
+    <label 
+        {% if attrs.errors %} 
+        class="block mb-2 text-sm font-medium text-red-700 dark:text-red-500" 
+        {% else %} 
+        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" 
+        {% endif %}
+        for="{{ attrs.id }}">
+        {% slot label %}
+        {% endslot %}
+    </label>
+{% endif %}
+<input {% if attrs.required %}required{% endif %}
+       name="{{ attrs.name }}"
+       {% if attrs.placeholder %}placeholder="{{ attrs.placeholder }}" {% elif attrs.unlabeled %}placeholder="{% slot label %}{% endslot %}"{% endif %}
+       {% if attrs.errors %} 
+       class="bg-red-50 border border-red-500 text-red-900 placeholder-red-700 text-sm rounded-lg focus:ring-red-500 dark:bg-gray-700 focus:border-red-500 block w-full p-2.5 dark:text-red-500 dark:placeholder-red-500 dark:border-red-500" 
+       {% else %} 
+       class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
+       {% endif %}
+       id="{{ attrs.id }}"
+       {% if attrs.readonly %}readonly{% endif %}
+       {% if attrs.disabled %}disabled{% endif %}
+       {% if attrs.tabindex %}tabindex="{{ attrs.tabindex }}"{% endif %}
+       {% if attrs.style %}style="{{ attrs.style }}"{% endif %}
+       {% if attrs.autocomplete %}autocomplete="{{ attrs.autocomplete }}"{% endif %}
+       {% if attrs.value is not None %}value="{{ attrs.value }}"{% endif %}
+       type="{{ attrs.type }}">
+{% if slots.help_text %}
+    <div class="mt-2 text-sm text-gray-500 dark:text-gray-400">
+        {% slot help_text %}
+    {% endslot %}
+</div>
+{% endif %}
+{% if attrs.errors %}
+    {% for error in attrs.errors %}<div class="mt-2 text-sm text-red-600 dark:text-red-500">{{ error }}</div>{% endfor %}
+{% endif %}
+</div>
+{% endif %}

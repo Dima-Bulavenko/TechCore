@@ -6,8 +6,8 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>
-            {% block title %}
-            {% endblock title %}
+            {% block head_title %}
+            {% endblock head_title %}
         </title>
         <!-- CSS -->
         {% block basic_css %}
@@ -34,8 +34,10 @@
             {% endblock header %}
         </header>
         <main>
-            {% block content %}
-            {% endblock content %}
+            {% block main %}
+                {% block content %}
+                {% endblock content %}
+            {% endblock main %}
         </main>
         <footer>
             {% block footer %}

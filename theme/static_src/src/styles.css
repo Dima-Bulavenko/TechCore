@@ -2,3 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 @import "flowbite";
+
+a {
+    @apply text-blue-600 hover:underline dark:text-blue-500
+}
