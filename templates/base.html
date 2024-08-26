@@ -24,16 +24,19 @@
         <!-- JS (use "defer" inside "script" tag) -->
         {% block basic_js %}
             <script src="{% static 'js/script.js' %}" defer></script>
+            <script src="{% static 'js/navbar_height.js' %}" defer></script>
         {% endblock basic_js %}
         {% block js_block %}
+        <script src="{% static 'js/flowbite/flowbite.min.js' %}"></script>
         {% endblock js_block %}
     </head>
     <body>
         <header>
             {% block header %}
+                {% include "components/header.html" %}
             {% endblock header %}
         </header>
-        <main>
+        <main id="main-content">
             {% block main %}
                 {% block content %}
                 {% endblock content %}

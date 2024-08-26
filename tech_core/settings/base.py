@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     # Allauth apps
     'allauth',
     'allauth.account',
+    'core',
 
     # Local apps
     'users',

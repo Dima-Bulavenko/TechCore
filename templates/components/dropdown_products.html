@@ -1,0 +1,19 @@
+<!-- Dropdown menu -->
+<div id="products_dropdown"
+     class="z-50 hidden bg-white divide-y divide-gray-500 rounded-lg shadow w-44 dark:bg-gray-700">
+  <ul class="py-2 text-sm text-gray-700 dark:text-gray-200"
+      aria-labelledby="dropdownDefaultButton">
+    <li >
+      <a href="#"
+         class="flex items-center text-black px-2 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+         {% include "svg_templates/gpu.svg" with class_attr="w-7 h-7 pr-2" %}GPU
+      </a>
+    </li>
+    <li >
+      <a href="#"
+         class="flex items-center text-black px-2 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+         {% include "svg_templates/cpu.svg" with class_attr="w-7 h-7 pr-2" %}CPU
+      </a>
+    </li>
+  </ul>
+</div>
