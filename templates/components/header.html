@@ -1,0 +1,107 @@
+{% load static %}
+<nav class="bg-white dark:bg-gray-900 fixed w-full z-20 top-0 start-0 border-b border-gray-200 dark:border-gray-600"
+     id="navbar">
+  <div class="flex flex-wrap items-center justify-between p-2 md:p-4">
+    <a href="{% url "home" %}"
+       class="flex hover:no-underline items-center space-x-2 rtl:space-x-reverse">
+      <div class="h-8 w-8">{% include "svg_templates/logo.svg" %}</div>
+      <span class="self-center text-black text-2xl font-semibold whitespace-nowrap dark:text-white">TechCore</span>
+    </a>
+    {% comment %} search-burger-user bottons {% endcomment %}
+    <div class="flex items-center md:order-2 space-x-1 md:space-x-2 rtl:space-x-reverse">
+      {% comment %} search {% endcomment %}
+      <div class="items-center hidden justify-between w-full md:flex md:w-52"
+           id="navbar-search">
+        <div class="relative mt-3 md:mt-0">
+          <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+            <svg class="w-4 h-4 text-gray-500 dark:text-gray-400"
+                 aria-hidden="true"
+                 xmlns="http://www.w3.org/2000/svg"
+                 fill="none"
+                 viewBox="0 0 20 20">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
+            </svg>
+          </div>
+          <input type="text"
+                 id="search-navbar"
+                 class="block w-full p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                 placeholder="Search...">
+        </div>
+      </div>
+      {% comment %} burger menu {% endcomment %}
+      <button data-drawer-target="drawer-navigation"
+              data-drawer-show="drawer-navigation"
+              type="button"
+              class="inline-flex md:hidden items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+              aria-controls="drawer-navigation"
+              aria-expanded="false">
+        <span class="sr-only">Open main menu</span>
+        <svg class="w-5 h-5"
+             aria-hidden="true"
+             xmlns="http://www.w3.org/2000/svg"
+             fill="none"
+             viewBox="0 0 17 14">
+          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15" />
+        </svg>
+      </button>
+      {% comment %} shopping busket {% endcomment %}
+      <button class="items-center flex w-10 h-10 justify-center text-sm text-gray-500 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
+        {% include "svg_templates/shopping_basket.svg" with class_attr="w-8 h-8" %}
+      </button>
+      {% comment %} user manu {% endcomment %}
+      <button type="button"
+              class="rounded-full hidden md:flex justify-center items-center w-8 h-8 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
+              id="user-menu-button"
+              aria-expanded="false"
+              data-dropdown-toggle="user-dropdown"
+              data-dropdown-placement="bottom">
+        <span class="sr-only">Open user menu</span>
+        <img src="{% static "img/user.svg" %}" alt="user photo">
+      </button>
+    </div>
+    {% comment %} Big screen nav menu {% endcomment %}
+    <div class="hidden w-full md:block md:w-auto" id="navbar-default">
+      <ul class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+        <li>
+          <button id="dropdownDefaultButton"
+                  data-dropdown-toggle="products_dropdown"
+                  class="py-2 px-3 text-gray-900 rounded inline-flex items-center hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                  type="button">
+            Products
+            <svg class="w-2.5 h-2.5 ms-3"
+                 aria-hidden="true"
+                 xmlns="http://www.w3.org/2000/svg"
+                 fill="none"
+                 viewBox="0 0 10 6">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4" />
+            </svg>
+          </button>
+        </li>
+        <li>
+          <a href="#"
+             class="block py-2 px-3 text-gray-900 rounded hover:no-underline hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Contact Us</a>
+        </li>
+      </ul>
+    </div>
+    <div class="items-center justify-between w-full md:hidden md:w-52 order-2 md:order-1"
+         id="navbar-search">
+      <div class="relative mt-3 md:mt-0">
+        <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+          <svg class="w-4 h-4 text-gray-500 dark:text-gray-400"
+               aria-hidden="true"
+               xmlns="http://www.w3.org/2000/svg"
+               fill="none"
+               viewBox="0 0 20 20">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
+          </svg>
+        </div>
+        <input type="text"
+               id="search-navbar"
+               class="block w-full p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+               placeholder="Search...">
+      </div>
+    </div>
+  </div>
+</nav>
+{% include "components/main_manu_drawer.html" %}
+{% include "components/dropdown_products.html" %}
