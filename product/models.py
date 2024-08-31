@@ -5,7 +5,7 @@ from product import CategoryChoices, ManufacturerChoices
 
 class Category(models.Model):
     name = models.CharField(max_length=100, choices=CategoryChoices, unique=True)
-    description = models.TextField(default='')
+    description = models.TextField(default='', blank=True)
 
     def __str__(self):
         return self.name
@@ -24,6 +24,10 @@ class Attribute(models.Model):
 
     def __str__(self):
         return self.name
+    
+    def clean(self):
+        if hasattr(self, 'name'):
+            self.name = self.name.lower()
 
 
 class ProductAttributeValue(models.Model):
