@@ -1,0 +1,17 @@
+{
+    "category": "GPU",
+    "attrs": [
+      "GPU Architecture",
+      "Memory Size",
+      "Memory Type",
+      "Base Clock Speed",
+      "Boost Clock Speed",
+      "Power Consumption (TDP)",
+      "PCI Express Version",
+      "Outputs",
+      "Number of Display Outputs",
+      "Cooling System",
+      "Form Factor"
+    ]
+  }
+  
