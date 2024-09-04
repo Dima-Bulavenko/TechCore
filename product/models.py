@@ -57,3 +57,21 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class ProductMixin:
+    @classmethod
+    def get_category(cls) -> Category:
+        return Category.objects.get(name=cls._category)
+    
+    @classmethod
+    def get_attributes(cls) -> models.QuerySet:
+        return cls.get_category().attributes.all()
+
+
+class CPUProduct(ProductMixin, Product):
+    _category = CategoryChoices.CPU
+
+    class Meta:
+        proxy = True
+        verbose_name = 'CPU product'
