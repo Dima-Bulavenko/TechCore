@@ -33,3 +33,4 @@ class CPUProductForm(BaseProductForm):
     class Meta:
         model = CPUProduct
         fields = "__all__"  # noqa: DJ007
+        exclude = ("attributes",)
