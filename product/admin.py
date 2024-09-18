@@ -5,6 +5,7 @@ from product.models import (
     Attribute,
     Category,
     CPUProduct,
+    Image,
     Manufacturer,
     Product,
     ProductAttributeValue,
@@ -54,7 +55,12 @@ class ProductAttributeValueInline(admin.TabularInline):
         return len(self.product_attributes)
 
 
+class ImageInline(admin.TabularInline):
+    model = Image
+    extra = 1
+
+
 @admin.register(CPUProduct)
 class CPUProductAdmin(admin.ModelAdmin):
     form = forms.CPUProductForm
-    inlines = (ProductAttributeValueInline,)
+    inlines = (ProductAttributeValueInline, ImageInline)
