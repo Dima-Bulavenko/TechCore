@@ -3,10 +3,11 @@ from pathlib import Path
 
 from django.core.management.base import BaseCommand, CommandError
 
-from product.management.creators import AttributesCreator
+from product.management.creators import AttributesCreator, ProductsCreator
 
 CREATOR_MAP = {
     "attributes": AttributesCreator,
+    'products': ProductsCreator,
 }
 
 
