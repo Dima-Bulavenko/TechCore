@@ -273,3 +273,6 @@ gav/media/
 .envs/*
 
 db.sqlite3
+
+# Ignore media files
+/media/
