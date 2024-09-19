@@ -44,11 +44,12 @@ INSTALLED_APPS = [
     # Allauth apps
     'allauth',
     'allauth.account',
-    'core',
 
     # Local apps
     'users',
     'crispy_forms',
+    'core',
+    'product',
 
     # Tailwind app
     'tailwind',
