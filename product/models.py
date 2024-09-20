@@ -1,6 +1,7 @@
 from django.db import models
 
 from product import CategoryChoices, ManufacturerChoices
+from users.models import User
 
 
 class Category(models.Model):
@@ -86,3 +87,15 @@ class CPUProduct(ProductMixin, Product):
     class Meta:
         proxy = True
         verbose_name = 'CPU product'
+
+
+class Review(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='reviews')
+    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='reviews')
+    rating = models.PositiveSmallIntegerField(choices=[(i, str(i)) for i in range(1, 6)])
+    review = models.TextField(blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f"{self.product.name} - {self.author}"
