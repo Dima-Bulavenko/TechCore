@@ -70,6 +70,12 @@ class Product(models.Model):
     def __str__(self):
         return self.name
 
+    @property
+    def rating(self):
+        if self.reviews.exists():
+            return round(self.reviews.aggregate(models.Avg('rating'))['rating__avg'], 1)
+        return 0
+
 
 class ProductMixin:
     @classmethod
