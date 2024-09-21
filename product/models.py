@@ -76,6 +76,10 @@ class Product(models.Model):
             return round(self.reviews.aggregate(models.Avg('rating'))['rating__avg'], 1)
         return 0
 
+    @property
+    def review_count(self):
+        return self.reviews.count()
+
 
 class ProductMixin:
     @classmethod
