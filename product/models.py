@@ -1,6 +1,6 @@
 from django.db import models
 
-from product import CategoryChoices, ManufacturerChoices
+from product import CategoryChoices, CPUAttributeChoices, ManufacturerChoices
 from product.utils import ProductCategoryMapper
 from users.models import User
 
@@ -116,9 +116,13 @@ class CPUProduct(ProductMixin, Product):
     class Meta:
         proxy = True
         verbose_name = 'CPU product'
-    
+
     def __str__(self):
-        return "This works"
+        core = self.get_attribute_value(CPUAttributeChoices.CORE_COUNT.value)
+        thread = self.get_attribute_value(CPUAttributeChoices.THREAD_COUNT.value)
+        clock_speed = self.get_attribute_value(CPUAttributeChoices.BASE_CLOCK_SPEED.value)
+        tdp = self.get_attribute_value(CPUAttributeChoices.TDP.value)
+        return f"{self.manufacturer} {self.name}, {core} Core, {thread} Thread, {clock_speed}, {tdp}"
 
 
 class Review(models.Model):
