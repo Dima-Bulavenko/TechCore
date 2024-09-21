@@ -1,7 +1,10 @@
 from django.db import models
 
 from product import CategoryChoices, ManufacturerChoices
+from product.utils import ProductCategoryMapper
 from users.models import User
+
+product_category_mapper = ProductCategoryMapper()
 
 
 class Category(models.Model):
@@ -79,6 +82,14 @@ class Product(models.Model):
     @property
     def review_count(self):
         return self.reviews.count()
+    
+    @property
+    def product_title(self):
+        concrete_product_class = product_category_mapper.get_class(self.category.name)
+        if concrete_product_class:
+            concrete_product = concrete_product_class(self)
+            return concrete_product.__str__()
+        return self.__str__()
 
 
 class ProductMixin:
@@ -91,12 +102,16 @@ class ProductMixin:
         return cls.get_category().attributes.all()
 
 
+@product_category_mapper(category=CategoryChoices.CPU)
 class CPUProduct(ProductMixin, Product):
     _category = CategoryChoices.CPU
 
     class Meta:
         proxy = True
         verbose_name = 'CPU product'
+    
+    def __str__(self):
+        return "This works"
 
 
 class Review(models.Model):
