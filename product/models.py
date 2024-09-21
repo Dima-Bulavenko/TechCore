@@ -87,9 +87,16 @@ class Product(models.Model):
     def product_title(self):
         concrete_product_class = product_category_mapper.get_class(self.category.name)
         if concrete_product_class:
-            concrete_product = concrete_product_class(self)
+            concrete_product = concrete_product_class.objects.get(pk=self.pk)
             return concrete_product.__str__()
         return self.__str__()
+    
+    def get_attribute_value(self, attribute_name: str) -> str:
+        try:
+            attribute_value = self.productattributevalue_set.get(attribute__name=attribute_name)
+            return attribute_value.value
+        except ProductAttributeValue.DoesNotExist:
+            return None
 
 
 class ProductMixin:
