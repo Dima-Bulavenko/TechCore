@@ -5,6 +5,7 @@ from product.models import (
     Attribute,
     Category,
     CPUProduct,
+    GPUProduct,
     Image,
     Manufacturer,
     Product,
@@ -60,7 +61,22 @@ class ImageInline(admin.TabularInline):
     extra = 1
 
 
-@admin.register(CPUProduct)
-class CPUProductAdmin(admin.ModelAdmin):
-    form = forms.CPUProductForm
+class ProxyProductAdmin(admin.ModelAdmin):
+    exclude = ("attributes",)
     inlines = (ProductAttributeValueInline, ImageInline)
+
+    def get_form(self, request, obj=None, **kwargs):
+        form = super().get_form(request, obj, **kwargs)
+        form.base_fields["category"].initial = self.model.get_category()
+        form.base_fields["category"].disabled = True
+        return form
+
+
+@admin.register(CPUProduct)
+class CPUProductAdmin(ProxyProductAdmin):
+    pass
+
+
+@admin.register(GPUProduct)
+class GPUProductAdmin(ProxyProductAdmin):
+    pass
