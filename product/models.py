@@ -128,6 +128,24 @@ class CPUProduct(ProductMixin, Product):
         return f"{self.manufacturer} {self.name}, {core} Core, {thread} Thread, {clock_speed}, {tdp}"
 
 
+@product_category_mapper(category=CategoryChoices.GPU)
+class GPUProduct(ProductMixin, Product):
+    _category = CategoryChoices.GPU
+
+    objects = ProxyProductManager()
+
+    class Meta:
+        proxy = True
+        verbose_name = 'GPU product'
+
+    def __str__(self):
+        core = self.get_attribute_value('core count')
+        memory = self.get_attribute_value('memory size')
+        clock_speed = self.get_attribute_value('base clock speed')
+        tdp = self.get_attribute_value('tdp (thermal design power)')
+        return f"{self.manufacturer} {self.name}, {core} Core, {memory} Memory, {clock_speed}, {tdp}"
+
+
 class Review(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='reviews')
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='reviews')
