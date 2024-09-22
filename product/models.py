@@ -1,6 +1,7 @@
 from django.db import models
 
 from product import CategoryChoices, CPUAttributeChoices, ManufacturerChoices
+from product.managers import ProxyProductManager
 from product.utils import ProductCategoryMapper
 from users.models import User
 
@@ -112,6 +113,8 @@ class ProductMixin:
 @product_category_mapper(category=CategoryChoices.CPU)
 class CPUProduct(ProductMixin, Product):
     _category = CategoryChoices.CPU
+
+    objects = ProxyProductManager()
 
     class Meta:
         proxy = True
