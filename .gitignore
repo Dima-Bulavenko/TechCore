@@ -276,3 +276,6 @@ db.sqlite3
 
 # Ignore media files
 /media/
+
+# Data folder that contains the data for DB
+/data/
