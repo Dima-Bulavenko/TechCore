@@ -3,5 +3,9 @@
     TechCore
 {% endblock head_title %}
 {% block content %}
-    <div>This is index.html</div>
+<div class="mb-4 grid gap-4 sm:grid-cols-2 md:mb-8 lg:grid-cols-3">
+    {% for product in products %}
+        {% include "components/product_cart.html" %}
+    {% endfor %}
+</div>
 {% endblock content %}
