@@ -1,6 +1,6 @@
 from django.db import models
 
-from product import CategoryChoices, CPUAttributeChoices, ManufacturerChoices
+from product import CategoryChoices, CPUAttributeChoices, GPUAttributeChoices, ManufacturerChoices
 from product.managers import ProxyProductManager
 from product.utils import ProductCategoryMapper
 from users.models import User
@@ -125,7 +125,7 @@ class CPUProduct(ProductMixin, Product):
         thread = self.get_attribute_value(CPUAttributeChoices.THREAD_COUNT.value)
         clock_speed = self.get_attribute_value(CPUAttributeChoices.BASE_CLOCK_SPEED.value)
         tdp = self.get_attribute_value(CPUAttributeChoices.TDP.value)
-        return f"{self.manufacturer} {self.name}, {core} Core, {thread} Thread, {clock_speed}, {tdp}"
+        return f"{self.name}, {core} Core, {thread} Thread, {clock_speed}, {tdp}"
 
 
 @product_category_mapper(category=CategoryChoices.GPU)
@@ -139,11 +139,10 @@ class GPUProduct(ProductMixin, Product):
         verbose_name = 'GPU product'
 
     def __str__(self):
-        core = self.get_attribute_value('core count')
-        memory = self.get_attribute_value('memory size')
-        clock_speed = self.get_attribute_value('base clock speed')
-        tdp = self.get_attribute_value('tdp (thermal design power)')
-        return f"{self.manufacturer} {self.name}, {core} Core, {memory} Memory, {clock_speed}, {tdp}"
+        memory = self.get_attribute_value(GPUAttributeChoices.MEMORY_SIZE.value)
+        memory_type = self.get_attribute_value(GPUAttributeChoices.MEMORY_TYPE.value)
+        outputs = self.get_attribute_value(GPUAttributeChoices.OUTPUTS.value)
+        return f"{self.name}, {memory} Memory, {memory_type}, {outputs}"
 
 
 class Review(models.Model):
