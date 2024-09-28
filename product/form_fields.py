@@ -25,7 +25,7 @@ class PriceRangeField(forms.MultiValueField):
                 min_value=0, max_value=999999, decimal_places=2, required=False
             ),
         )
-        super().__init__(fields, *args, **kwargs)
+        super().__init__(fields, *args, require_all_fields=False, **kwargs)
 
     def compress(self, data_list):
         if data_list:

@@ -24,7 +24,7 @@ class ProductAttributeValueFormSet(forms.BaseInlineFormSet):
 
 
 class ProductFilterForm(forms.Form):
-    price_range = PriceRangeField()
+    price_range = PriceRangeField(required=False)
 
     def __init__(self, *args, product_category, **kwargs):
         super().__init__(*args, **kwargs)
