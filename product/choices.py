@@ -31,4 +31,18 @@ class CPUAttributeChoices(models.TextChoices):
     UNLOCKED_FOR_OVERCLOCKING = "unlocked for overclocking", _("Unlocked for Overclocking")
 
 
-__all__ = ["CategoryChoices", "ManufacturerChoices", "CPUAttributeChoices"]
+class GPUAttributeChoices(models.TextChoices):
+    GPU_ARCHITECTURE = "gpu architecture", _("GPU Architecture")
+    MEMORY_SIZE = "memory size", _("Memory Size")
+    MEMORY_TYPE = "memory type", _("Memory Type")
+    BASE_CLOCK_SPEED = "base clock speed", _("Base Clock Speed")
+    BOOST_CLOCK_SPEED = "boost clock speed", _("Boost Clock Speed")
+    POWER_CONSUMPTION = "power consumption", _("Power Consumption (TDP)")
+    PCI_EXPRESS_VERSION = "pci express version", _("PCI Express Version")
+    OUTPUTS = "outputs", _("Outputs")
+    NUMBER_OF_DISPLAY_OUTPUTS = "number of display outputs", _("Number of Display Outputs")
+    COOLING_SYSTEM = "cooling system", _("Cooling System")
+    FORM_FACTOR = "form factor", _("Form Factor")
+
+
+__all__ = ["CategoryChoices", "ManufacturerChoices", "CPUAttributeChoices", "GPUAttributeChoices"]
