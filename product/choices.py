@@ -24,9 +24,9 @@ class CPUAttributeChoices(models.TextChoices):
     BASE_CLOCK_SPEED = "base clock speed", _("Base Clock Speed")
     BOOST_CLOCK_SPEED = "boost clock speed", _("Boost Clock Speed")
     CACHE_SIZE = "cache size", _("Cache Size")
-    TDP = "tdp (thermal design power)", _("TDP (Thermal Design Power)")
+    TDP = "tdp", _("TDP (Thermal Design Power)")
     SOCKET_TYPE = "socket type", _("Socket Type")
-    LITHOGRAPHY = "lithography (process node)", _("Lithography (Process Node)")
+    LITHOGRAPHY = "lithography", _("Lithography (Process Node)")
     INTEGRATED_GRAPHICS = "integrated graphics", _("Integrated Graphics")
     UNLOCKED_FOR_OVERCLOCKING = "unlocked for overclocking", _("Unlocked for Overclocking")
 

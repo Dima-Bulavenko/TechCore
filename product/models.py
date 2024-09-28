@@ -113,7 +113,7 @@ class ProductMixin:
 @product_category_mapper(category=CategoryChoices.CPU)
 class CPUProduct(ProductMixin, Product):
     _category = CategoryChoices.CPU
-
+    attrs = CPUAttributeChoices
     objects = ProxyProductManager()
 
     class Meta:
@@ -121,16 +121,29 @@ class CPUProduct(ProductMixin, Product):
         verbose_name = 'CPU product'
 
     def __str__(self):
-        core = self.get_attribute_value(CPUAttributeChoices.CORE_COUNT.value)
-        thread = self.get_attribute_value(CPUAttributeChoices.THREAD_COUNT.value)
-        clock_speed = self.get_attribute_value(CPUAttributeChoices.BASE_CLOCK_SPEED.value)
-        tdp = self.get_attribute_value(CPUAttributeChoices.TDP.value)
+        core = self.get_attribute_value(self.attrs.CORE_COUNT.value)
+        thread = self.get_attribute_value(self.attrs.THREAD_COUNT.value)
+        clock_speed = self.get_attribute_value(self.attrs.BASE_CLOCK_SPEED.value)
+        tdp = self.get_attribute_value(self.attrs.TDP.value)
         return f"{self.name}, {core} Core, {thread} Thread, {clock_speed}, {tdp}"
+    
+    @classmethod
+    def get_filter_attributes(cls):
+        attrs = cls.attrs
+        return [
+            attrs.CORE_COUNT,
+            attrs.THREAD_COUNT,
+            attrs.BASE_CLOCK_SPEED,
+            attrs.BOOST_CLOCK_SPEED,
+            attrs.TDP,
+            attrs.INTEGRATED_GRAPHICS
+        ]
 
 
 @product_category_mapper(category=CategoryChoices.GPU)
 class GPUProduct(ProductMixin, Product):
     _category = CategoryChoices.GPU
+    attrs = GPUAttributeChoices
 
     objects = ProxyProductManager()
 
@@ -139,10 +152,21 @@ class GPUProduct(ProductMixin, Product):
         verbose_name = 'GPU product'
 
     def __str__(self):
-        memory = self.get_attribute_value(GPUAttributeChoices.MEMORY_SIZE.value)
-        memory_type = self.get_attribute_value(GPUAttributeChoices.MEMORY_TYPE.value)
-        outputs = self.get_attribute_value(GPUAttributeChoices.OUTPUTS.value)
+        memory = self.get_attribute_value(self.attrs.MEMORY_SIZE.value)
+        memory_type = self.get_attribute_value(self.attrs.MEMORY_TYPE.value)
+        outputs = self.get_attribute_value(self.attrs.OUTPUTS.value)
         return f"{self.name}, {memory} Memory, {memory_type}, {outputs}"
+    
+    @classmethod
+    def get_filter_attributes(cls):
+        attrs = cls.attrs
+        return [
+            attrs.MEMORY_SIZE,
+            attrs.MEMORY_TYPE,
+            attrs.BASE_CLOCK_SPEED,
+            attrs.BOOST_CLOCK_SPEED,
+            attrs.GPU_ARCHITECTURE,
+        ]
 
 
 class Review(models.Model):
