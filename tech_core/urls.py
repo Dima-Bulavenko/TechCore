@@ -14,6 +14,8 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.conf import settings
+from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import include, path, re_path
 from django.views.defaults import page_not_found
@@ -22,6 +24,10 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     re_path(r"^accounts/email/$", page_not_found, {"exception": Exception("Not Found")}),
     path('accounts/', include('allauth.urls')),
+    path('product/', include('product.urls')),
     path("__reload__/", include("django_browser_reload.urls")),
     path('', include('core.urls')),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
