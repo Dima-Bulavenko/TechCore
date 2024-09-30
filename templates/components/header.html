@@ -8,7 +8,8 @@
       <span class="self-center text-black text-2xl font-semibold whitespace-nowrap dark:text-white">TechCore</span>
     </a>
     {% comment %} Big screen nav menu {% endcomment %}
-    <div class="hidden w-full  md:block col-start-4 col-span-3 md:w-auto" id="navbar-default">
+    <div class="hidden w-full  md:block col-start-4 col-span-3 md:w-auto"
+         id="navbar-default">
       <ul class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-5 lg:md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
         <li>
           <button id="dropdownDefaultButton"
@@ -65,10 +66,19 @@
       </button>
     </div>
     {% comment %} search {% endcomment %}
-    <div class="col-span-full md:col-start-7 md:col-span-3 md:row-start-1 md:w-48 lg:justify-self-center"
-         id="navbar-search">
-      <div class="relative mt-3 md:mt-0">
-        <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+    <form action="{% url "product_search" %}"
+          method="get"
+          class="col-span-full md:col-start-7 md:col-span-3 md:row-start-1 md:w-48 lg:justify-self-center"
+          id="navbar-search">
+      <div class="relative flex gap-3 mt-3 md:mt-0">
+        <input type="text"
+               id="search-navbar"
+               name="q"
+               class="peer p-2 ps-10 w-full block text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 transition-[padding]  focus:ps-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+               placeholder="Search..."
+               required
+               autocomplete="off">
+        <div class="peer-focus:hidden absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
           <svg class="w-4 h-4 text-gray-500 dark:text-gray-400"
                aria-hidden="true"
                xmlns="http://www.w3.org/2000/svg"
@@ -77,13 +87,19 @@
             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
           </svg>
         </div>
-        <input type="text"
-               id="search-navbar"
-               class="block w-full p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-               placeholder="Search...">
+        <button type="submit"
+                class="bg-blue-700 block p-2.5 text-sm rounded-lg peer-placeholder-shown:hidden">
+          <svg class="w-4 h-4 text-white"
+               aria-hidden="true"
+               xmlns="http://www.w3.org/2000/svg"
+               fill="none"
+               viewBox="0 0 20 20">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
+          </svg>
+        </button>
       </div>
     </div>
-  </div>
+  </form>
 </nav>
 {% include "components/main_manu_drawer.html" %}
 {% include "components/dropdown_products.html" %}
