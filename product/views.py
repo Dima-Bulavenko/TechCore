@@ -2,6 +2,7 @@ from django.views.generic import ListView
 
 from product.forms import ProductFilterForm
 from product.services.filter import ProductFilter
+from product.services.search import ProductSearch
 
 
 class ProductListView(ListView):
@@ -15,4 +16,17 @@ class ProductListView(ListView):
         context = super().get_context_data(**kwargs)
         context["title"] = f"{self.kwargs.get('category')} Products"
         context["filter_form"] = ProductFilterForm(product_category=self.kwargs.get("category"), data=self.request.GET)
+        return context
+
+
+class ProductSearchListView(ListView):
+    template_name = "product/search.html"
+    context_object_name = "products"
+
+    def get_queryset(self):
+        return ProductSearch(query=self.request.GET.get("q")).search()
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["title"] = "Search Results"
         return context
