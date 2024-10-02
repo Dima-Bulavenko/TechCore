@@ -2,6 +2,7 @@ from django.views.generic import ListView
 
 from product.forms import ProductFilterForm
 from product.services.filter import ProductFilter
+from product.services.order import ProductOrder
 from product.services.search import ProductSearch
 
 
@@ -10,7 +11,8 @@ class ProductListView(ListView):
     context_object_name = "products"
     
     def get_queryset(self):
-        return ProductFilter(category=self.kwargs.get("category"), data=self.request.GET).filter()
+        queryset = ProductFilter(category=self.kwargs.get("category"), data=self.request.GET).filter()
+        return ProductOrder(queryset, self.request).order()
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -24,7 +26,8 @@ class ProductSearchListView(ListView):
     context_object_name = "products"
 
     def get_queryset(self):
-        return ProductSearch(query=self.request.GET.get("q")).search()
+        queryset = ProductSearch(query=self.request.GET.get("q")).search()
+        return ProductOrder(queryset, self.request).order()
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
