@@ -59,3 +59,13 @@ class ProductFilterForm(forms.Form):
             widget=widgets.CheckboxSelectMultiple,
             required=False,
         )
+
+
+class ProductQuantityForm(forms.Form):
+    quantity = forms.IntegerField(
+        min_value=1, 
+        max_value=30, 
+        initial=1,
+        widget=widgets.ProductQuantityWidget
+    )
+    product_id = forms.IntegerField(widget=forms.HiddenInput)
