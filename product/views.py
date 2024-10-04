@@ -1,6 +1,7 @@
-from django.views.generic import ListView
+from django.views.generic import DetailView, ListView
 
-from product.forms import ProductFilterForm
+from product.forms import ProductFilterForm, ProductQuantityForm, ReviewForm
+from product.models import Product
 from product.services.filter import ProductFilter
 from product.services.order import ProductOrder
 from product.services.search import ProductSearch
@@ -32,4 +33,23 @@ class ProductSearchListView(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["title"] = "Search Results"
+        return context
+
+
+class ProductDetailView(DetailView):
+    template_name = "product/product_detail.html"
+    context_object_name = "product"
+    model = Product
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["title"] = self.object.name
+        context["quantity_form"] = ProductQuantityForm(initial={"product_id": self.object.pk})
+        context.update(self.object.review_data)
+        context["review_form"] = ReviewForm()
+        if self.request.user.is_authenticated:
+            context["is_reviewed_by_user"] = self.object.reviews.filter(author=self.request.user).exists()
+        else:
+            context["is_reviewed_by_user"] = False
+
         return context

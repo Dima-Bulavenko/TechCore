@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 from product import CategoryChoices, CPUAttributeChoices, GPUAttributeChoices, ManufacturerChoices
 from product.managers import ProxyProductManager
@@ -14,6 +15,9 @@ class Category(models.Model):
 
     def __str__(self):
         return self.name
+    
+    def get_absolute_url(self):
+        return reverse("product_list", kwargs={"category": self.name})
 
 
 class Manufacturer(models.Model):
@@ -73,6 +77,9 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name
+    
+    def get_absolute_url(self):
+        return reverse("product_detail", kwargs={"pk": self.pk})
 
     @property
     def rating(self):
@@ -83,6 +90,31 @@ class Product(models.Model):
     @property
     def review_count(self):
         return self.reviews.count()
+    
+    @property
+    def review_data(self) -> dict:
+        review_data = {}
+        reviews = self.reviews.all()
+        review_data['reviews'] = reviews.order_by('-created_at')
+        review_data['reviews_count'] = self.review_count
+        review_data['rating'] = self.rating
+        review_data['rating_summary'] = self.rating_summary
+        return review_data
+    
+    @property
+    def rating_summary(self) -> dict:
+        reviews = self.reviews.all()
+        total_reviews = reviews.count()
+        rating_summary = {}
+
+        for rating in range(1, 6):
+            rating_count = reviews.filter(rating=rating).count()
+            rating_percentage = round((rating_count / total_reviews) * 100 if total_reviews else 0)
+            rating_summary[rating] = {
+                'count': rating_count,
+                'percentage': rating_percentage if rating_percentage else 0
+            }
+        return dict(sorted(rating_summary.items(), reverse=True))
     
     @property
     def product_title(self):

@@ -1,0 +1,222 @@
+{% extends "base.html" %}
+{% load static %}
+{% load product_tags %}
+{% block content %}
+    <div class="font-sans bg-white">
+        <div class="lg:max-w-7xl max-w-4xl mx-auto">
+            <div class="grid items-start grid-cols-1 lg:grid-cols-5 gap-12 shadow-[0_2px_10px_-3px_rgba(6,81,237,0.3)] py-6 px-3 md:px-6 rounded-lg">
+                <div id="product_images"
+                     class="lg:col-span-3 w-full lg:sticky top-0 text-center">
+                    {% for image in product.images.all %}
+                        {% if forloop.first %}
+                            <div class="px-4 py-10 rounded-lg shadow-[0_2px_10px_-3px_rgba(6,81,237,0.3)] relative">
+                                <img src="{{ image.url }}"
+                                     id="image_{{ forloop.counter }}"
+                                     alt="{{ product.name }} image {{ forloop.counter }}"
+                                     class="w-3/4 rounded object-cover mx-auto" />
+                            </div>
+                            {% if not forloop.last %}<div class="mt-6 flex flex-wrap justify-center gap-6 mx-auto">{% endif %}
+                            {% else %}
+                                <div class="w-24 h-20 flex items-center justify-center rounded-lg p-4 shadow-[0_2px_10px_-3px_rgba(6,81,237,0.3)] cursor-pointer">
+                                    <img src="{{ image.url }}"
+                                         id="image_{{ forloop.counter }}"
+                                         alt="{{ product.name }} image {{ forloop.counter }}"
+                                         class="w-full" />
+                                </div>
+                                {% if forloop.last %}</div>{% endif %}
+                        {% endif %}
+                    {% empty %}
+                        <div class="px-4 py-10 rounded-lg shadow-[0_2px_10px_-3px_rgba(6,81,237,0.3)] relative">
+                            <img src="{% static 'img/'|add:product.category.name|lower|add:'.svg' %}"
+                                 id="image_1"
+                                 alt="{{ product.name }} image 1"
+                                 class="w-3/4 rounded object-cover mx-auto" />
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="lg:col-span-2">
+                    <h2 class="text-2xl font-extrabold text-gray-800">{{ product.name }}</h2>
+                    <div class="flex gap-1 mt-4 items-center">
+                        {% render_stars product.rating product.pk %}
+                        <h4 class="text-gray-800 ml-2 text-base">{{ reviews_count }} Reviews</h4>
+                    </div>
+                    <div class="flex flex-wrap gap-4 mt-8">
+                        <p class="text-gray-800 text-3xl font-bold">${{ product.price }}</p>
+                    </div>
+                    <div class="mt-8">
+                        <form class="max-w-xs" method="get" id="quantity_form_{{ product.pk }}">
+                            <label for="{{ quantity_form.quantity.id_for_label }}"
+                                   class="block mb-2 text-xl font-bold text-gray-900 dark:text-white">
+                                Choose quantity:
+                            </label>
+                            {% for field in quantity_form %}{{ field }}{% endfor %}
+                        </form>
+                    </div>
+                    <div class="flex flex-wrap gap-4 mt-8">
+                        <button type="submit"
+                                form="quantity_form_{{ product.pk }}"
+                                formaction="#"
+                                class="min-w-[200px] px-4 py-3 bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold rounded">
+                            Buy now
+                        </button>
+                        <button type="submit"
+                                form="quantity_form_{{ product.pk }}"
+                                formaction="#"
+                                class="min-w-[200px] px-4 py-2.5 border border-blue-600 bg-transparent hover:bg-gray-50 text-gray-800 text-sm font-semibold rounded">
+                            Add to cart
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-16 shadow-[0_2px_10px_-3px_rgba(6,81,237,0.3)] p-6">
+                <h3 class="text-xl font-bold text-gray-800">Product detalis</h3>
+                <ul class="mt-4 space-y-6 text-gray-800">
+                    {% for attr in product.productattributevalue_set.all %}
+                        <li class="text-sm">
+                            <span class="uppercase">{{ attr.attribute.name }}:</span> <span class="ml-4 float-right">{{ attr.value }}</span>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        <section class="bg-white py-8 antialiased dark:bg-gray-900 md:py-16">
+            <div class="mx-auto max-w-screen-xl px-4 2xl:px-0">
+                <div class="flex items-center flex-wrap gap-2">
+                    <h2 class="text-2xl font-semibold text-gray-900 dark:text-white">Reviews</h2>
+                    <div class="flex items-center gap-2">
+                        <div class="flex items-center gap-0.5">{% render_stars rating %}</div>
+                        <p class="text-sm font-medium leading-none text-gray-500 dark:text-gray-400">({{ rating }})</p>
+                        <div class="text-sm font-medium leading-none text-gray-900 dark:text-white">{{ reviews_count }} Reviews</div>
+                    </div>
+                </div>
+                <div class="my-6 gap-8 sm:flex sm:items-start md:my-8">
+                    {% if user.is_authenticated and not is_reviewed_by_user %}
+                        <div class="shrink-0">
+                            <button type="button"
+                                    data-modal-target="review-modal"
+                                    data-modal-toggle="review-modal"
+                                    class="rounded-lg bg-blue-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                Write a review
+                            </button>
+                        </div>
+                    {% elif not user.is_authenticated %}
+                        <div class="shrink-0">
+                            <a href="{% url "account_login" %}"
+                               class="rounded-lg bg-blue-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Log in to review</a>
+                        </div>
+                    {% endif %}
+                    <div class="mt-6 min-w-0 flex-1 space-y-3 sm:mt-0">
+                        {% for rating, rating_data in rating_summary.items %}
+                            <div class="flex items-center gap-2">
+                                <p class="w-2 shrink-0 text-start text-sm font-medium leading-none text-gray-900 dark:text-white">{{ rating }}</p>
+                                <svg class="h-4 w-4 shrink-0 text-yellow-300"
+                                     aria-hidden="true"
+                                     xmlns="http://www.w3.org/2000/svg"
+                                     width="24"
+                                     height="24"
+                                     fill="currentColor"
+                                     viewBox="0 0 24 24">
+                                    <path d="M13.849 4.22c-.684-1.626-3.014-1.626-3.698 0L8.397 8.387l-4.552.361c-1.775.14-2.495 2.331-1.142 3.477l3.468 2.937-1.06 4.392c-.413 1.713 1.472 3.067 2.992 2.149L12 19.35l3.897 2.354c1.52.918 3.405-.436 2.992-2.15l-1.06-4.39 3.468-2.938c1.353-1.146.633-3.336-1.142-3.477l-4.552-.36-1.754-4.17Z" />
+                                </svg>
+                                <div class="h-1.5 w-80 rounded-full bg-gray-200 dark:bg-gray-700">
+                                    <div class="h-1.5 rounded-full bg-yellow-300"
+                                         style="width: {{ rating_data.percentage }}%"></div>
+                                </div>
+                                <div class="w-4 shrink-0 text-right text-sm font-medium leading-none text-blue-700 hover:underline dark:text-blue-500 sm:w-auto sm:text-left">
+                                    {{ rating_data.count }} <span class="hidden sm:inline">reviews</span>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="mt-6 divide-y divide-gray-200 dark:divide-gray-700">
+                    {% for review in reviews %}
+                        <div class="gap-3 py-6 sm:flex sm:items-start">
+                            <div class="shrink-0 space-y-2 sm:w-48 md:w-72">
+                                <div class="flex items-center gap-0.5">{% render_stars review.rating review.pk %}</div>
+                                <div class="space-y-0.5">
+                                    <p class="text-base font-semibold text-gray-900 dark:text-white">
+                                        {% if review.author.name %}
+                                            {{ review.author.name }}
+                                        {% else %}
+                                            user_{{ review.pk }}
+                                        {% endif %}
+                                    </p>
+                                    <p class="text-sm font-normal text-gray-500 dark:text-gray-400">{{ review.updated_at|timesince }} ago</p>
+                                </div>
+                            </div>
+                            <div class="mt-4 min-w-0 flex-1 space-y-4 sm:mt-0">
+                                <p class="text-base font-normal text-gray-500 dark:text-gray-400">{{ review.review }}</p>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </section>
+            {% if user.is_authenticated and not is_reviewed_by_user %}
+                <!-- Add review modal -->
+                <div id="review-modal"
+                     tabindex="-1"
+                     aria-hidden="true"
+                     class="fixed left-0 right-0 top-0 z-50 hidden h-[calc(100%-1rem)] max-h-full w-full items-center justify-center overflow-y-auto overflow-x-hidden md:inset-0 antialiased">
+                    <div class="relative max-h-full w-full max-w-2xl p-4">
+                        <!-- Modal content -->
+                        <div class="relative rounded-lg bg-white shadow dark:bg-gray-800">
+                            <!-- Modal header -->
+                            <div class="flex items-center justify-between rounded-t border-b border-gray-200 p-4 dark:border-gray-700 md:p-5">
+                                <div>
+                                    <h3 class="mb-1 text-lg font-semibold text-gray-900 dark:text-white">Add a review for:</h3>
+                                    <div class="font-medium text-blue-700 dark:text-blue-500">{{ product.name }}</div>
+                                </div>
+                                <button type="button"
+                                        class="absolute right-5 top-5 ms-auto inline-flex h-8 w-8 items-center justify-center rounded-lg bg-transparent text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-white"
+                                        data-modal-toggle="review-modal">
+                                    <svg class="h-3 w-3"
+                                         aria-hidden="true"
+                                         xmlns="http://www.w3.org/2000/svg"
+                                         fill="none"
+                                         viewBox="0 0 14 14">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                                    </svg>
+                                    <span class="sr-only">Close modal</span>
+                                </button>
+                            </div>
+                            <!-- Modal body -->
+                            <form class="p-4 md:p-5">
+                                <div class="mb-4 grid grid-cols-2 gap-4">
+                                    <div class="col-span-2">
+                                        <label for="{{ review_form.rating.auto_id }}"
+                                               class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">
+                                            <span class="after:content-['*'] after:ml-0.5 after:text-red-500">Rating</span>
+                                        </label>
+                                        {{ review_form.rating }}
+                                    </div>
+                                    <div class="col-span-2">
+                                        <label for="{{ review_form.review.id_for_label }}"
+                                               class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">
+                                            Review comment
+                                        </label>
+                                        {{ review_form.review }}
+                                        <p class="ms-auto text-xs text-gray-500 dark:text-gray-400">
+                                            Problems with the product or delivery? <a href="#" class="text-blue-600 hover:underline dark:text-blue-500">Send a report</a>.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="border-t border-gray-200 pt-4 dark:border-gray-700 md:pt-5">
+                                    <button type="submit"
+                                            class="me-2 inline-flex items-center rounded-lg bg-blue-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                        Add review
+                                    </button>
+                                    <button type="button"
+                                            data-modal-toggle="review-modal"
+                                            class="me-2 rounded-lg border border-gray-200 bg-white px-5 py-2.5 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700">
+                                        Cancel
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+{% endblock content %}

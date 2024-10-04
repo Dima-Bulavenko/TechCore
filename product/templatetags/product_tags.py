@@ -4,7 +4,7 @@ register = template.Library()
 
 
 @register.inclusion_tag('product/inclusions/rating_stars.html')
-def render_stars(rating):
+def render_stars(rating, id=""):
     rating = float(rating)
     max_rating = 5
     fill_sizes = []
@@ -16,4 +16,4 @@ def render_stars(rating):
         elif full_star_check > 0:
             fill_size = full_star_check * 100
         fill_sizes.append(fill_size)
-    return {'fill_sizes': fill_sizes}
+    return {'fill_sizes': fill_sizes, 'id': id}

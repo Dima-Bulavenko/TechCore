@@ -2,7 +2,7 @@
 from typing import ClassVar
 
 from django.contrib.auth.models import AbstractUser
-from django.db.models import CharField, EmailField
+from django.db.models import CharField, EmailField, ImageField
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 
@@ -18,6 +18,7 @@ class User(AbstractUser):
     first_name = None 
     last_name = None
     email = EmailField(_("email address"), unique=True)
+    image = ImageField(_("profile picture"), upload_to="profile_pics/", default="profile_pics/default.png")
     username = None
 
     USERNAME_FIELD = "email"

@@ -20,3 +20,11 @@ class PriceRangeWidget(forms.MultiWidget):
         if value:
             return [value.get('min_price', None), value.get('max_price', None)]
         return [None, None]
+
+
+class ProductQuantityWidget(forms.NumberInput):
+    template_name = "product/widgets/product_quantity_widget.html"
+
+
+class StarRadioSelectWidget(forms.RadioSelect):
+    template_name = "product/widgets/star_radio_select_widget.html"
