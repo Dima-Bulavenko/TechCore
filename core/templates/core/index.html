@@ -1,10 +1,16 @@
 {% extends "base.html" %}
+{% load static %}
+{% block js_block %}
+    {{ block.super }}
+    <script src="{% static 'js/set_order.js' %}" defer></script>
+{% endblock js_block %}
 {% block main %}
     <button class="block fixed right-2 w-11 h-11 p-3 top-[120px] z-20 lg:hidden md:top-[90px] bg-blue-400 rounded-full"
             data-drawer-target="product-filter"
             data-drawer-show="product-filter"
             aria-controls="product-filter">{% include "svg_templates/filter.svg" %}</button>
-    <div class="flex gap-3 items-start mt-9">
+    <div class="max-w-52 mx-auto md:mx-0 mt-7">{% include "product/inclusions/ordering.html" %}</div>
+    <div class="flex gap-3 items-start mt-7">
         <div id="product-filter"
              class="lg:block lg:static lg:translate-x-0 lg:h-auto min-w-80 lg:border-2 lg:border-gray-300 lg:rounded-md lg:z-0 fixed top-0 left-0 z-40 h-screen p-4 overflow-y-auto transition-transform -translate-x-full bg-white w-80 dark:bg-gray-800">
             <h5 class="inline-flex items-center mb-4 text-base font-semibold text-gray-500 uppercase dark:text-gray-400">
