@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 from product import CategoryChoices, CPUAttributeChoices, GPUAttributeChoices, ManufacturerChoices
 from product.managers import ProxyProductManager
@@ -14,6 +15,9 @@ class Category(models.Model):
 
     def __str__(self):
         return self.name
+    
+    def get_absolute_url(self):
+        return reverse("product_list", kwargs={"category": self.name})
 
 
 class Manufacturer(models.Model):
@@ -73,6 +77,9 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name
+    
+    def get_absolute_url(self):
+        return reverse("product_detail", kwargs={"pk": self.pk})
 
     @property
     def rating(self):
