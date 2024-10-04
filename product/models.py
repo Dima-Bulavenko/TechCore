@@ -85,6 +85,31 @@ class Product(models.Model):
         return self.reviews.count()
     
     @property
+    def review_data(self) -> dict:
+        review_data = {}
+        reviews = self.reviews.all()
+        review_data['reviews'] = reviews.order_by('-created_at')
+        review_data['reviews_count'] = self.review_count
+        review_data['rating'] = self.rating
+        review_data['rating_summary'] = self.rating_summary
+        return review_data
+    
+    @property
+    def rating_summary(self) -> dict:
+        reviews = self.reviews.all()
+        total_reviews = reviews.count()
+        rating_summary = {}
+
+        for rating in range(1, 6):
+            rating_count = reviews.filter(rating=rating).count()
+            rating_percentage = round((rating_count / total_reviews) * 100 if total_reviews else 0)
+            rating_summary[rating] = {
+                'count': rating_count,
+                'percentage': rating_percentage if rating_percentage else 0
+            }
+        return dict(sorted(rating_summary.items(), reverse=True))
+    
+    @property
     def product_title(self):
         concrete_product_class = product_category_mapper.get_class(self.category.name)
         if concrete_product_class:
