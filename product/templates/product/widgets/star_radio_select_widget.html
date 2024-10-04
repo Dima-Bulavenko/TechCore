@@ -1,0 +1,20 @@
+{% load product_tags %}
+<div class="flex flex-col-reverse" id="{{ widget.attrs.id }}">
+{% for group, options, index in widget.optgroups %}
+    {% for widget in options %}
+        {% if widget.value %}
+            <label for="{{ widget.attrs.id }}" class="flex gap-1 items-center">
+                <input type="{{ widget.type }}"
+                       id="{{ widget.attrs.id }}"
+                       name="{{ widget.name }}"
+                       value="{{ widget.value }}"
+                       {% if widget.selected %}checked{% endif %}
+                       {% if widget.attrs.required %}required{% endif %}
+                       class="" />
+                <div>{{ widget.value }}</div>
+                <div class="flex">{% render_stars widget.value widget.attrs.id %}</div>
+            </label>
+        {% endif %}
+    {% endfor %}
+{% endfor %}
+</div>
