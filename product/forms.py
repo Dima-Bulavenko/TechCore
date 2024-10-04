@@ -2,7 +2,7 @@ from django import forms
 
 from product import widgets
 from product.form_fields import AttributeModelMultipleChoiceFiled, PriceRangeField
-from product.models import Attribute, Manufacturer, product_category_mapper
+from product.models import Attribute, Manufacturer, Review, product_category_mapper
 
 
 class ProductAttributeValueFormSet(forms.BaseInlineFormSet):
@@ -69,3 +69,15 @@ class ProductQuantityForm(forms.Form):
         widget=widgets.ProductQuantityWidget
     )
     product_id = forms.IntegerField(widget=forms.HiddenInput)
+    
+
+class ReviewForm(forms.ModelForm):
+
+    class Meta:
+        model = Review
+        fields = ("rating", "review")
+
+        widgets = {
+            "rating": widgets.StarRadioSelectWidget,
+            "review": forms.Textarea(attrs={"rows": 3, "class": "textarea_class"}),
+        }
