@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'core',
     'product',
+    'cart',
 
     # Tailwind app
     'tailwind',
@@ -208,3 +209,6 @@ INTERNAL_IPS = [
     "127.0.0.1",
 ]
 TAILWIND_APP_NAME = 'theme'
+
+
+CART_SESSION_ID = 'cart'
