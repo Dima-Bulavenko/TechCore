@@ -1,5 +1,6 @@
 from django.views.generic import DetailView, ListView
 
+from cart.services.cart import Cart
 from product.forms import ProductFilterForm, ProductQuantityForm, ReviewForm
 from product.models import Product
 from product.services.filter import ProductFilter
