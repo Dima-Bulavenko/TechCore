@@ -1,5 +1,6 @@
 {% load static %}
 {% load static tailwind_tags %}
+{% load django_htmx %}
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -26,13 +27,15 @@
         {% block basic_js %}
             <script src="{% static 'js/script.js' %}" defer></script>
             <script src="{% static 'js/navbar_height.js' %}" defer></script>
+            <script src="{% static 'js/htmx.min.js' %}" defer></script>
+            {% django_htmx_script %}
         {% endblock basic_js %}
         {% block js_block %}
         <script src="{% static 'js/flowbite/flowbite.min.js' %}" defer></script>
         <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.5/dist/js.cookie.min.js" defer></script>
         {% endblock js_block %}
     </head>
-    <body>
+    <body hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
         <header>
             {% block header %}
                 {% include "components/header.html" %}

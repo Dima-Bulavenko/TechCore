@@ -11,6 +11,7 @@ Django==5.1.1
 django-allauth==64.0.0
 django-browser-reload==1.13.0
 django-crispy-forms==2.3
+django-htmx==1.19.0
 django-tailwind==3.8.0
 idna==3.7
 Jinja2==3.1.4

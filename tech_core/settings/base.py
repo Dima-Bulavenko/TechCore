@@ -58,6 +58,9 @@ INSTALLED_APPS = [
     'tailwind',
     'theme',
     'django_browser_reload',
+
+    # Other apps
+    "django_htmx",
     ]
 
 MIDDLEWARE = [
@@ -73,6 +76,8 @@ MIDDLEWARE = [
     'django_browser_reload.middleware.BrowserReloadMiddleware',
     # Allauth middleware
     "allauth.account.middleware.AccountMiddleware",
+    # Htmx middleware
+    "django_htmx.middleware.HtmxMiddleware",
 ]
 
 ROOT_URLCONF = 'tech_core.urls'
