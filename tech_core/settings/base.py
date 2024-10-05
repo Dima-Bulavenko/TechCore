@@ -79,6 +79,8 @@ MIDDLEWARE = [
     "allauth.account.middleware.AccountMiddleware",
     # Htmx middleware
     "django_htmx.middleware.HtmxMiddleware",
+    # Custom middleware
+    "cart.middleware.HTMXCartMiddleware",
 ]
 
 ROOT_URLCONF = 'tech_core.urls'
