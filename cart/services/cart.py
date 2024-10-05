@@ -32,3 +32,9 @@ class Cart:
             return product_data["quantity"]
         return 0
 
+    def clear(self):
+        """
+        Remove all items from the cart.
+        """
+        self.cart.clear()
+        self.session.modified = True
