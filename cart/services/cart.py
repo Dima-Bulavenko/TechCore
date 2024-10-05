@@ -21,5 +21,8 @@ class Cart:
             return True
         
         return self.cart[product_id]["quantity"] != quantity
+    
+    def count_items(self):
+        return sum(item["quantity"] for item in self.cart.values())
 
 
