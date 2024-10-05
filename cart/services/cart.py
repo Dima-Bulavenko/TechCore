@@ -24,5 +24,11 @@ class Cart:
     
     def count_items(self):
         return sum(item["quantity"] for item in self.cart.values())
-
+    
+    def get_product_quantity(self, product_id):
+        product_id = str(product_id)
+        product_data = self.cart.get(product_id, None)
+        if product_data:
+            return product_data["quantity"]
+        return 0
 
