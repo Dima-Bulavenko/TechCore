@@ -45,7 +45,13 @@ class ProductDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["title"] = self.object.name
-        context["quantity_form"] = ProductQuantityForm(initial={"product_id": self.object.pk})
+        product_quantity = Cart(self.request).get_product_quantity(self.object.pk)
+        context["quantity_form"] = ProductQuantityForm(
+            initial={
+                "product_id": self.object.pk,
+                "quantity": product_quantity if product_quantity else 1,
+                }
+        )
         context.update(self.object.review_data)
         context["review_form"] = ReviewForm()
         if self.request.user.is_authenticated:
