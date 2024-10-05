@@ -18,4 +18,4 @@ class CartActionView(View):
         product = get_object_or_404(Product, pk=product_id)
         cart = Cart(request)
         cart.update(product, quantity)
-        return render(request, "components/shopping_card_button.html")
+        return render(request, "components/shopping_card_button.html", {"hx_oob": True})

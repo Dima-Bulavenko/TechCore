@@ -1,4 +1,5 @@
 <button id="shopping_car_header"
+    {% if hx_oob %}hx-swap-oob="true"{% endif %}
         class="items-center relative flex w-10 h-10 justify-center text-sm text-gray-500 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
     {% include "svg_templates/shopping_basket.svg" with class_attr="w-8 h-8" %}
     <span id="shopping_car_count"
