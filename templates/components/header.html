@@ -51,9 +51,7 @@
         </svg>
       </button>
       {% comment %} shopping busket {% endcomment %}
-      <button class="items-center flex w-10 h-10 justify-center text-sm text-gray-500 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
-        {% include "svg_templates/shopping_basket.svg" with class_attr="w-8 h-8" %}
-      </button>
+      {% include "components/shopping_card_button.html" %}
       {% comment %} user manu {% endcomment %}
       <button type="button"
               class="rounded-full hidden md:flex justify-center items-center w-8 h-8 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600 hover:ring-4 hover:ring-gray-300 dark:hover:ring-gray-600"
