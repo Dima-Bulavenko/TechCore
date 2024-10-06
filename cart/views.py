@@ -1,5 +1,6 @@
-from django.http import HttpResponseNotFound
-from django.shortcuts import get_object_or_404, render
+from django.http import HttpResponse, HttpResponseNotFound
+from django.shortcuts import get_object_or_404
+from django.template.loader import render_to_string
 from django.views.generic import View
 
 from cart.services.cart import Cart
@@ -18,4 +19,11 @@ class CartActionView(View):
         product = get_object_or_404(Product, pk=product_id)
         cart = Cart(request)
         cart.update(product, quantity)
-        return render(request, "components/shopping_card_button.html", {"hx_oob": True})
+        quantity_form = ProductQuantityForm(initial={"product_id": product_id, "quantity": quantity})
+        content = render_to_string(
+            "product/inclusions/product_quantity_fields.html", 
+            {"form": quantity_form, "hx_oob": True},
+            request
+        )
+        
+        return HttpResponse(content)
