@@ -34,9 +34,11 @@
         {% block js_block %}
         <script src="{% static 'js/flowbite/flowbite.min.js' %}" defer></script>
         <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.5/dist/js.cookie.min.js" defer></script>
+        <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.1/dist/cdn.min.js"></script>
         {% endblock js_block %}
     </head>
     <body hx-ext="morph" hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
+        {% include "core/messages.html" %}
         <header>
             {% block header %}
                 {% include "components/header.html" %}
