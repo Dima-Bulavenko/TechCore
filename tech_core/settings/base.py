@@ -81,6 +81,7 @@ MIDDLEWARE = [
     "django_htmx.middleware.HtmxMiddleware",
     # Custom middleware
     "cart.middleware.HTMXCartMiddleware",
+    "core.middleware.HtmxMessagesMiddleware",
 ]
 
 ROOT_URLCONF = 'tech_core.urls'
