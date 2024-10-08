@@ -14,7 +14,13 @@ class Cart:
         if self.is_need_update(product_id, quantity):
             self.cart[product_id] = {"quantity": quantity, "price": str(product.price)}
             self.session.modified = True
-    
+
+    def remove(self, product_id):
+        product_id = str(product_id)
+        if product_id in self.cart:
+            del self.cart[product_id]
+            self.session.modified = True
+
     def is_need_update(self, product_id, quantity):
         product_id = str(product_id)
         if product_id not in self.cart:
