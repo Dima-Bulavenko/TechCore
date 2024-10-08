@@ -1,4 +1,8 @@
+from decimal import Decimal
+
 from django.conf import settings
+
+from product.models import Product
 
 
 class Cart:
@@ -25,12 +29,12 @@ class Cart:
         product_id = str(product_id)
         if product_id not in self.cart:
             return True
-        
+
         return self.cart[product_id]["quantity"] != quantity
-    
+
     def count_items(self):
         return sum(item["quantity"] for item in self.cart.values())
-    
+
     def get_product_quantity(self, product_id):
         product_id = str(product_id)
         product_data = self.cart.get(product_id, None)
@@ -44,3 +48,16 @@ class Cart:
         """
         self.cart.clear()
         self.session.modified = True
+
+    def __iter__(self):
+        product_ids = self.cart.keys()
+        # get the product objects and add them to the cart
+        products = Product.objects.filter(id__in=product_ids)
+        cart = self.cart.copy()
+        for product in products:
+            cart[str(product.id)]["product"] = product
+        for item in cart.values():
+            item["price"] = Decimal(item["price"])
+            item["total_price"] = Decimal(item["price"]) * item["quantity"]
+            yield item
+    
