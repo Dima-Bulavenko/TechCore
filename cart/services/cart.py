@@ -61,3 +61,13 @@ class Cart:
             item["total_price"] = Decimal(item["price"]) * item["quantity"]
             yield item
     
+    def __getitem__(self, product_id):
+        product_id = str(product_id)
+        if product_id in self.cart:
+            cart_item = self.cart[product_id].copy()
+            product = Product.objects.get(pk=product_id)
+            cart_item["product"] = product
+            cart_item["price"] = Decimal(cart_item["price"])
+            cart_item["total_price"] = cart_item["price"] * cart_item["quantity"]
+            return cart_item
+        return None
