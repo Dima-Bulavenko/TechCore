@@ -30,3 +30,7 @@ a {
 .info_svg {
     @apply inline-flex items-center justify-center flex-shrink-0 w-8 h-8 text-blue-500 bg-blue-100 rounded-lg dark:bg-blue-700 dark:text-blue-200
 }
+
+.htmx-request {
+    @apply text-gray-700 bg-opacity-25 pointer-events-none
+}
