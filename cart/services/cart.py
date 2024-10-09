@@ -76,3 +76,10 @@ class Cart:
         return sum(
             Decimal(item["price"]) * item["quantity"] for item in self.cart.values()
         )
+    
+    def get_delivery_cost(self):
+        total_price = self.get_cart_total_price()
+        if total_price > 500:
+            return 0
+        return 20
+
