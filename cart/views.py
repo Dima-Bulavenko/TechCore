@@ -1,7 +1,8 @@
+from django.contrib import messages
 from django.http import HttpResponse, HttpResponseNotFound
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, render
 from django.template.loader import render_to_string
-from django.views.generic import View
+from django.views.generic import ListView, View
 
 from cart.services.cart import Cart
 from product.forms import ProductQuantityForm
@@ -13,7 +14,6 @@ class CartActionView(View):
         form = ProductQuantityForm(request.POST)
         if not form.is_valid():
             return HttpResponseNotFound()
-        
         product_id = form.cleaned_data["product_id"]
         quantity = form.cleaned_data["quantity"]
         product = get_object_or_404(Product, pk=product_id)
@@ -25,7 +25,16 @@ class CartActionView(View):
             {"form": quantity_form, "hx_oob": True},
             request
         )
-        
+        content += render_to_string(
+            "cart/inclusions/cart_item.html",
+            {"cart_item": cart.get_item_detail(product.pk), "hx_oob": True},
+            request
+        )
+        content += render_to_string(
+            "cart/inclusions/cart_summary.html",
+            {"cart": cart, "hx_oob": True},
+            request
+        )
         return HttpResponse(content)
 
 
