@@ -37,6 +37,21 @@ class CartActionView(View):
         )
         return HttpResponse(content)
 
+    def delete(self, request, *args, **kwargs):
+        form = ProductQuantityForm(request.GET)
+        if not form.is_valid():
+            return HttpResponseNotFound()
+        product_id = form.cleaned_data["product_id"]
+        cart = Cart(request)
+        cart.remove(product_id)
+        content = render_to_string(
+            "cart/inclusions/cart_summary.html",
+            {"cart": cart, "hx_oob": True},
+            request
+        )
+        
+        return HttpResponse(content)
+
 
 class CartDetailView(View):
     def get(self, request, *args, **kwargs):
