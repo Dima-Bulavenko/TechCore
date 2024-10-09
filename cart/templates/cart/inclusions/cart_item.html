@@ -1,0 +1,53 @@
+{% load static %}
+{% load product_tags %}
+{% with product=cart_item.product %}
+    <div id="cart_item_{{ product.pk }}"
+        {% if hx_oob %}hx-swap-oob="morph"{% endif %}
+         class="rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800 md:p-6">
+        <div class="space-y-4 md:flex md:items-center md:justify-between md:gap-6 md:space-y-0">
+            <a href="{{ product.get_absolute_url }}" class="md:order-1 inline-flex shrink-0">
+                <img class="h-20 w-20"
+                     {% if product.images.first.url %} src="{{ product.images.first.url }}" {% else %} src="{% static 'img/'|add:product.category.name|lower|add:'.svg' %}" {% endif %}
+                     alt="{{ product.name }} image" />
+            </a>
+            {% get_product_quantity_form product.pk cart_item.quantity as quantity_form %}
+            <label for="{{ quantity_form.quantity.id_for_label }}" class="sr-only">Choose quantity:</label>
+            <div
+            class="flex items-center justify-between md:order-3 md:justify-end">
+                <div hx-post="{% url "add_to_cart" %}"
+                     hx-include="this"
+                     hx-trigger="click delay:2000ms from:find #decrement_button_{{ quantity_form.quantity.id_for_label }}, change changed delay:1000ms from:find #{{ quantity_form.quantity.id_for_label }}, click delay:2000ms from:find #increment_button_{{ quantity_form.quantity.id_for_label }}"
+                     hx-swap="none"  
+                     class="flex items-center">
+                    {% for field in quantity_form %}{{ field }}{% endfor %}
+                </div>
+                <div class="text-end md:order-4 md:w-32">
+                    <p class="text-base font-bold text-gray-900 dark:text-white">${{ cart_item.total_price }}</p>
+                </div>
+            </div>
+            <div class="w-full min-w-0 flex-1 space-y-4 md:order-2 md:max-w-md">
+                <a href="{{ product.get_absolute_url }}"
+                   class="text-base font-medium text-gray-900 hover:underline dark:text-white">{{ product.name }}</a>
+                <div class="flex items-center gap-4">
+                    <button type="button"
+                            hx-delete="{% url "delete_from_cart" %}"
+                            hx-swap='outerHTML'
+                            hx-target="#cart_item_{{ product.pk }}"
+                            hx-include="#cart_item_{{ product.pk }}"
+                            class="inline-flex items-center text-sm font-medium text-red-600 hover:underline dark:text-red-500">
+                        <svg class="me-1.5 h-5 w-5"
+                             aria-hidden="true"
+                             xmlns="http://www.w3.org/2000/svg"
+                             width="24"
+                             height="24"
+                             fill="none"
+                             viewBox="0 0 24 24">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18 17.94 6M18 18 6.06 6" />
+                        </svg>
+                        Remove
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endwith %}

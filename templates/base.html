@@ -1,10 +1,13 @@
 {% load static %}
 {% load static tailwind_tags %}
+{% load django_htmx %}
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="htmx-config"
+              content='{ "responseHandling": [ {"code":"204", "swap": false}, {"code":"[23]..", "swap": true}, {"code":"422", "swap": true}, {"code":"404", "swap": true, "select": "#messages", "swapOverride": "none"}, {"code":"[45]..", "swap": false, "error": true} ] }'>
         <title>
             {% block head_title %}
                 {{ title }}
@@ -26,13 +29,17 @@
         {% block basic_js %}
             <script src="{% static 'js/script.js' %}" defer></script>
             <script src="{% static 'js/navbar_height.js' %}" defer></script>
+            <script src="{% static 'js/htmx.min.js' %}" defer></script>
+            <script src="https://unpkg.com/idiomorph@0.3.0/dist/idiomorph-ext.min.js" defer></script>
         {% endblock basic_js %}
         {% block js_block %}
         <script src="{% static 'js/flowbite/flowbite.min.js' %}" defer></script>
         <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.5/dist/js.cookie.min.js" defer></script>
+        <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.1/dist/cdn.min.js"></script>
         {% endblock js_block %}
     </head>
-    <body>
+    <body hx-ext="morph" hx-on::after-request="initFlowbite()" hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
+        {% include "core/messages.html" %}
         <header>
             {% block header %}
                 {% include "components/header.html" %}

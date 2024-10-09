@@ -612,6 +612,8 @@ The WordNest project was deployed on a Heroku hosting server. The following step
 
 -   [Animated burger menu](https://codepen.io/ainalem/pen/GeMqdP)
 
+-   [Layout of shopping cart page](https://flowbite.com/blocks/e-commerce/shopping-cart/)
+
 [Back to the top](#table-of-contents)
 
 ## Code

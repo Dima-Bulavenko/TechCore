@@ -53,11 +53,15 @@ INSTALLED_APPS = [
     'crispy_forms',
     'core',
     'product',
+    'cart',
 
     # Tailwind app
     'tailwind',
     'theme',
     'django_browser_reload',
+
+    # Other apps
+    "django_htmx",
     ]
 
 MIDDLEWARE = [
@@ -73,6 +77,11 @@ MIDDLEWARE = [
     'django_browser_reload.middleware.BrowserReloadMiddleware',
     # Allauth middleware
     "allauth.account.middleware.AccountMiddleware",
+    # Htmx middleware
+    "django_htmx.middleware.HtmxMiddleware",
+    # Custom middleware
+    "cart.middleware.HTMXCartMiddleware",
+    "core.middleware.HtmxMessagesMiddleware",
 ]
 
 ROOT_URLCONF = 'tech_core.urls'
@@ -90,6 +99,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'product.context_processors.order_options',
                 'product.context_processors.category_list',
+                'cart.context_processors.cart_data',
             ],
         },
     },
@@ -203,3 +213,6 @@ INTERNAL_IPS = [
     "127.0.0.1",
 ]
 TAILWIND_APP_NAME = 'theme'
+
+
+CART_SESSION_ID = 'cart'

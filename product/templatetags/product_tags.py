@@ -1,10 +1,12 @@
 from django import template
 
+from product.forms import ProductQuantityForm
+
 register = template.Library()
 
 
 @register.inclusion_tag('product/inclusions/rating_stars.html')
-def render_stars(rating, id=""):
+def render_stars(rating, star_id=""):
     rating = float(rating)
     max_rating = 5
     fill_sizes = []
@@ -16,4 +18,9 @@ def render_stars(rating, id=""):
         elif full_star_check > 0:
             fill_size = full_star_check * 100
         fill_sizes.append(fill_size)
-    return {'fill_sizes': fill_sizes, 'id': id}
+    return {'fill_sizes': fill_sizes, 'id': star_id}
+
+
+@register.simple_tag
+def get_product_quantity_form(product_id, quantity=1):
+    return ProductQuantityForm(product_id=product_id, initial={'product_id': product_id, 'quantity': quantity})

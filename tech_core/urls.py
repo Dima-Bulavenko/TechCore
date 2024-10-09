@@ -25,6 +25,7 @@ urlpatterns = [
     re_path(r"^accounts/email/$", page_not_found, {"exception": Exception("Not Found")}),
     path('accounts/', include('allauth.urls')),
     path('product/', include('product.urls')),
+    path('cart/', include('cart.urls')),
     path("__reload__/", include("django_browser_reload.urls")),
     path('', include('core.urls')),
 ]

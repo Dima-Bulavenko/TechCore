@@ -44,12 +44,12 @@
                         <p class="text-gray-800 text-3xl font-bold">${{ product.price }}</p>
                     </div>
                     <div class="mt-8">
-                        <form class="max-w-xs" method="get" id="quantity_form_{{ product.pk }}">
+                        <form class="max-w-xs" id="quantity_form_{{ product.pk }}">
                             <label for="{{ quantity_form.quantity.id_for_label }}"
                                    class="block mb-2 text-xl font-bold text-gray-900 dark:text-white">
                                 Choose quantity:
                             </label>
-                            {% for field in quantity_form %}{{ field }}{% endfor %}
+                            {% include "product/inclusions/product_quantity_fields.html" with form=quantity_form %}
                         </form>
                     </div>
                     <div class="flex flex-wrap gap-4 mt-8">
@@ -59,9 +59,9 @@
                                 class="min-w-[200px] px-4 py-3 bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold rounded">
                             Buy now
                         </button>
-                        <button type="submit"
-                                form="quantity_form_{{ product.pk }}"
-                                formaction="#"
+                        <button hx-post={% url "add_to_cart" %}
+                                hx-include="#quantity_form_{{ product.pk }} *"
+                                hx-swap="none"
                                 class="min-w-[200px] px-4 py-2.5 border border-blue-600 bg-transparent hover:bg-gray-50 text-gray-800 text-sm font-semibold rounded">
                             Add to cart
                         </button>
