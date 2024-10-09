@@ -27,3 +27,9 @@ class CartActionView(View):
         )
         
         return HttpResponse(content)
+
+
+class CartDetailView(View):
+    def get(self, request, *args, **kwargs):
+        cart = Cart(request)
+        return render(request, "cart/cart_detail.html", {"cart": cart})
