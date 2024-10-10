@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'core',
     'product',
     'cart',
+    'checkout',
 
     # Tailwind app
     'tailwind',
