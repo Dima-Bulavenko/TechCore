@@ -27,4 +27,28 @@ class Address(models.Model):
         return f"{self.user} - {self.address_line_1}"
 
 
-# Create your models here.
+class Order(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, 
+                             on_delete=models.CASCADE, 
+                             related_name='orders',
+                             blank=True, null=True)
+    email_field = models.EmailField(_("Email"), max_length=254)
+    full_name = models.CharField(_("Full Name"), max_length=50)
+    address = models.ForeignKey(Address, on_delete=models.CASCADE)
+    order_number = models.CharField(max_length=32, unique=True, editable=False)
+    create_date = models.DateTimeField(auto_now_add=True)
+    delivery_cost = models.DecimalField(max_digits=6, decimal_places=2, default=0)
+    order_total = models.DecimalField(max_digits=10, decimal_places=2, default=0)
+    grand_total = models.DecimalField(max_digits=10, decimal_places=2, default=0)
+
+    def __str__(self):
+        return self.order_number
+    
+    def save(self, *args, **kwargs):
+        if not self.order_number:
+            self.order_number = self._generate_order_number()
+        super().save(*args, **kwargs)
+      
+    def _generate_order_number(self):
+        return uuid.uuid4().hex.upper()
+    
