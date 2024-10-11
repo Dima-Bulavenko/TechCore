@@ -52,3 +52,16 @@ class Order(models.Model):
     def _generate_order_number(self):
         return uuid.uuid4().hex.upper()
     
+
+class OrderLineItem(models.Model):
+    order = models.ForeignKey(Order, on_delete=models.CASCADE, related_name='lineitems')
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    quantity = models.IntegerField(default=0)
+    lineitem_total = models.DecimalField(max_digits=6, decimal_places=2, editable=False)
+        
+    def __str__(self):
+        return f"Order {self.order.order_number} - {self.product.name}"
+    
+    def save(self, *args, **kwargs):
+        self.lineitem_total = self.product.price * self.quantity
+        super().save(*args, **kwargs)
