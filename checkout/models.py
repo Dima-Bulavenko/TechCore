@@ -20,7 +20,6 @@ class Address(models.Model):
     county = models.CharField(_("County"), max_length=100)
     country = models.CharField(_("Country"), max_length=100)
     postal_code = models.CharField(_("Postal Code"), max_length=20, blank=True)
-    phone_number = models.CharField(_("Phone Number"), max_length=20)
     last_update = models.DateTimeField(auto_now=True)
 
     def __str__(self):
@@ -32,6 +31,7 @@ class Order(models.Model):
                              on_delete=models.CASCADE, 
                              related_name='orders',
                              blank=True, null=True)
+    phone_number = models.CharField(_("Phone Number"), max_length=20)
     email_field = models.EmailField(_("Email"), max_length=254)
     full_name = models.CharField(_("Full Name"), max_length=50)
     address = models.ForeignKey(Address, on_delete=models.CASCADE)

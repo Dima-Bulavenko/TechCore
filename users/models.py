@@ -35,18 +35,3 @@ class User(AbstractUser):
 
         """
         return reverse("users:detail", kwargs={"pk": self.id})
-
-
-class Address(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="addresses", blank=True, null=True)
-    address_line_1 = models.CharField(_("Address Line 1"), max_length=100)
-    address_line_2 = models.CharField(_("Address Line 2"), max_length=100, blank=True)
-    city = CharField(_("City"), max_length=100)
-    county = CharField(_("County"), max_length=100)
-    country = CharField(_("Country"), max_length=100)
-    postal_code = CharField(_("Postal Code"), max_length=20, blank=True)
-    phone_number = CharField(_("Phone Number"), max_length=20)
-    last_update = models.DateTimeField(auto_now=True)
-
-    def __str__(self):
-        return f"{self.user} - {self.address_line_1}"
