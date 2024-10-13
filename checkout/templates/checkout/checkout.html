@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% load static %}
+{% block js_block %}
+    {{ block.super }}
+    {{ stripe_public_key|json_script:"id_stripe_public_key" }}
+    {{ client_secret|json_script:"id_client_secret" }}
+    <script src="{% static 'checkout/js/stripe_elements.js' %}" defer></script>
+{% endblock js_block %}
+{% block content %}
+    <section class="bg-white py-8 antialiased dark:bg-gray-900 md:py-16">
+        <div class="mx-auto max-w-screen-xl">
+            <h2 class="text-xl font-semibold text-gray-900 dark:text-white sm:text-2xl">Checkout</h2>
+            <div class="grid gap-y-10  gap-x-4 grid-cols-1 mt-7 content-center md:grid-cols-[3fr_4fr] md:grid-rows-[auto_1fr]">
+                <div class="md:row-span-2">
+                    <form class="flex flex-col gap-5" id="checkout_form" method='post'>
+                        {% csrf_token %}
+                        <fieldset class="space-y-4 rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800 md:p-6">
+                            <legend class="text-xl font-semibold text-gray-900 px-3">Details</legend>
+                            {% for field in order_form %}
+                                <div>{% include "checkout/inclusions/input_field.html" %}</div>
+                            {% endfor %}
+                        </fieldset>
+                        <fieldset class="space-y-4 rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800 sm:p-6">
+                            <legend class="text-xl font-semibold text-gray-900 px-3">Delivery</legend>
+                            {% for field in address_form %}
+                                <div>{% include "checkout/inclusions/input_field.html" %}</div>
+                            {% endfor %}
+                        </fieldset>
+                        <fieldset class="flex flex-col gap-4 rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800 sm:p-6">
+                            <legend class="text-xl font-semibold text-gray-900 px-3">Payment</legend>
+                            <!-- A Stripe card element will go here -->
+                            <div id="card-element"></div>
+                            <!-- Used to display form errors -->
+                            <div class="text-red-600" id="card-errors" role="alert"></div>
+                            <!-- Pass the client secret to the view so we can get the payment intent id -->
+                            <input type="hidden" value="{{ client_secret }}" name="client_secret">
+                        </fieldset>
+                    </form>
+                </div>
+                <div data-accordion="open"
+                     id="cart_items_accordion"
+                     class="mx-auto w-full flex-none md:col-start-2 lg:max-w-2xl xl:max-w-4xl md:mt-3">
+                    <h2 id="accordion-flush-heading-1">
+                        <button type="button"
+                                class="flex items-center justify-between w-full py-3 px-2 border rounded-md border-gray-200 dark:border-gray-700 dark:text-gray-400 gap-3"
+                                data-accordion-target="#accordion-checkout_items"
+                                aria-expanded="false"
+                                aria-controls="accordion-checkout_items">
+                            <span class="text-xl font-semibold text-gray-900">Order items</span>
+                            <svg data-accordion-icon
+                                 class="w-3 h-3 rotate-180 shrink-0"
+                                 aria-hidden="true"
+                                 xmlns="http://www.w3.org/2000/svg"
+                                 fill="none"
+                                 viewBox="0 0 10 6">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5" />
+                            </svg>
+                        </button>
+                    </h2>
+                    <div class="space-y-4 hidden mt-5"
+                         id="accordion-checkout_items"
+                         aria-labelledby="accordion-flush-heading-1">
+                        {% for cart_item in cart %}
+                            {% include "checkout/inclusions/checkout_item.html" %}
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="md:sticky md:top-28 md:col-start-2 md:self-start">{% include "checkout/inclusions/checkout_summary.html" %}</div>
+            </div>
+        </div>
+    </section>
+{% endblock content %}
