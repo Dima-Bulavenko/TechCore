@@ -174,7 +174,7 @@ STATICFILES_DIRS = [
 ]
 
 # Media files settings
-MEDIA_URL = '/media/'
+MEDIA_URL = 'media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
 # Default primary key field type
@@ -222,3 +222,8 @@ CART_SESSION_ID = 'cart'
 
 FREE_DELIVERY_THRESHOLD = 500
 DELIVERY_COST = 20
+
+# Stripe settings
+STRIPE_PUBLIC_KEY = config("STRIPE_PUBLIC_KEY", default="")
+STRIPE_CURRENCY = 'usd'
+STRIPE_SECRET_KEY = config("STRIPE_SECRET_KEY", default="")
