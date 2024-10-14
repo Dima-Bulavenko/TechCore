@@ -1,6 +1,7 @@
+from django.shortcuts import redirect
 from django.views.generic import TemplateView
 
-from cart.services.cart import Cart
+from checkout.models import Order
 from checkout.services.checkout import Checkout
 from checkout.services.stripe import Stripe
 
@@ -14,13 +15,20 @@ class CheckoutView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["cart"] = Cart(self.request)
+
+        stripe = Stripe(self.checkout.cart)
+        stripe_intent = stripe.intent()
+        context["cart"] = self.checkout.cart
         context.update(self.checkout.get_forms())
-        stripe_service = Stripe(context["cart"])
-        intent = stripe_service.intent()
-        context["stripe_public_key"] = stripe_service.pubic_key
-        context["client_secret"] = intent.client_secret
+        context["stripe_public_key"] = stripe.pubic_key
+        context["client_secret"] = stripe_intent.client_secret
         return context
-    
+
     def post(self, request, *args, **kwargs):
-        return self.get(request, *args, **kwargs)
+        order = self.checkout.create_order()
+
+        if order:
+            self.checkout.cart.clear()
+            return redirect("checkout_success", order.order_number)
+        return super().get(request, *args, **kwargs)
+
