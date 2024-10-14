@@ -26,6 +26,8 @@ form.addEventListener("submit", function (event) {
     event.preventDefault();
     card.update({ disabled: true });
     let submitButton = document.getElementById("complete_order_button");
+    let loadSpinner = document.getElementById("payment_load_spinner");
+    loadSpinner.dataset.open = "true";
     submitButton.setAttribute("disabled", true);
     stripe
         .confirmCardPayment(clientSecret, {
@@ -39,6 +41,7 @@ form.addEventListener("submit", function (event) {
                 errorDiv.textContent = result.error.message;
                 card.update({ disabled: false });
                 submitButton.removeAttribute("disabled");
+                loadSpinner.dataset.open = "false";
             } else {
                 if (result.paymentIntent.status === "succeeded") {
                     form.submit();
