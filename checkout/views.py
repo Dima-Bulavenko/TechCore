@@ -32,3 +32,12 @@ class CheckoutView(TemplateView):
             return redirect("checkout_success", order.order_number)
         return super().get(request, *args, **kwargs)
 
+
+class CheckoutSuccessView(TemplateView):
+    template_name = "checkout/checkout_success.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        order_number = kwargs.get("order_number")
+        context["order"] = Order.objects.get(order_number=order_number)
+        return context
