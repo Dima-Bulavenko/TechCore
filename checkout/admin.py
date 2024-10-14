@@ -15,3 +15,11 @@ class AddressAdmin(admin.ModelAdmin):
         'postal_code',
         'last_update',
     ]
+
+@admin.register(models.Order)
+class OrderAdmin(admin.ModelAdmin):
+    pass
+
+@admin.register(models.OrderLineItem)
+class OrderLineItemAdmin(admin.ModelAdmin):
+    pass
