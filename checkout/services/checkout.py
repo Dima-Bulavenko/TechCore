@@ -61,7 +61,6 @@ class Checkout:
                             product=item["product"],
                             quantity=item["quantity"],
                         )
-                    messages.success(self.request, "Order has been placed successfully")
                     return order
             except Exception:  # noqa: BLE001
                 messages.error(

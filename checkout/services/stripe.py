@@ -19,12 +19,13 @@ class Stripe:
         self.stripe = stripe
         self.stripe.api_key = self.secret_key
 
-    def intent(self):
+    def intent(self, **intent_params):
         cart_total = self.cart.get_cart_total_price()
         delivery_amount = self.cart.get_delivery_cost()
         amount = (cart_total + delivery_amount) * 100
         intent = self.stripe.PaymentIntent.create(
+            **intent_params,
             amount=round(amount),
-            currency=self.currency
+            currency=self.currency,
         )
         return intent
