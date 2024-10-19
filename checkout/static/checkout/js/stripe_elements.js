@@ -56,30 +56,57 @@ function showLoading(flag) {
 // Handle form submit
 let form = document.getElementById("checkout_form");
 
-form.addEventListener("submit", function (event) {
-    event.preventDefault();
-    card.update({ disabled: true });
-    let submitButton = document.getElementById("complete_order_button");
-    let loadSpinner = document.getElementById("payment_load_spinner");
-    loadSpinner.dataset.open = "true";
-    submitButton.setAttribute("disabled", true);
-    stripe
-        .confirmCardPayment(clientSecret, {
-            payment_method: {
-                card: card,
-            },
-        })
-        .then(function (result) {
-            if (result.error) {
-                let errorDiv = document.getElementById("card-errors");
-                errorDiv.textContent = result.error.message;
-                card.update({ disabled: false });
-                submitButton.removeAttribute("disabled");
-                loadSpinner.dataset.open = "false";
-            } else {
-                if (result.paymentIntent.status === "succeeded") {
-                    form.submit();
-                }
-            }
+form.addEventListener("htmx:confirm", async (event) => {
+    showLoading(true);
+    if (!form.querySelector('input[name="payment_intent_id"]')) {
+        event.preventDefault();
+        const { paymentMethod, error } = await stripe.createPaymentMethod({
+            type: 'card',
+            card: cardNumber,
         });
+        if (error) {
+            event.preventDefault();
+            errorDiv.textContent = error.message;
+            showLoading(false);
+        } else {
+            var hiddenInput = document.createElement("input");
+            hiddenInput.setAttribute("type", "hidden");
+            hiddenInput.setAttribute("name", "payment_method_id");
+            hiddenInput.setAttribute("value", paymentMethod.id);
+            form.appendChild(hiddenInput);
+            event.detail.issueRequest();
+        }
+    }
+});
+
+form.addEventListener("htmx:afterRequest", async (event) => {
+    let statusParams = document.getElementById("status_params").textContent;
+    const { cardError, clientSecret, requiredAction, isFormValid } =
+        JSON.parse(statusParams);
+
+    if (!isFormValid) return showLoading(false);
+
+    if (cardError) {
+        errorDiv.textContent = cardError;
+        showLoading(false);
+        return;
+    }
+
+    if (requiredAction) {
+        const { error: errorAction, paymentIntent } =
+            await stripe.handleCardAction(clientSecret);
+        if (errorAction) {
+            errorDiv.textContent = errorAction.message;
+            showLoading(false);
+            return;
+        } else {
+            var hiddenInput = document.createElement("input");
+            hiddenInput.setAttribute("type", "hidden");
+            hiddenInput.setAttribute("name", "payment_intent_id");
+            hiddenInput.setAttribute("value", paymentIntent.id);
+            form.appendChild(hiddenInput);
+            htmx.trigger(`#${form.id}`, "submit");
+        }
+        return;
+    }
 });
