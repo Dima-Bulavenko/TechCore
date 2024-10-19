@@ -3,6 +3,7 @@ import uuid
 from django.conf import settings
 from django.db import models
 from django.db.models import Sum
+from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 
 from cart.services.cart import get_delivery_cost
@@ -48,7 +49,10 @@ class Order(models.Model):
         if not self.order_number:
             self.order_number = self._generate_order_number()
         super().save(*args, **kwargs)
-      
+    
+    def get_absolute_url(self):
+        return reverse("order_detail", kwargs={"order_number": self.order_number})
+    
     def _generate_order_number(self):
         return uuid.uuid4().hex.upper()
 
