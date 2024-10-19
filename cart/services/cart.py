@@ -79,7 +79,10 @@ class Cart:
     
     def get_delivery_cost(self):
         total_price = self.get_cart_total_price()
-        if total_price > 500:
-            return 0
-        return 20
+        return get_delivery_cost(total_price)
 
+
+def get_delivery_cost(total_price):
+    if total_price > settings.FREE_DELIVERY_THRESHOLD:
+            return 0
+    return settings.DELIVERY_COST
