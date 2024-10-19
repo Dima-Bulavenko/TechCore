@@ -1,0 +1,5 @@
+Tank you for your order! 
+
+Below you'll find link to your order details:
+
+{{ order_url }}

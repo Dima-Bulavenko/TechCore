@@ -1,8 +1,10 @@
 import json
 
 from django.contrib.auth import get_user_model
+from django.core.mail import send_mail
 from django.db import transaction
 from django.http import HttpResponse
+from django.template.loader import render_to_string
 
 from checkout import forms
 from checkout.models import OrderLineItem
@@ -14,10 +16,7 @@ class StripeWebhookHandler:
         self.request = request
 
     def handle_event(self, event):
-        return HttpResponse(
-            content=f'Webhook received: {event["type"]}',
-            status=200
-        )
+        return HttpResponse(content=f'Webhook received: {event["type"]}', status=200)
 
     def handle_payment_intent_succeeded(self, event):
         order = json.loads(event["data"]["object"]["metadata"]["order"])
@@ -28,10 +27,7 @@ class StripeWebhookHandler:
         address_form = forms.AddressForm(address)
 
         if not all((order_form.is_valid(), address_form.is_valid())):
-            return HttpResponse(
-                content="Invalid form data",
-                status=400
-            )
+            return HttpResponse(content="Invalid form data", status=400)
         try:
             with transaction.atomic():
                 address = address_form.save()
@@ -44,20 +40,32 @@ class StripeWebhookHandler:
                     OrderLineItem.objects.create(
                         order=order,
                         product=Product.objects.get(pk=pk),
-                        quantity=data["quantity"]
+                        quantity=data["quantity"],
                     )
+
+                text_content = render_to_string(
+                    "checkout/mails/order_complete.txt",
+                    {
+                        "order": order,
+                        "order_url": self.request.build_absolute_uri(
+                            order.get_absolute_url()
+                        ),
+                    },
+                )
+                send_mail(
+                    "Successful order",
+                    text_content,
+                    "techcore@gmail.com",
+                    [order.email_field],
+                )
         except Exception as e:
-            return HttpResponse(
-                content=f'Error processing order: {e}',
-                status=500
-            )
+            return HttpResponse(content=f"Error processing order: {e}", status=500)
+
         return HttpResponse(
-            content=f'Payment succeeded webhook received: {event["type"]}',
-            status=200
+            content=f'Payment succeeded webhook received: {event["type"]}', status=200
         )
-    
+
     def handle_payment_intent_payment_failed(self, event):
         return HttpResponse(
-            content=f'Payment failed webhook received: {event["type"]}',
-            status=200
+            content=f'Payment failed webhook received: {event["type"]}', status=200
         )
