@@ -92,6 +92,10 @@ class CheckoutSuccessView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        order_number = kwargs.get("order_number")
-        context["order"] = Order.objects.get(order_number=order_number)
+        cart = Cart(self.request)
+        stripe = Stripe(cart).stripe
+        intent = stripe.PaymentIntent.retrieve(kwargs.get("intent_id"))
+        order_data = json.loads(intent.metadata["order"])
+        context["order"] = order_data
+
         return context
