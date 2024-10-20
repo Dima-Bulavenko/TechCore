@@ -11,7 +11,7 @@ from product.services.search import ProductSearch
 class ProductListView(ListView):
     template_name = "core/index.html"
     context_object_name = "products"
-    paginate_by = 2
+    paginate_by = 10
     paginate_orphans = 2
 
     def get_queryset(self):
