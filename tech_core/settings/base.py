@@ -229,3 +229,5 @@ STRIPE_PUBLIC_KEY = config("STRIPE_PUBLIC_KEY", default="")
 STRIPE_CURRENCY = 'usd'
 STRIPE_SECRET_KEY = config("STRIPE_SECRET_KEY", default="")
 STRIPE_WH_SECRET = config("STRIPE_WH_SECRET", default="")
+
+MANAGERS = ["dima99bylovenko@gmail.com"]

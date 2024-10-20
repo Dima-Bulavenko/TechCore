@@ -1,3 +1,4 @@
+<!-- TODO this componet implement a lot of functionality that also is used in header component which create code duplication -->
 {% load static %}
 <!-- drawer component -->
 <div id="drawer-navigation"
@@ -45,18 +46,16 @@
                     </svg>
                 </button>
                 <ul id="dropdown-categories" class="hidden py-2 space-y-2">
-                    <li>
-                        <a href="#"
-                           class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">GPU</a>
-                    </li>
-                    <li>
-                        <a href="#"
-                           class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">CPU</a>
-                    </li>
+                    {% for category in categories %}
+                        <li>
+                            <a href="{{ category.get_absolute_url }}"
+                               class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">{{ category.name }}</a>
+                        </li>
+                    {% endfor %}
                 </ul>
             </li>
             <li>
-                <a href="#"
+                <a href="{% url "contact_us" %}"
                    class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                     <svg class="drawer_icon"
                          aria-hidden="true"
@@ -71,13 +70,13 @@
                 </a>
             </li>
             {% if user.is_authenticated %}
-            <li>
-                <a href="#"
-                   class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                    <img src="{% static "img/user.svg" %}" class="drawer_icon" alt="user icon">
-                    <span class="flex-1 ms-3 whitespace-nowrap">User</span>
-                </a>
-            </li>
+                <li>
+                    <a href="#"
+                       class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                        <img src="{% static "img/user.svg" %}" class="drawer_icon" alt="user icon">
+                        <span class="flex-1 ms-3 whitespace-nowrap">User</span>
+                    </a>
+                </li>
                 <li>
                     <a href="{% url "account_logout" %}"
                        class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
