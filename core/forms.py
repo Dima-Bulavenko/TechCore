@@ -1,4 +1,6 @@
 from django import forms
+from django.conf import settings
+from django.core.mail import send_mail
 
 
 class ContactForm(forms.Form):
@@ -7,4 +9,9 @@ class ContactForm(forms.Form):
     message = forms.CharField(label="Message", widget=forms.Textarea)
 
     def send_email(self):
-        print("Sending email to customer service")
+        send_mail(
+            f"TechCore: {self.cleaned_data['subject']}",
+            self.cleaned_data['message'],
+            self.cleaned_data['email'],
+            settings.MANAGERS,
+        )
