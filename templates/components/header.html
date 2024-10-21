@@ -53,15 +53,7 @@
       {% comment %} shopping busket {% endcomment %}
       {% include "components/shopping_card_button.html" %}
       {% comment %} user manu {% endcomment %}
-      <button type="button"
-              class="rounded-full hidden md:flex justify-center items-center w-8 h-8 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600 hover:ring-4 hover:ring-gray-300 dark:hover:ring-gray-600"
-              id="user-menu-button"
-              aria-expanded="false"
-              data-dropdown-toggle="user-dropdown"
-              data-dropdown-placement="bottom">
-        <span class="sr-only">Open user menu</span>
-        <img src="{% static "img/user.svg" %}" alt="user photo">
-      </button>
+      {% include "components/user_dropdown.html" %}
     </div>
     {% comment %} search {% endcomment %}
     <form action="{% url "product_search" %}"

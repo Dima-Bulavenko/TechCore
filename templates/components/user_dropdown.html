@@ -1,0 +1,47 @@
+{% load static %}
+{% with user=request.user is_auth=request.user.is_authenticated %}
+    <button type="button"
+            class="rounded-full hidden md:flex justify-center items-center w-8 h-8 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600 hover:ring-4 hover:ring-gray-300 dark:hover:ring-gray-600"
+            id="user-menu-button"
+            aria-expanded="false"
+            data-dropdown-toggle="user-dropdown"
+            data-dropdown-placement="bottom">
+        <span class="sr-only">Open user menu</span>
+        {% if is_auth %}
+            <!-- TODO set this if block so that "user.svg" is used as user default image -->
+            <img src="{{ user.image.url }}" alt="user photo">
+        {% else %}
+            <img src="{% static "img/user.svg" %}" alt="user photo">
+        {% endif %}
+    </button>
+    <!-- User dropdown menu -->
+    <div id="user-dropdown"
+         class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
+        {% if is_auth %}
+            <div class="px-4 py-3 text-sm text-gray-900 dark:text-white">
+                <div class="truncate">{{ user.email }}</div>
+            </div>
+            <ul class="py-2 text-sm text-gray-700 dark:text-gray-200"
+                aria-labelledby="dropdownInformdropdownAvatarNameButtonationButton">
+                <li>
+                    <a href="#"
+                       class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Profile</a>
+                </li>
+            </ul>
+            <div class="py-2">
+                <a href="{% url "account_logout" %}"
+                   class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Log out</a>
+            </div>
+        {% else %}
+            <div>
+                <a href="{% url "account_login" %}"
+                   class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Log in</a>
+            </div>
+            <div>
+                <a href="{% url "account_signup" %}"
+                   class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign up</a>
+            </div>
+            <div class="py-3 [&_img]:h-7 [&_img]:w-7">{% include "allauth/socialaccount/snippets/provider_list.html" %}</div>
+        {% endif %}
+    </div>
+{% endwith %}
