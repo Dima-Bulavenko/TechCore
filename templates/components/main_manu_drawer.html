@@ -74,7 +74,7 @@
                     <a href="#"
                        class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                         <img src="{% static "img/user.svg" %}" class="drawer_icon" alt="user icon">
-                        <span class="flex-1 ms-3 whitespace-nowrap">User</span>
+                        <span class="flex-1 ms-3 whitespace-nowrap">{{ user.email|truncatechars:20 }}</span>
                     </a>
                 </li>
                 <li>
