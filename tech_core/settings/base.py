@@ -47,6 +47,9 @@ INSTALLED_APPS = [
     # Allauth apps
     'allauth',
     'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
+    'allauth.socialaccount.providers.facebook',
 
     # Local apps
     'users',
@@ -199,7 +202,7 @@ ACCOUNT_USER_MODEL_EMAIL_FIELD = "email"
 ACCOUNT_EMAIL_VERIFICATION = "mandatory"
 # ACCOUNT_FORMS = {"login": "dictionary.forms.LoginForm"}  # https://docs.allauth.org/en/latest/account/forms.html
 # Determines where user be redirected if he is signed in and try to reach sign up/in links.
-# LOGIN_REDIRECT_URL = reverse_lazy("home")
+LOGIN_REDIRECT_URL = reverse_lazy("home")
 # User automatically confirm email when follow by a confirm link
 ACCOUNT_CONFIRM_EMAIL_ON_GET = True
 ACCOUNT_EMAIL_SUBJECT_PREFIX = "TechCore "
@@ -210,6 +213,39 @@ ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = True
 # Log user out without confirmation when he follow by logout link
 ACCOUNT_LOGOUT_ON_GET = True
 
+# Allauth social settings
+SOCIALACCOUNT_LOGIN_ON_GET = True
+SOCIALACCOUNT_PROVIDERS = {
+    "google": {
+        "EMAIL_AUTHENTICATION": True,  # https://docs.allauth.org/en/latest/socialaccount/configuration.html
+        "SCOPE": ["email"],
+        "APP": {
+            "client_id": config("GOOGLE_CLIENT_ID"),
+            "secret": config("GOOGLE_CLIENT_SECRET"),
+            "key": "",
+        },
+        "AUTH_PARAMS": {
+            "prompt": "select_account",
+            "access_type": "offline",
+        },
+    },
+    "facebook": {
+        "EMAIL_AUTHENTICATION": True,
+        "APP": {
+            "client_id": config("FACEBOOK_CLIENT_ID"),
+            "secret": config("FACEBOOK_CLIENT_SECRET"),
+            "key": "",
+        },
+        "METHOD": "oauth2",
+        "SCOPE": ["email", "public_profile"],
+        "AUTH_PARAMS": {"auth_type": "reauthenticate"},
+        "INIT_PARAMS": {"cookie": True},
+        "EXCHANGE_TOKEN": True,
+        "VERIFIED_EMAIL": True,
+        "VERSION": "v13.0",
+        "GRAPH_API_URL": "https://graph.facebook.com/v13.0",
+    },
+}
 
 # Tailwind settings
 INTERNAL_IPS = [

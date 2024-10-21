@@ -1,0 +1,14 @@
+{% load i18n %}
+{% load allauth %}
+{% load socialaccount %}
+{% get_providers as socialaccount_providers %}
+{% if socialaccount_providers %}
+    {% if not SOCIALACCOUNT_ONLY %}
+        <div class="inline-flex items-center justify-center w-full">
+            <hr class="w-64 h-px my-2 bg-gray-200 border-0 dark:bg-gray-700">
+            <span class="absolute px-3 font-medium text-gray-900 -translate-x-1/2 bg-white left-1/2 dark:text-white dark:bg-gray-900">or</span>
+        </div>
+    {% endif %}
+    {% include "socialaccount/snippets/provider_list.html" with process="login" %}
+    {% include "socialaccount/snippets/login_extra.html" %}
+{% endif %}

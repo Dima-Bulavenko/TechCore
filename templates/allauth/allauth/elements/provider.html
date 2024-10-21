@@ -1,3 +1,6 @@
+{% load static %}
 <li>
-    <a title="{{ attrs.name }}" href="{{ attrs.href }}">{{ attrs.name }}</a>
+    <a title="{{ attrs.name }}" href="{{ attrs.href }}">
+        <img src="{% static "img/"|add:attrs.provider_id|add:"_logo.svg" %}" class="hover:scale-125 transition-all" alt="log in with {{ attrs.name }}">
+    </a>
 </li>
