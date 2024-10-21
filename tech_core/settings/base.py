@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
+    'allauth.socialaccount.providers.facebook',
 
     # Local apps
     'users',
@@ -227,6 +228,22 @@ SOCIALACCOUNT_PROVIDERS = {
             "prompt": "select_account",
             "access_type": "offline",
         },
+    },
+    "facebook": {
+        "EMAIL_AUTHENTICATION": True,
+        "APP": {
+            "client_id": config("FACEBOOK_CLIENT_ID"),
+            "secret": config("FACEBOOK_CLIENT_SECRET"),
+            "key": "",
+        },
+        "METHOD": "oauth2",
+        "SCOPE": ["email", "public_profile"],
+        "AUTH_PARAMS": {"auth_type": "reauthenticate"},
+        "INIT_PARAMS": {"cookie": True},
+        "EXCHANGE_TOKEN": True,
+        "VERIFIED_EMAIL": True,
+        "VERSION": "v13.0",
+        "GRAPH_API_URL": "https://graph.facebook.com/v13.0",
     },
 }
 
