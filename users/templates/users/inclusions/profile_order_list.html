@@ -1,7 +1,8 @@
+<!-- TODO create distance for this child elements for mobile view-->
 <dl class="w-1/2 sm:w-48">
     <dt class="text-base font-medium text-gray-500 dark:text-gray-400">Order Number:</dt>
-    <dd class="mt-1.5 text-base font-semibold text-gray-900 dark:text-white">
-        <a href="{{ order.get_absolute_url }}" class="hover:underline">#{{ order.order_number|truncatechars:10 }}</a>
+    <dd class="mt-1.5 text-base font-semibold text-gray-900 truncate dark:text-white">
+        <a href="{{ order.get_absolute_url }}" class="hover:underline">#{{ order.order_number }}</a>
     </dd>
 </dl>
 <dl class="w-1/2 sm:w-1/4 md:flex-1 lg:w-auto">

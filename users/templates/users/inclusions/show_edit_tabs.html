@@ -20,34 +20,36 @@
     <div id="show_{{ tab_id_prefix }}"
          role="tabpanel"
          aria-labelledby="{{ tab_id_prefix }}-info-tab"
-         class="flex-col flex gap-4">
+         class="flex-col flex gap-4 md:flex-row md:gap-x-28 lg:flex-col">
         {% if tab_id_prefix == "details" %}
-            <div class="flex space-x-4">
+            <div class="flex space-x-4 md:items-center md:self-start md:shrink-0">
                 <img class="h-16 w-16 rounded-lg"
                      src="{{ user.image.url }}"
                      alt="{{ user.get_full_name }} avatar" />
-                <h2 class="flex items-center text-xl capitalize font-bold leading-none text-gray-900 dark:text-white sm:text-2xl">
+                <h2 class="flex items-center text-xl capitalize font-bold leading-none text-gray-900 dark:text-white sm:text-xl">
                     {{ user.get_full_name }}
                 </h2>
             </div>
         {% endif %}
-        {% for field in form %}
-            {% if field.field.widget.input_type != "file" %}
-                <dl>
-                    <dt class="font-semibold text-gray-900 dark:text-white">{{ field.label }}</dt>
-                    <dd class="text-gray-500 dark:text-gray-400">
-                        {{ field.value|default:"-" }}
-                    </dd>
-                </dl>
-            {% endif %}
-        {% endfor %}
+        <div class=" flex flex-col gap-4 md:grid md:grid-cols-3 md:justify-between md:items-center md:w-full">
+            {% for field in form %}
+                {% if field.field.widget.input_type != "file" %}
+                    <dl>
+                        <dt class="font-semibold text-gray-900 dark:text-white">{{ field.label }}</dt>
+                        <dd class="text-gray-500 dark:text-gray-400">
+                            {{ field.value|default:"-" }}
+                        </dd>
+                    </dl>
+                {% endif %}
+            {% endfor %}
+        </div>
     </div>
     <div id="edit_{{ tab_id_prefix }}"
          role="tabpanel"
          aria-labelledby="{{ tab_id_prefix }}-form-tab">
         <form hx-post="{% url 'user_profile' %}" hx-swap="morph:outerHTML" hx-target="#{{ section_id }}" hx-select="#{{ section_id }}" {{ htmx_attrs|safe }} class="flex-col flex gap-5">
             {% for field in form %}
-                <div>{% include "checkout/inclusions/input_field.html" %}</div>
+                <div class="max-w-xs">{% include "checkout/inclusions/input_field.html" %}</div>
             {% endfor %}
             <button type="submit"
                     name="{{ subbmit_name }}"

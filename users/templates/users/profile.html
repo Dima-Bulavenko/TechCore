@@ -4,21 +4,21 @@
     {{ block.super }}
 {% endblock js_block %}
 {% block content %}
-    <div class="py-7 antialiased grid grid-cols-1 gap-y-8">
-        <section id="account_data" class="border border-gray-300 rounded-xl py-3 px-2">
+    <div class="py-7 antialiased grid grid-cols-1 gap-y-8 lg:grid lg:grid-cols-2 lg:gap-4 xl:max-w-5xl xl:m-auto">
+        <section id="account_data" class="border border-gray-300 rounded-xl py-3 px-2 sm:py-6 sm:px-5">
             <h2 class="mb-4 text-xl font-semibold text-gray-900 dark:text-white sm:text-2xl md:mb-6">User Details</h2>
             <div class="divide-y-2 space-y-3 mt-7">
                 {% include "users/inclusions/show_edit_tabs.html" with tab_id_prefix="details" section_id="account_data" form=user_form subbmit_name=form_type.USER.value htmx_attrs="hx-encoding='multipart/form-data'" %}
             </div>
         </section>
-        <section id="address_data" class="border border-gray-300 rounded-xl py-3 px-2">
+        <section id="address_data" class="border border-gray-300 rounded-xl py-3 px-2 sm:py-6 sm:px-5">
             <h2 class="mb-4 text-xl font-semibold text-gray-900 dark:text-white sm:text-2xl md:mb-6">Address</h2>
             <div class="divide-y-2 space-y-3 mt-7">
                 {% include "users/inclusions/show_edit_tabs.html" with tab_id_prefix="address" section_id="address_data" form=address_form subbmit_name=form_type.ADDRESS.value %}
             </div>
         </section>
         <section id="account_orders"
-                 class="border border-gray-300 rounded-xl py-3 px-2">
+                 class="border border-gray-300 rounded-xl py-3 px-2 sm:py-6 sm:px-5 lg:col-span-2">
             <h2 class="mb-4 text-xl font-semibold text-gray-900 dark:text-white sm:text-2xl md:mb-6">Orders</h2>
             <div class="divide-y-2">
                 {% for order in orders %}
@@ -33,9 +33,9 @@
             </div>
         </section>
         <section id="account_settings"
-                 class="border border-gray-300 rounded-xl py-3 px-2">
+                 class="border border-gray-300 rounded-xl py-3 px-2 sm:py-6 sm:px-5 lg:col-span-2">
             <h2 class="mb-4 text-xl font-semibold text-gray-900 dark:text-white sm:text-2xl md:mb-6">Account settings</h2>
-            <div class="flex flex-col items-start gap-5 mt-7">
+            <div class="flex flex-col items-start gap-5 mt-7 md:flex-row">
                 <div>
                     <a href="{% url "account_change_password" %}">
                         <button type="button"
