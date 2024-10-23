@@ -1,0 +1,59 @@
+{% comment %} Needed attributes: "tab_id_prefix", "section_id", "form" "subbmit_name"  {% endcomment %}
+{% comment %} Optional attributes: "htmx_attrs"  {% endcomment %}
+<div class="flex ml-3 gap-3"
+     data-tabs-toggle="#{{ tab_id_prefix }}_tab_content"
+     role="tablist"
+     data-tabs-active-classes="bg-blue-600 text-white hover:text-white border-blue-600"
+     data-tabs-inactive-classes="text-gray-500 border-gray-400 hover:text-gray-800 hover:border-gray-700">
+    <div role="tab"
+         class="px-4 border-2 rounded-xl transition text-sm"
+         id="{{ tab_id_prefix }}-show-tab"
+         data-tabs-target="#show_{{ tab_id_prefix }}"
+         aria-controls="show_{{ tab_id_prefix }}">Show</div>
+    <div role="tab"
+         class="px-4 border-2 rounded-xl transition text-sm"
+         id="{{ tab_id_prefix }}-edit-tab"
+         data-tabs-target="#edit_{{ tab_id_prefix }}"
+         aria-controls="edit_{{ tab_id_prefix }}">Edit</div>
+</div>
+<div id="{{ tab_id_prefix }}_tab_content" class="pt-3">
+    <div id="show_{{ tab_id_prefix }}"
+         role="tabpanel"
+         aria-labelledby="{{ tab_id_prefix }}-info-tab"
+         class="flex-col flex gap-4">
+        {% if tab_id_prefix == "details" %}
+            <div class="flex space-x-4">
+                <img class="h-16 w-16 rounded-lg"
+                     src="{{ user.image.url }}"
+                     alt="{{ user.get_full_name }} avatar" />
+                <h2 class="flex items-center text-xl capitalize font-bold leading-none text-gray-900 dark:text-white sm:text-2xl">
+                    {{ user.get_full_name }}
+                </h2>
+            </div>
+        {% endif %}
+        {% for field in form %}
+            {% if field.field.widget.input_type != "file" %}
+                <dl>
+                    <dt class="font-semibold text-gray-900 dark:text-white">{{ field.label }}</dt>
+                    <dd class="text-gray-500 dark:text-gray-400">
+                        {{ field.value|default:"-" }}
+                    </dd>
+                </dl>
+            {% endif %}
+        {% endfor %}
+    </div>
+    <div id="edit_{{ tab_id_prefix }}"
+         role="tabpanel"
+         aria-labelledby="{{ tab_id_prefix }}-form-tab">
+        <form hx-post="{% url 'user_profile' %}" hx-swap="morph:outerHTML" hx-target="#{{ section_id }}" hx-select="#{{ section_id }}" {{ htmx_attrs|safe }} class="flex-col flex gap-5">
+            {% for field in form %}
+                <div>{% include "checkout/inclusions/input_field.html" %}</div>
+            {% endfor %}
+            <button type="submit"
+                    name="{{ subbmit_name }}"
+                    class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded self-start">
+                Update
+            </button>
+        </form>
+    </div>
+</div>

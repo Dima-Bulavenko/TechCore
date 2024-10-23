@@ -1,86 +1,17 @@
+{# djlint:off T002 #}
 {% extends "base.html" %}
 {% block content %}
-    <div class="py-7 antialiased">
+    <div class="py-7 antialiased grid grid-cols-1 gap-y-8">
         <section id="account_data" class="border border-gray-300 rounded-xl py-3 px-2">
             <h2 class="mb-4 text-xl font-semibold text-gray-900 dark:text-white sm:text-2xl md:mb-6">User Details</h2>
             <div class="divide-y-2 space-y-3 mt-7">
-                <div class="flex ml-3 gap-3"
-                     data-tabs-toggle="#details_tab_content"
-                     role="tablist"
-                     data-tabs-active-classes="bg-blue-600 text-white hover:text-white border-blue-600"
-                     data-tabs-inactive-classes="text-gray-500 border-gray-400 hover:text-gray-800 hover:border-gray-700">
-                    <div role="tab"
-                         class="px-4 border-2 rounded-xl transition text-sm"
-                         id="details-show-tab"
-                         data-tabs-target="#show_details"
-                         aria-controls="show_details">Show</div>
-                    <div role="tab"
-                         class="px-4 border-2 rounded-xl transition text-sm"
-                         id="details-edit-tab"
-                         data-tabs-target="#edit_details"
-                         aria-controls="edit_details">Edit</div>
-                </div>
-                <div id="details_tab_content" class="pt-3">
-                    <div id="show_details"
-                         role="tabpanel"
-                         aria-labelledby="details-info-tab"
-                         class="flex-col flex gap-4">
-                        <div class="flex space-x-4">
-                            <img class="h-16 w-16 rounded-lg"
-                                 src="{{ user.image.url }}"
-                                 alt="{{ user.get_full_name }} avatar" />
-                            <h2 class="flex items-center text-xl capitalize font-bold leading-none text-gray-900 dark:text-white sm:text-2xl">
-                                {{ user.get_full_name }}
-                            </h2>
-                        </div>
-                        <dl>
-                            <dt class="font-semibold text-gray-900 dark:text-white">Email Address</dt>
-                            <dd class="text-gray-500 dark:text-gray-400">
-                                {{ user.email }}
-                            </dd>
-                        </dl>
-                        <dl>
-                            <dt class="font-semibold text-gray-900 dark:text-white">First Name</dt>
-                            <dd class="text-gray-500 dark:text-gray-400">
-                                {{ user.first_name|default:"-" }}
-                            </dd>
-                        </dl>
-                        <dl>
-                            <dt class="font-semibold text-gray-900 dark:text-white">Last Name</dt>
-                            <dd class="text-gray-500 dark:text-gray-400">
-                                {{ user.last_name|default:"-" }}
-                            </dd>
-                        </dl>
-                    </div>
-                        <dl>
-                            <dt class="font-semibold text-gray-900 dark:text-white">First Name</dt>
-                            <dd class="text-gray-500 dark:text-gray-400">
-                                {{ user.first_name }}
-                            </dd>
-                        </dl>
-                        <dl>
-                            <dt class="font-semibold text-gray-900 dark:text-white">Last Name</dt>
-                            <dd class="text-gray-500 dark:text-gray-400">
-                                {{ user.last_name }}
-                            </dd>
-                        </dl>
-                    </div>
-                    <div id="edit_details"  role="tabpanel" aria-labelledby="details-form-tab">
-                        <form hx-post="{% url 'user_profile' %}"
-                              hx-swap="morph:outerHTML"
-                              hx-target="#account_data"
-                              hx-encoding="multipart/form-data"
-                              class="flex-col flex gap-5">
-                            {% for field in user_form %}
-                                <div>{% include "checkout/inclusions/input_field.html" %}</div>
-                            {% endfor %}
-                            <button type="submit"
-                                    class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded self-start">
-                                Update
-                            </button>
-                        </form>
-                    </div>
-                </div>
+                {% include "users/inclusions/show_edit_tabs.html" with tab_id_prefix="details" section_id="account_data" form=user_form subbmit_name=form_type.USER.value htmx_attrs="hx-encoding='multipart/form-data'" %}
+            </div>
+        </section>
+        <section id="address_data" class="border border-gray-300 rounded-xl py-3 px-2">
+            <h2 class="mb-4 text-xl font-semibold text-gray-900 dark:text-white sm:text-2xl md:mb-6">Address</h2>
+            <div class="divide-y-2 space-y-3 mt-7">
+                {% include "users/inclusions/show_edit_tabs.html" with tab_id_prefix="address" section_id="address_data" form=address_form subbmit_name=form_type.ADDRESS.value %}
             </div>
         </section>
     </div>
