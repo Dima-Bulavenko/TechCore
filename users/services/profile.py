@@ -1,4 +1,7 @@
+from __future__ import annotations
+
 from django.contrib import messages
+from django.forms import ModelForm
 
 from checkout.forms import AddressForm
 from users.forms import UserForm
@@ -24,6 +27,16 @@ class AddressFormManager:
 
         return self.form_class(**form_kwargs)
 
+    def save(self):
+        if self.form.is_valid():
+            address = self.form.save(commit=False)
+            address.user = self.request.user
+            address.save()
+            messages.success(self.request, "Address updated successfully.")
+        else:
+            messages.error(self.request, "Address has invalid data.")
+        return self.form
+
 
 class UserFormManager:
     form_key = "user_form"
@@ -43,6 +56,14 @@ class UserFormManager:
         form_kwargs["instance"] = self.request.user
         return self.form_class(**form_kwargs)
 
+    def save(self):
+        if self.form.is_valid():
+            self.form.save()
+            messages.success(self.request, "Profile updated successfully.")
+        else:
+            messages.error(self.request, "Profile has invalid data.")
+        self.form.save()
+
 
 class ProfileFormManager:
     form_managers = [
@@ -60,7 +81,9 @@ class ProfileFormManager:
             context[form_manager.form_key] = form_manager.form
         return context
     
-
-
-        
-        
+    def save(self) -> list[ModelForm]:
+        saved_forms = []
+        for form_manager in self.form_managers:
+            if form_manager.form_key in self.request.POST:
+                 saved_forms.append(form_manager.save())  # noqa: PERF401
+        return saved_forms
