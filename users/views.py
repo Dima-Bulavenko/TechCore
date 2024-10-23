@@ -1,5 +1,6 @@
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.db.models import Count
 from django.http import Http404
 from django.views.generic import RedirectView, TemplateView
 from django_htmx.http import HttpResponseClientRedirect
@@ -19,6 +20,9 @@ class UserProfile(LoginRequiredMixin, TemplateView):
         context.update(self.form_manager.get_context_data())
         context["user"] = self.request.user
         context["form_type"] = FormType.__members__
+        context["orders"] = (self.request.user.orders.all()
+                             .annotate(items=Count('lineitems'))
+                             .order_by('-create_date'))
         return context
     
     def post(self, request, *args, **kwargs):

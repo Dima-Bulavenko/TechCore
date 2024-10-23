@@ -17,7 +17,23 @@
                 {% include "users/inclusions/show_edit_tabs.html" with tab_id_prefix="address" section_id="address_data" form=address_form subbmit_name=form_type.ADDRESS.value %}
             </div>
         </section>
-        <section id="account_settings" class="border border-gray-300 rounded-xl py-3 px-2">
+        <section id="account_orders"
+                 class="border border-gray-300 rounded-xl py-3 px-2">
+            <h2 class="mb-4 text-xl font-semibold text-gray-900 dark:text-white sm:text-2xl md:mb-6">Orders</h2>
+            <div class="divide-y-2">
+                {% for order in orders %}
+                    <div class="flex first:pt-0 last:pb-0 flex-wrap items-center gap-y-4 border-gray-200 py-4 dark:border-gray-700">
+                        {% include "users/inclusions/profile_order_list.html" %}
+                    </div>
+                {% empty %}
+                    <div class="flex items-center justify-center">
+                        <p class="text-gray-500 dark:text-gray-400 mb-4">No orders yet.</p>
+                    </div>
+                {% endfor %}
+            </div>
+        </section>
+        <section id="account_settings"
+                 class="border border-gray-300 rounded-xl py-3 px-2">
             <h2 class="mb-4 text-xl font-semibold text-gray-900 dark:text-white sm:text-2xl md:mb-6">Account settings</h2>
             <div class="flex flex-col items-start gap-5 mt-7">
                 <div>
@@ -37,7 +53,6 @@
                             data-modal-toggle="popup-modal"
                             class="focus:outline-none text-white w-40 bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
                             type="button">Delete Account</button>
-
                     <div id="popup-modal"
                          tabindex="-1"
                          class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
@@ -68,7 +83,7 @@
                                     </h3>
                                     <button data-modal-hide="popup-modal"
                                             type="button"
-                                            hx-post={% url "delete_account" %}
+                                            hx-post="{% url "delete_account" %}"
                                             hx-swap="none"
                                             class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center">
                                         Yes, I'm sure
@@ -82,8 +97,7 @@
                             </div>
                         </div>
                     </div>
-                    <a href="{% url "delete_account" %}">
-                    </a>
+                    <a href="{% url "delete_account" %}"></a>
                 </div>
             </div>
         </section>
