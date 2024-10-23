@@ -7,7 +7,7 @@
                  class="flex items-center w-full p-4 mb-4 text-gray-500 bg-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800"
                  role="alert"
                  x-data="{show: false}"
-                 
+                 x-init="setTimeout(() => show = true, 50); setTimeout(() => show = false, 8000)"
                  x-show="show"
                  x-transition:enter="transition-opacity"
                  x-transition:enter-start="opacity-0"
