@@ -1,13 +1,13 @@
 <div id="messages"
-     class="fixed top-8 left-1/2 -translate-x-1/2 z-30"
+     class="fixed top-8 left-1/2 -translate-x-1/2 z-30 w-[90vw] max-w-xs"
      {% if hx_oob %}hx-swap-oob="true"{% endif %}>
     {% if messages %}
         {% for message in messages %}
             <div id="toast-{{ message.level_tag }}_{{ forloop.counter }}"
-                 class="flex items-center w-full max-w-xs p-4 mb-4 text-gray-500 bg-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800"
+                 class="flex items-center w-full p-4 mb-4 text-gray-500 bg-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800"
                  role="alert"
                  x-data="{show: false}"
-                 x-init="setTimeout(() => show = true, 50); setTimeout(() => show = false, 8000)"
+                 
                  x-show="show"
                  x-transition:enter="transition-opacity"
                  x-transition:enter-start="opacity-0"
