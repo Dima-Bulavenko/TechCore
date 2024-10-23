@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+import enum
+
 from django.contrib import messages
 from django.forms import ModelForm
 
@@ -7,8 +9,13 @@ from checkout.forms import AddressForm
 from users.forms import UserForm
 
 
+class FormType(enum.Enum):
+    ADDRESS = "address_form"
+    USER = "user_form"
+
+
 class AddressFormManager:
-    form_key = "address_form"
+    form_type = FormType.ADDRESS.value
     form_class = AddressForm
 
     def __init__(self, request):
@@ -22,7 +29,7 @@ class AddressFormManager:
         if user_address:
             form_kwargs["instance"] = user_address
         
-        if self.form_key in self.request.POST:
+        if self.form_type in self.request.POST:
             form_kwargs["data"] = self.request.POST
 
         return self.form_class(**form_kwargs)
@@ -39,7 +46,7 @@ class AddressFormManager:
 
 
 class UserFormManager:
-    form_key = "user_form"
+    form_type = FormType.USER.value
     form_class = UserForm
 
     def __init__(self, request):
@@ -49,7 +56,7 @@ class UserFormManager:
     def get_form(self):
         form_kwargs = {}
 
-        if self.form_key in self.request.POST:
+        if self.form_type in self.request.POST:
             form_kwargs["data"] = self.request.POST
             form_kwargs["files"] = self.request.FILES
 
@@ -78,12 +85,12 @@ class ProfileFormManager:
     def get_context_data(self):
         context = {}
         for form_manager in self.form_managers:
-            context[form_manager.form_key] = form_manager.form
+            context[form_manager.form_type] = form_manager.form
         return context
     
     def save(self) -> list[ModelForm]:
         saved_forms = []
         for form_manager in self.form_managers:
-            if form_manager.form_key in self.request.POST:
+            if form_manager.form_type in self.request.POST:
                  saved_forms.append(form_manager.save())  # noqa: PERF401
         return saved_forms

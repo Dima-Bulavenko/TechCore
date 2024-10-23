@@ -1,7 +1,7 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import TemplateView
 
-from users.services.profile import ProfileFormManager
+from users.services.profile import FormType, ProfileFormManager
 
 
 class UserProfile(LoginRequiredMixin, TemplateView):
@@ -15,6 +15,7 @@ class UserProfile(LoginRequiredMixin, TemplateView):
         context = super().get_context_data(**kwargs)
         context.update(self.form_manager.get_context_data())
         context["user"] = self.request.user
+        context["form_type"] = FormType.__members__
         return context
     
     def post(self, request, *args, **kwargs):
