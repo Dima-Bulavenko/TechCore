@@ -24,6 +24,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     re_path(r"^accounts/email/$", page_not_found, {"exception": Exception("Not Found")}),
     path('accounts/', include('allauth.urls')),
+    path('profile/', include('users.urls')),
     path('product/', include('product.urls')),
     path('cart/', include('cart.urls')),
     path('checkout/', include('checkout.urls')),

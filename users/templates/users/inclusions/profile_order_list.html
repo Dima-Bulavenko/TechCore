@@ -1,0 +1,25 @@
+<!-- TODO create distance for this child elements for mobile view-->
+<dl class="w-1/2 sm:w-48">
+    <dt class="text-base font-medium text-gray-500 dark:text-gray-400">Order Number:</dt>
+    <dd class="mt-1.5 text-base font-semibold text-gray-900 truncate dark:text-white">
+        <a href="{{ order.get_absolute_url }}" class="hover:underline">#{{ order.order_number }}</a>
+    </dd>
+</dl>
+<dl class="w-1/2 sm:w-1/4 md:flex-1 lg:w-auto">
+    <dt class="text-base font-medium text-gray-500 dark:text-gray-400">Date:</dt>
+    <dd class="mt-1.5 text-base font-semibold text-gray-900 dark:text-white">
+        {{ order.create_date|date:"d.m.Y" }}
+    </dd>
+</dl>
+<dl class="w-1/2 sm:w-1/5 md:flex-1 lg:w-auto">
+    <dt class="text-base font-medium text-gray-500 dark:text-gray-400">Price:</dt>
+    <dd class="mt-1.5 text-base font-semibold text-gray-900 dark:text-white">
+        ${{ order.grand_total }}
+    </dd>
+</dl>
+<dl class="w-1/2 sm:w-1/4 sm:flex-1 lg:w-auto">
+    <dt class="text-base font-medium text-gray-500 dark:text-gray-400">Order Items:</dt>
+    <dd class="me-2 mt-1.5 inline-flex shrink-0 items-center rounded py-0.5 font-medium">
+        x{{ order.items }}
+    </dd>
+</dl>
