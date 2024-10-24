@@ -391,35 +391,6 @@ FACEBOOK_CLIENT_SECRET=
 The WordNest project was deployed on a Heroku hosting server. The following steps outline the process of deploying the WordNest project and can be applied to deploy another Django project with minor adjustments:
 
 1.  Navigate to your [Heroku dashboard](https://dashboard.heroku.com/apps) and create a new app with a unique name.
-
-2.  Install [decouple](https://pypi.org/project/python-decouple/) to manage environment variables.
-
-    ```
-    pip install python-decouple
-    ```
-
-    <sub>**Note**: Decouple is a useful library that allows you to separate local and production settings for Django projects.</sub>
-
-3.  Create a `.env` file in the root directory of your project.
-
-4.  Add the following text to `.gitignore` file. This makes `git` ignore `.env` file.
-
-    ```
-    .env
-    ```
-
-5.  Add `DEBUG=True` to the `.env` file.
-
-6.  Import `decouple` in the `settings.py`.
-
-    ```python
-    from decouple import config
-    ```
-
-7.  Replace `DEBUG` variable in the `settings.py` with the following code:
-
-    ```python
-    DEBUG = config("DEBUG", default=False, cast=bool)
     ```
 
 8.  Install `gunicorn` as a production-ready webserver for Heroku with command.
@@ -456,10 +427,10 @@ The WordNest project was deployed on a Heroku hosting server. The following step
     import dj_database_url
     ```
 
-14. Install [psycopg2](https://pypi.org/project/psycopg2/) to connect to PostgreSQL database.
+14. Install [psycopg3](https://pypi.org/project/psycopg/) to connect to PostgreSQL database.
 
     ```
-    pip install psycopg2
+    pip install "psycopg[binary,pool]"
     ```
 
 15. In the `settings.py` replace `DATABASES` with the following code:
