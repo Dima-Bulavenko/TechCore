@@ -279,3 +279,6 @@ db.sqlite3
 
 # Data folder that contains the data for DB
 /data/
+
+# Unignore tailwind-generated stylesheet
+!theme/static/css/dist/
