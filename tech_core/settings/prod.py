@@ -1,5 +1,8 @@
 from tech_core.settings.base import *  # noqa: F403
 
+# Database settings
+DATABASES = {"default": dj_database_url.parse(config("DATABASE_URL"))}
+
 # SMTP settings
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST = "smtp.gmail.com"
