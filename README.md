@@ -391,17 +391,16 @@ FACEBOOK_CLIENT_SECRET=
 The WordNest project was deployed on a Heroku hosting server. The following steps outline the process of deploying the WordNest project and can be applied to deploy another Django project with minor adjustments:
 
 1.  Navigate to your [Heroku dashboard](https://dashboard.heroku.com/apps) and create a new app with a unique name.
-    ```
 
-8.  Install `gunicorn` as a production-ready webserver for Heroku with command.
+2.  Install `gunicorn` as a production-ready webserver for Heroku with command.
 
     ```
     pip install gunicorn
     ```
 
-9.  Create a file named `Procfile` at the root directory of the project.
+3.  Create a file named `Procfile` at the root directory of the project.
 
-10. Add following command to `Procfile` to run your server in production.
+4. Add following command to `Procfile` to run your server in production.
 
     ```
     web: gunicorn wordnest.wsgi
@@ -409,31 +408,31 @@ The WordNest project was deployed on a Heroku hosting server. The following step
 
     <sub>**Note**: Replace `wordnest` with your project name</sub>
 
-11. In the `settings.py` file update the `ALLOWED_HOSTS` variable.
+5. In the `settings.py` file update the `ALLOWED_HOSTS` variable.
 
     ```python
     ALLOWED_HOSTS = ['127.0.0.1', '.herokuapp.com']
     ```
 
-12. Install [dj-database-url](https://pypi.org/project/dj-database-url/).
+6. Install [dj-database-url](https://pypi.org/project/dj-database-url/).
 
     ```
     pip install dj-database-url
     ```
 
-13. Import `dj-database-url` in `settings.py`.
+7. Import `dj-database-url` in `settings.py`.
 
     ```python
     import dj_database_url
     ```
 
-14. Install [psycopg3](https://pypi.org/project/psycopg/) to connect to PostgreSQL database.
+8. Install [psycopg3](https://pypi.org/project/psycopg/) to connect to PostgreSQL database.
 
     ```
     pip install "psycopg[binary,pool]"
     ```
 
-15. In the `settings.py` replace `DATABASES` with the following code:
+9. In the `settings.py` replace `DATABASES` with the following code:
 
     ```python
     if DEBUG:
@@ -455,7 +454,7 @@ The WordNest project was deployed on a Heroku hosting server. The following step
 
     <sub>**Note**: Replace `if` clause with your own database for local development</sub>
 
-16. In the `.env` file update the `DEBUG` environment variable and add `DATABASE_URL` new one.
+10. In the `.env` file update the `DEBUG` environment variable and add `DATABASE_URL` new one.
 
     ```
     DEBUG=False
@@ -464,23 +463,23 @@ The WordNest project was deployed on a Heroku hosting server. The following step
 
     <sub>**Note**: For the WordNest I used database URL provided by `Code Institute` but you can use other database hosting services< such as [Amazon RDS for PostgreSQL](https://aws.amazon.com/rds/postgresql/)/sub>
 
-17. **Reload your terminal** and run the following command in **terminal** to migrate remote database.
+11. **Reload your terminal** and run the following command in **terminal** to migrate remote database.
 
     ```
     python manage.py migrate
     ```
 
-18. Replace `DEBUG=False` to `DEBUG=True` in the `.env` file.
+12. Replace `DEBUG=False` to `DEBUG=True` in the `.env` file.
 
-19. Return to the [Heroku dashboard](https://dashboard.heroku.com/apps/wordnest) navigate to the **Settings** tab and click on **Reveal Config Var** and add `DATABASE_URL` environment variable.
+13. Return to the [Heroku dashboard](https://dashboard.heroku.com/apps/wordnest) navigate to the **Settings** tab and click on **Reveal Config Var** and add `DATABASE_URL` environment variable.
 
-20. Install [whitenoise](https://pypi.org/project/whitenoise/) to manage static files on production server.
+14. Install [whitenoise](https://pypi.org/project/whitenoise/) to manage static files on production server.
 
     ```
     pip install whitenoise
     ```
 
-21. Add `whitenoise` to the `MIDDLEWARE` list in the `settings.py`.
+15. Add `whitenoise` to the `MIDDLEWARE` list in the `settings.py`.
 
     ```python
     MIDDLEWARE = [
@@ -491,7 +490,7 @@ The WordNest project was deployed on a Heroku hosting server. The following step
 
     <sub>**Note**: The WhiteNoise middleware must be placed directly after the Django `SecurityMiddleware`</sub>
 
-22. Add `STATIC_ROOT` and `STORAGES` variables to the `settings.py`.
+16. Add `STATIC_ROOT` and `STORAGES` variables to the `settings.py`.
 
     ```python
     STORAGES = {
@@ -502,56 +501,57 @@ The WordNest project was deployed on a Heroku hosting server. The following step
     STATIC_ROOT = BASE_DIR.joinpath("staticfiles")
     ```
 
-23. Run the following command in **terminal** to collect static files.
+17. Run the following command in **terminal** to collect static files.
 
     ```
+    python manage.py tailwind build
     python manage.py collectstatic
     ```
 
-24. From the terminal, check the Python version used in your IDE.
+18. From the terminal, check the Python version used in your IDE.
 
     ```
     python --version
     ```
 
-25. Look up the [supported runtimes here](https://devcenter.heroku.com/articles/python-support#specifying-a-python-version) and copy the runtime closest to the one used in your IDE.
+19. Look up the [supported runtimes here](https://devcenter.heroku.com/articles/python-support#specifying-a-python-version) and copy the runtime closest to the one used in your IDE.
 
-26. Add a `runtime.txt` file to your app's root directory.
+20. Add a `runtime.txt` file to your app's root directory.
 
-27. Paste the copied runtime into the `runtime.txt` file.
+21. Paste the copied runtime into the `runtime.txt` file.
 
-28. Update `requirements.txt`.
+22. Update `requirements.txt`.
 
     ```
     pip freeze > requirements.txt
     ```
 
-29. Add and commit all changes to the repository.
+23. Add and commit all changes to the repository.
 
     ```
     git add .
     git commit -m "Deploying to Heroku"
     ```
 
-30. Push the changes to your remote branch that you intend to deploy.
+24. Push the changes to your remote branch that you intend to deploy.
 
     ```
     git push
     ```
 
-31. On the [Heroku dashboard](https://dashboard.heroku.com/apps), and in your app, click on the **Deploy** tab.
+25. On the [Heroku dashboard](https://dashboard.heroku.com/apps), and in your app, click on the **Deploy** tab.
 
-32. In the **Deployment method** section enable GitHub integration by clicking on **Connect to GitHub**.
+26. In the **Deployment method** section enable GitHub integration by clicking on **Connect to GitHub**.
 
-33. Start typing your project repo name into the search box and click **Search**. A list of repositories from your GitHub account should appear. Click on the GitHub repo you want to deploy from.
+27. Start typing your project repo name into the search box and click **Search**. A list of repositories from your GitHub account should appear. Click on the GitHub repo you want to deploy from.
 
-34. Scroll to the bottom of the page in the **Manual deploy** section, choose branch you want to deploy and click **Deploy Branch** to start a manual deployment of the branch.
+28. Scroll to the bottom of the page in the **Manual deploy** section, choose branch you want to deploy and click **Deploy Branch** to start a manual deployment of the branch.
 
-35. Open the **Resources** tab and choose an eco dyno. This dyno is a lightweight container to run your project.
+29. Open the **Resources** tab and choose an eco dyno. This dyno is a lightweight container to run your project.
 
-36. Verify there is no existing Postgres database **add-on**. if there is a database add-on select **Delete Add-on** to remove it.
+30. Verify there is no existing Postgres database **add-on**. if there is a database add-on select **Delete Add-on** to remove it.
 
-37. Click on **Open app** to view your deployed project.
+31. Click on **Open app** to view your deployed project.
 
 [Back to the top](#table-of-contents)
 
