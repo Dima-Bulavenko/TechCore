@@ -1,7 +1,7 @@
 from tech_core.settings.base import *  # noqa: F403
 
 # Database settings
-if config("DB_TYPE", default="" ) == "postgres":
+if config("DB_TYPE", default="") == "postgres":
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
@@ -20,6 +20,13 @@ else:
         }
     }
 
+
+
+MIDDLEWARE = ["debug_toolbar.middleware.DebugToolbarMiddleware", *MIDDLEWARE]
+
+INSTALLED_APPS += [
+    "debug_toolbar",
+]
 # Allauth settings
 ACCOUNT_RATE_LIMITS = False
 
