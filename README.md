@@ -1,68 +1,65 @@
 # TechCore (Milestone Project 5)
+
 ![Responsive Mockup](docs/responsice_dispaly.PNG)
-
-
-
 
 ## Table of contents
 
-- [Purpose](#purpose)
-- [UX Design](#ux-design)
-  * [Epics](#epics)
-  * [User and Developer Stories](#user-and-developer-stories)
-- [Wireframes](#wireframes)
-  * [Welcome page](#welcome-page)
-  * [Home page](#home-page)
-  * [Profile page](#profile-page)
-  * [Dictionary page](#dictionary-page)
-  * [Form page](#form-page)
-- [Agile Development](#agile-development)
-  * [Task Management](#task-management)
-  * [Project Management](#project-management)
-  * [Workflow](#workflow)
-- [Design](#design)
-  * [Color Scheme](#color-scheme)
-  * [Typography](#typography)
-- [Features](#features)
-  * [User Registration and Authentication](#user-registration-and-authentication)
-  * [Dictionary Management](#dictionary-management)
-  * [Backend and API Integration](#backend-and-api-integration)
-  * [User Profile and Notifications](#user-profile-and-notifications)
-  * [Dynamic and Interactive Features](#dynamic-and-interactive-features)
-- [Database Schema](#database-schema)
-- [Testing](#testing)
-  * [Manual Testing](#manual-testing)
-    + [Navbar](#navbar)
-    + [Footer](#footer)
-    + [Home page](#home-page-1)
-    + [Dictionary page](#dictionary-page-1)
-    + [Profile page](#profile-page-1)
-    + [Forms](#forms)
-  * [Unit testing](#unit-testing)
-    + [Python unit tests](#python-unit-tests)
-    + [JS unit tests](#js-unit-tests)
-  * [Code validation](#code-validation)
-    + [HTML Validation](#html-validation)
-    + [CSS Validation](#css-validation)
-    + [Python Validation](#python-validation)
-    + [JS Validation](#js-validation)
-  * [Lighthouse](#lighthouse)
-- [Technologies](#technologies)
-  * [Languages](#languages)
-  * [Programs, frameworks, libraries](#programs--frameworks--libraries)
-- [Environment Variables](#environment-variables)
-- [Deployment](#deployment)
-  * [Heroku](#heroku)
-  * [Clone GitHub Repo](#clone-github-repo)
-- [Bugs](#bugs)
-- [Credits](#credits)
-  * [Media](#media)
-  * [Design Template](#design-template)
-  * [Code](#code)
-  * [Acknowledgements](#acknowledgements)
+-   [Purpose](#purpose)
+-   [UX Design](#ux-design)
+    -   [Epics](#epics)
+    -   [User and Developer Stories](#user-and-developer-stories)
+-   [Wireframes](#wireframes)
+    -   [Welcome page](#welcome-page)
+    -   [Home page](#home-page)
+    -   [Profile page](#profile-page)
+    -   [Dictionary page](#dictionary-page)
+    -   [Form page](#form-page)
+-   [Agile Development](#agile-development)
+    -   [Task Management](#task-management)
+    -   [Project Management](#project-management)
+    -   [Workflow](#workflow)
+-   [Design](#design)
+    -   [Color Scheme](#color-scheme)
+    -   [Typography](#typography)
+-   [Features](#features)
+    -   [User Registration and Authentication](#user-registration-and-authentication)
+    -   [Dictionary Management](#dictionary-management)
+    -   [Backend and API Integration](#backend-and-api-integration)
+    -   [User Profile and Notifications](#user-profile-and-notifications)
+    -   [Dynamic and Interactive Features](#dynamic-and-interactive-features)
+-   [Database Schema](#database-schema)
+-   [Testing](#testing)
+    -   [Manual Testing](#manual-testing)
+        -   [Navbar](#navbar)
+        -   [Footer](#footer)
+        -   [Home page](#home-page-1)
+        -   [Dictionary page](#dictionary-page-1)
+        -   [Profile page](#profile-page-1)
+        -   [Forms](#forms)
+    -   [Unit testing](#unit-testing)
+        -   [Python unit tests](#python-unit-tests)
+        -   [JS unit tests](#js-unit-tests)
+    -   [Code validation](#code-validation)
+        -   [HTML Validation](#html-validation)
+        -   [CSS Validation](#css-validation)
+        -   [Python Validation](#python-validation)
+        -   [JS Validation](#js-validation)
+    -   [Lighthouse](#lighthouse)
+-   [Technologies](#technologies)
+    -   [Languages](#languages)
+    -   [Programs, frameworks, libraries](#programs--frameworks--libraries)
+-   [Environment Variables](#environment-variables)
+-   [Deployment](#deployment)
+    -   [Heroku](#heroku)
+    -   [Clone GitHub Repo](#clone-github-repo)
+-   [Bugs](#bugs)
+-   [Credits](#credits)
+    -   [Media](#media)
+    -   [Design Template](#design-template)
+    -   [Code](#code)
+    -   [Acknowledgements](#acknowledgements)
 
 <small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
-
 
 # Purpose
 
@@ -70,64 +67,59 @@
 
 # UX Design
 
-
 ## Epics
 
 ## User and Developer Stories
 
-- **User stories:**
+-   **User stories:**
 
-
-
-- **Developer stories:**
-
+-   **Developer stories:**
 
 [Back to the top](#table-of-contents)
 
 # Wireframes
 
-
 ## Home page
 
-- <details>
-  <summary>Mobile</summary>
-  <img src="./docs/home_mobile_wf.png"
-  alt="Mobile wire frame">
-</details>
+-   <details>
+      <summary>Mobile</summary>
+      <img src="./docs/home_mobile_wf.png"
+      alt="Mobile wire frame">
+    </details>
 
-- <details>
-  <summary>Laptop</summary>
-  <img src="./docs/home_laptop_wf.png">
-  alt="Laptop wire frame">
-</details>
+-   <details>
+      <summary>Laptop</summary>
+      <img src="./docs/home_laptop_wf.png">
+      alt="Laptop wire frame">
+    </details>
 
 ## Profile page
 
-- <details>
-  <summary>Mobile</summary>
-  <img src="./docs/profile_mobile_wf.png"
-  alt="Mobile wire frame">
-</details>
+-   <details>
+      <summary>Mobile</summary>
+      <img src="./docs/profile_mobile_wf.png"
+      alt="Mobile wire frame">
+    </details>
 
-- <details>
-  <summary>Laptop</summary>
-  <img src="./docs/profile_laptop_wf.png">
-  alt="Laptop wire frame">
-</details>
+-   <details>
+      <summary>Laptop</summary>
+      <img src="./docs/profile_laptop_wf.png">
+      alt="Laptop wire frame">
+    </details>
 
 ## Form page
 
-- <details>
-  <summary>Mobile</summary>
-  <img src="./docs/form_mobile_wf.png"
-  alt="Mobile wire frame">
-</details>
+-   <details>
+      <summary>Mobile</summary>
+      <img src="./docs/form_mobile_wf.png"
+      alt="Mobile wire frame">
+    </details>
 
-- <details>
-  <summary>Laptop</summary>
-  <img src="./docs/form_laptop_wf.png">
-  alt="Laptop wire frame">
-</details>
+-   <details>
+      <summary>Laptop</summary>
+      <img src="./docs/form_laptop_wf.png">
+      alt="Laptop wire frame">
+    </details>
 
 [Back to the Top](#help-u-website-milestone-project-4)
 
@@ -137,20 +129,20 @@ In this project, we use Agile methodology to manage and track development tasks.
 
 ## Task Management
 
-- **Issues**: Each task is represented by an issue in our GitHub repository.
-- **Labels**: Issues are categorized using labels to indicate their priority and importance:
-  - `Could Have`
-  - `Must Have`
-  - `Should Have`
-  - `Would Have`
-- **Milestones**:
-  - **Product Backlog**: This milestone includes all issues that have been identified but not yet assigned to a specific iteration. Issues in this milestone do not have time constraints.
-  - **Iteration #number**: Each iteration has a specific duration (one week) and is assigned a milestone. Issues are moved to this milestone as they are scheduled for the current iteration.
+-   **Issues**: Each task is represented by an issue in our GitHub repository.
+-   **Labels**: Issues are categorized using labels to indicate their priority and importance:
+    -   `Could Have`
+    -   `Must Have`
+    -   `Should Have`
+    -   `Would Have`
+-   **Milestones**:
+    -   **Product Backlog**: This milestone includes all issues that have been identified but not yet assigned to a specific iteration. Issues in this milestone do not have time constraints.
+    -   **Iteration #number**: Each iteration has a specific duration (one week) and is assigned a milestone. Issues are moved to this milestone as they are scheduled for the current iteration.
 
 ## Project Management
 
-- **GitHub Kanban Board**: We use a GitHub Kanban board to represent the current iteration's state and to track progress. Each iteration has its own project board.
-- **Iteration Planning**: For each new iteration, a new project board is created. Each iteration consists of a specific number of issues that are planned for completion within the week.
+-   **GitHub Kanban Board**: We use a GitHub Kanban board to represent the current iteration's state and to track progress. Each iteration has its own project board.
+-   **Iteration Planning**: For each new iteration, a new project board is created. Each iteration consists of a specific number of issues that are planned for completion within the week.
 
 ## Workflow
 
@@ -161,44 +153,46 @@ In this project, we use Agile methodology to manage and track development tasks.
 
 This structured approach ensures clear task prioritization and efficient tracking of progress throughout the development cycle.
 
-
 # Design
 
 ## Color Scheme
+
 This color scheme was chosen to create a clean and modern look for the website.
 
 ![Color Scheme](docs/color_scheme.PNG)
 
 ## Typography
+
 This project uses the following Google Font:
 
 -   [Inter](https://fonts.google.com/specimen/Inter) - for all text content.
 
 [Back to the top](#table-of-contents)
 
-
 # Features
 
 ## User Registration and Authentication
-This project utilizes the Django allauth library to handle user registration, authentication, and account management, including social account integration.
-- **Registration and Authentication with Social Accounts**: Allows users to sign up and log in using social accounts.
-- **User Registration**: Enables new users to create an account with their details.
-- **User Login**: Provides users with the ability to log in using their credentials.
-- **User Logout**: Allows users to log out from their accounts.
-- **Reset Password**: Facilitates the process for users to reset their forgotten passwords.
-- **Change Password**: Allows users to change their account passwords.
-- **Set Password**: Allows users to set a password for their account if they sign up with their social account.
-- **Email Confirmation**: Sends a confirmation link to the user's email to verify that the email address belongs to the user.
-- **User Account Deletion**: Allows users to permanently delete their accounts.
-- **Admin Model Registration**: Registers models in the Django Admin interface for administrative purposes.
 
+This project utilizes the Django allauth library to handle user registration, authentication, and account management, including social account integration.
+
+-   **Registration and Authentication with Social Accounts**: Allows users to sign up and log in using social accounts.
+-   **User Registration**: Enables new users to create an account with their details.
+-   **User Login**: Provides users with the ability to log in using their credentials.
+-   **User Logout**: Allows users to log out from their accounts.
+-   **Reset Password**: Facilitates the process for users to reset their forgotten passwords.
+-   **Change Password**: Allows users to change their account passwords.
+-   **Set Password**: Allows users to set a password for their account if they sign up with their social account.
+-   **Email Confirmation**: Sends a confirmation link to the user's email to verify that the email address belongs to the user.
+-   **User Account Deletion**: Allows users to permanently delete their accounts.
+-   **Admin Model Registration**: Registers models in the Django Admin interface for administrative purposes.
 
 ## User Profile and Notifications
-- **User Profile**: Provides users with a profile page where they can view and update their personal information.
-- **Success and Error Toast Notifications**: Displays toast messages to inform users of success or errors during interactions.
 
+-   **User Profile**: Provides users with a profile page where they can view and update their personal information.
+-   **Success and Error Toast Notifications**: Displays toast messages to inform users of success or errors during interactions.
 
 # Database Schema
+
 The first schema is for the dictionary app, which includes models for dictionaries, words, and translations. The second schema is for the entire project, which includes models for user profiles, user dictionaries, and user translations.
 
 <details>
@@ -233,7 +227,6 @@ The first schema is for the dictionary app, which includes models for dictionari
 ### Home page
 
 -   For anonymous users:
-
 
 -   For authenticated users:
 
@@ -304,7 +297,6 @@ To validate the HTML code, I use the [W3C HTML Markup Validator](https://validat
 
 -   :heavy_check_mark: [Home page](https://validator.w3.org/nu/?showsource=yes&doc=https%3A%2F%2Fwordnest-f67ad8aa67ee.herokuapp.com%2F)
 
-
 ### CSS Validation
 
 To validate the CSS code, I use the [W3 Jigsaw validator](https://jigsaw.w3.org/css-validator/#validate_by_uri).
@@ -329,14 +321,12 @@ To validate the JS code I use [ESLint] VScode extension(https://eslint.org/).
 
 -   :heavy_check_mark: [Welcome page](https://pagespeed.web.dev/analysis/https-wordnest-f67ad8aa67ee-herokuapp-com/7bjo7sh6r5?form_factor=mobile)
 
-- <details>
-  <summary>Home page</summary>
-  <img src="./docs/home_page_lighthouse.PNG" alt="Home page">
-</details>
-
+-   <details>
+      <summary>Home page</summary>
+      <img src="./docs/home_page_lighthouse.PNG" alt="Home page">
+    </details>
 
 -   :heavy_check_mark: [Register page](https://pagespeed.web.dev/analysis/https-wordnest-f67ad8aa67ee-herokuapp-com-accounts-signup/q9mozw7reu?form_factor=desktop)
-
 
 [Back to the top](#table-of-contents)
 
@@ -366,6 +356,7 @@ To validate the JS code I use [ESLint] VScode extension(https://eslint.org/).
 [Back to the top](#table-of-contents)
 
 # Environment Variables
+
 To run this project locally, you will need to create a `.env` file in the root directory of the project and add the following environment variables:
 
 ```bash
@@ -381,8 +372,8 @@ GOOGLE_CLIENT_SECRET=
 FACEBOOK_CLIENT_ID=
 FACEBOOK_CLIENT_SECRET=
 ```
-`GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET, FACEBOOK_CLIENT_ID, FACEBOOK_CLIENT_SECRET` used for user social authentication.
 
+`GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET, FACEBOOK_CLIENT_ID, FACEBOOK_CLIENT_SECRET` used for user social authentication.
 
 # Deployment
 
@@ -392,15 +383,17 @@ The WordNest project was deployed on a Heroku hosting server. The following step
 
 1.  Navigate to your [Heroku dashboard](https://dashboard.heroku.com/apps) and create a new app with a unique name.
 
-2.  Install `gunicorn` as a production-ready webserver for Heroku with command.
+2.  Navigate to **Settings** in [Heroku dashboard](https://dashboard.heroku.com/apps) and click **Add buildpacks** and choose "nodejs". This buildpack is required to be at te top of the buildpack list.
+
+3.  Install `gunicorn` as a production-ready webserver for Heroku with command.
 
     ```
     pip install gunicorn
     ```
 
-3.  Create a file named `Procfile` at the root directory of the project.
+4.  Create a file named `Procfile` at the root directory of the project.
 
-4. Add following command to `Procfile` to run your server in production.
+5.  Add following command to `Procfile` to run your server in production.
 
     ```
     web: gunicorn wordnest.wsgi
@@ -408,31 +401,31 @@ The WordNest project was deployed on a Heroku hosting server. The following step
 
     <sub>**Note**: Replace `wordnest` with your project name</sub>
 
-5. In the `settings.py` file update the `ALLOWED_HOSTS` variable.
+6.  In the `settings.py` file update the `ALLOWED_HOSTS` variable.
 
     ```python
     ALLOWED_HOSTS = ['127.0.0.1', '.herokuapp.com']
     ```
 
-6. Install [dj-database-url](https://pypi.org/project/dj-database-url/).
+7.  Install [dj-database-url](https://pypi.org/project/dj-database-url/).
 
     ```
     pip install dj-database-url
     ```
 
-7. Import `dj-database-url` in `settings.py`.
+8.  Import `dj-database-url` in `settings.py`.
 
     ```python
     import dj_database_url
     ```
 
-8. Install [psycopg3](https://pypi.org/project/psycopg/) to connect to PostgreSQL database.
+9.  Install [psycopg3](https://pypi.org/project/psycopg/) to connect to PostgreSQL database.
 
     ```
     pip install "psycopg[binary,pool]"
     ```
 
-9. In the `settings.py` replace `DATABASES` with the following code:
+10. In the `settings.py` replace `DATABASES` with the following code:
 
     ```python
     if DEBUG:
@@ -454,7 +447,7 @@ The WordNest project was deployed on a Heroku hosting server. The following step
 
     <sub>**Note**: Replace `if` clause with your own database for local development</sub>
 
-10. In the `.env` file update the `DEBUG` environment variable and add `DATABASE_URL` new one.
+11. In the `.env` file update the `DEBUG` environment variable and add `DATABASE_URL` new one.
 
     ```
     DEBUG=False
@@ -463,23 +456,23 @@ The WordNest project was deployed on a Heroku hosting server. The following step
 
     <sub>**Note**: For the WordNest I used database URL provided by `Code Institute` but you can use other database hosting services< such as [Amazon RDS for PostgreSQL](https://aws.amazon.com/rds/postgresql/)/sub>
 
-11. **Reload your terminal** and run the following command in **terminal** to migrate remote database.
+12. **Reload your terminal** and run the following command in **terminal** to migrate remote database.
 
     ```
     python manage.py migrate
     ```
 
-12. Replace `DEBUG=False` to `DEBUG=True` in the `.env` file.
+13. Replace `DEBUG=False` to `DEBUG=True` in the `.env` file.
 
-13. Return to the [Heroku dashboard](https://dashboard.heroku.com/apps/wordnest) navigate to the **Settings** tab and click on **Reveal Config Var** and add `DATABASE_URL` environment variable.
+14. Return to the [Heroku dashboard](https://dashboard.heroku.com/apps/wordnest) navigate to the **Settings** tab and click on **Reveal Config Var** and add `DATABASE_URL` environment variable.
 
-14. Install [whitenoise](https://pypi.org/project/whitenoise/) to manage static files on production server.
+15. Install [whitenoise](https://pypi.org/project/whitenoise/) to manage static files on production server.
 
     ```
     pip install whitenoise
     ```
 
-15. Add `whitenoise` to the `MIDDLEWARE` list in the `settings.py`.
+16. Add `whitenoise` to the `MIDDLEWARE` list in the `settings.py`.
 
     ```python
     MIDDLEWARE = [
@@ -490,7 +483,7 @@ The WordNest project was deployed on a Heroku hosting server. The following step
 
     <sub>**Note**: The WhiteNoise middleware must be placed directly after the Django `SecurityMiddleware`</sub>
 
-16. Add `STATIC_ROOT` and `STORAGES` variables to the `settings.py`.
+17. Add `STATIC_ROOT` and `STORAGES` variables to the `settings.py`.
 
     ```python
     STORAGES = {
@@ -501,57 +494,57 @@ The WordNest project was deployed on a Heroku hosting server. The following step
     STATIC_ROOT = BASE_DIR.joinpath("staticfiles")
     ```
 
-17. Run the following command in **terminal** to collect static files.
+18. Run the following command in **terminal** to collect static files.
 
     ```
     python manage.py tailwind build
     python manage.py collectstatic
     ```
 
-18. From the terminal, check the Python version used in your IDE.
+19. From the terminal, check the Python version used in your IDE.
 
     ```
     python --version
     ```
 
-19. Look up the [supported runtimes here](https://devcenter.heroku.com/articles/python-support#specifying-a-python-version) and copy the runtime closest to the one used in your IDE.
+20. Look up the [supported runtimes here](https://devcenter.heroku.com/articles/python-support#specifying-a-python-version) and copy the runtime closest to the one used in your IDE.
 
-20. Add a `runtime.txt` file to your app's root directory.
+21. Add a `runtime.txt` file to your app's root directory.
 
-21. Paste the copied runtime into the `runtime.txt` file.
+22. Paste the copied runtime into the `runtime.txt` file.
 
-22. Update `requirements.txt`.
+23. Update `requirements.txt`.
 
     ```
     pip freeze > requirements.txt
     ```
 
-23. Add and commit all changes to the repository.
+24. Add and commit all changes to the repository.
 
     ```
     git add .
     git commit -m "Deploying to Heroku"
     ```
 
-24. Push the changes to your remote branch that you intend to deploy.
+25. Push the changes to your remote branch that you intend to deploy.
 
     ```
     git push
     ```
 
-25. On the [Heroku dashboard](https://dashboard.heroku.com/apps), and in your app, click on the **Deploy** tab.
+26. On the [Heroku dashboard](https://dashboard.heroku.com/apps), and in your app, click on the **Deploy** tab.
 
-26. In the **Deployment method** section enable GitHub integration by clicking on **Connect to GitHub**.
+27. In the **Deployment method** section enable GitHub integration by clicking on **Connect to GitHub**.
 
-27. Start typing your project repo name into the search box and click **Search**. A list of repositories from your GitHub account should appear. Click on the GitHub repo you want to deploy from.
+28. Start typing your project repo name into the search box and click **Search**. A list of repositories from your GitHub account should appear. Click on the GitHub repo you want to deploy from.
 
-28. Scroll to the bottom of the page in the **Manual deploy** section, choose branch you want to deploy and click **Deploy Branch** to start a manual deployment of the branch.
+29. Scroll to the bottom of the page in the **Manual deploy** section, choose branch you want to deploy and click **Deploy Branch** to start a manual deployment of the branch.
 
-29. Open the **Resources** tab and choose an eco dyno. This dyno is a lightweight container to run your project.
+30. Open the **Resources** tab and choose an eco dyno. This dyno is a lightweight container to run your project.
 
-30. Verify there is no existing Postgres database **add-on**. if there is a database add-on select **Delete Add-on** to remove it.
+31. Verify there is no existing Postgres database **add-on**. if there is a database add-on select **Delete Add-on** to remove it.
 
-31. Click on **Open app** to view your deployed project.
+32. Click on **Open app** to view your deployed project.
 
 [Back to the top](#table-of-contents)
 
@@ -567,15 +560,17 @@ The WordNest project was deployed on a Heroku hosting server. The following step
 
 # Bugs
 
-- All fixed bugs can be found [here]()
+-   All fixed bugs can be found [here]()
 
-- All unfixed bugs can be found [here]()
+-   All unfixed bugs can be found [here]()
 
 [Back to top](#contents)
+
 # Credits
 
 ## Media
- - icons from [Font Awesome](https://fontawesome.com/)
+
+-   icons from [Font Awesome](https://fontawesome.com/)
 
 [Back to the top](#table-of-contents)
 
@@ -592,6 +587,8 @@ The WordNest project was deployed on a Heroku hosting server. The following step
 -   [Implementing infinite scroll in Django with htmx](https://medium.com/@franciscovcbm/infinite-scroll-with-django-and-htmx-27f61cfaf911)
 
 -   [Dynamic messages with HTMX and Alpine.js](https://danjacob.net/posts/htmx_messages/)
+
+-   [django-tailwind build on heroku](https://medium.com/@phuitsing/heroku-buildpack-for-django-tailwind-de96be543f9)
 
 [Back to the top](#table-of-contents)
 
