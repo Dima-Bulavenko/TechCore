@@ -66,7 +66,6 @@ class CheckoutView(TemplateView):
 
                 try:
                     intent = stripe.intent(**intent_params)
-                    print(intent.client_secret)
                 except stripe.stripe.error.CardError as e:
                     messages.error(request, "Your payment was declined")
                     status_params.update(cardError=e.user_message)
