@@ -20,7 +20,6 @@ else:
         }
     }
 
-DATABASES = {"default": dj_database_url.parse(config("DATABASE_URL"))}
 
 
 MIDDLEWARE = ["debug_toolbar.middleware.DebugToolbarMiddleware", *MIDDLEWARE]
