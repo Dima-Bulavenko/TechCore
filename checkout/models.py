@@ -5,6 +5,7 @@ from django.db import models
 from django.db.models import Sum
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
+from django_countries.fields import CountryField
 
 from cart.services.cart import get_delivery_cost
 from product.models import Product
@@ -19,7 +20,7 @@ class Address(models.Model):
     address_line_2 = models.CharField(_("Address Line 2"), max_length=100, blank=True)
     city = models.CharField(_("City"), max_length=100)
     county = models.CharField(_("County"), max_length=100)
-    country = models.CharField(_("Country"), max_length=100)
+    country = CountryField(_("Country"), blank_label=_("Choose Country"), max_length=100)
     postal_code = models.CharField(_("Postal Code"), max_length=20, blank=True)
     last_update = models.DateTimeField(auto_now=True)
 
