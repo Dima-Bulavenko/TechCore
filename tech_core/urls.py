@@ -11,6 +11,16 @@ urlpatterns = [
         TemplateView.as_view(template_name="privacy_policy.html"),
         name="privacy_policy",
     ),
+        path(
+        "terms-conditions/",
+        TemplateView.as_view(template_name="terms_conditions.html"),
+        name="terms_conditions",
+    ),
+    path(
+        "privacy-policy/",
+        TemplateView.as_view(template_name="privacy_policy.html"),
+        name="privacy-policy",
+    ),
     path("admin/", admin.site.urls),
     re_path(
         r"^accounts/email/$", page_not_found, {"exception": Exception("Not Found")}
