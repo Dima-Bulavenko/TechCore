@@ -30,13 +30,13 @@ class Address(models.Model):
 
 class Order(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, 
-                             on_delete=models.CASCADE, 
+                             on_delete=models.SET_NULL, 
                              related_name='orders',
                              blank=True, null=True)
     phone_number = models.CharField(_("Phone Number"), max_length=20)
     email_field = models.EmailField(_("Email"), max_length=254)
     full_name = models.CharField(_("Full Name"), max_length=50)
-    address = models.ForeignKey(Address, on_delete=models.CASCADE)
+    address = models.ForeignKey(Address, on_delete=models.PROTECT)
     order_number = models.CharField(max_length=32, unique=True, editable=False)
     create_date = models.DateTimeField(auto_now_add=True)
     delivery_cost = models.DecimalField(max_digits=6, decimal_places=2, default=0)
