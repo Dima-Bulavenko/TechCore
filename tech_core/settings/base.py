@@ -67,11 +67,11 @@ INSTALLED_APPS = [
     # Other apps
     "django_htmx",
     'widget_tweaks',
+    'storages',
     ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -147,11 +147,6 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
-STORAGES = {
-    "staticfiles": {
-        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
-    },
-}
 STATIC_ROOT = BASE_DIR.joinpath("staticfiles")
 
 STATIC_URL = 'static/'
@@ -249,3 +244,23 @@ STRIPE_SECRET_KEY = config("STRIPE_SECRET_KEY", default="")
 STRIPE_WH_SECRET = config("STRIPE_WH_SECRET", default="")
 
 MANAGERS = ["dima99bylovenko@gmail.com"]
+
+# S3 configuration
+if config("USE_AWS", default=None):
+    AWS_STORAGE_BUCKET_NAME = config("AWS_STORAGE_BUCKET_NAME")
+    AWS_S3_REGION_NAME = config("AWS_S3_REGION_NAME")
+    AWS_ACCESS_KEY_ID = config("AWS_ACCESS_KEY_ID")
+    AWS_SECRET_ACCESS_KEY = config("AWS_SECRET_ACCESS_KEY")
+    AWS_S3_CUSTOM_DOMAIN = f"{AWS_STORAGE_BUCKET_NAME}.s3-website.{AWS_S3_REGION_NAME}.amazonaws.com"
+
+    # Static and media files
+    STATICFILES_LOCATION = "static"
+    STATICFILES_STORAGE = "tech_core.custom_storages.StaticStorage"
+
+    MEDIAFILES_LOCATION = "media"
+    DEFAULT_FILE_STORAGE = "tech_core.custom_storages.MediaStorage"
+
+    # Override static and media URLs in production
+    STATIC_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/{STATICFILES_LOCATION}/"
+    MEDIA_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/{MEDIAFILES_LOCATION}/"
+

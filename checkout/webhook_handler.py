@@ -19,10 +19,11 @@ class StripeWebhookHandler:
         return HttpResponse(content=f'Webhook received: {event["type"]}', status=200)
 
     def handle_payment_intent_succeeded(self, event):
-        order = json.loads(event["data"]["object"]["metadata"]["order"])
-        address = json.loads(event["data"]["object"]["metadata"]["address"])
-        cart = json.loads(event["data"]["object"]["metadata"]["cart"])
-        user_email = event["data"]["object"]["metadata"]["user_email"]
+        metadata = event["data"]["object"]["metadata"]
+        order = json.loads(metadata["order"])
+        address = json.loads(metadata["address"])
+        cart = json.loads(metadata["cart"])
+        user_email = metadata.get("user_email")
         order_form = forms.OrderForm(order)
         address_form = forms.AddressForm(address)
 
