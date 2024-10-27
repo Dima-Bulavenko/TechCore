@@ -10,7 +10,7 @@
                     {% for image in product.images.all %}
                         {% if forloop.first %}
                             <div class="px-4 py-10 rounded-lg shadow-[0_2px_10px_-3px_rgba(6,81,237,0.3)] relative">
-                                <img src="{{ image.url }}"
+                                <img src="{{ image.image.url }}"
                                      id="image_{{ forloop.counter }}"
                                      alt="{{ product.name }} image {{ forloop.counter }}"
                                      class="w-3/4 rounded object-cover mx-auto" />
@@ -18,7 +18,7 @@
                             {% if not forloop.last %}<div class="mt-6 flex flex-wrap justify-center gap-6 mx-auto">{% endif %}
                             {% else %}
                                 <div class="w-24 h-20 flex items-center justify-center rounded-lg p-4 shadow-[0_2px_10px_-3px_rgba(6,81,237,0.3)] cursor-pointer">
-                                    <img src="{{ image.url }}"
+                                    <img src="{{ image.image.url }}"
                                          id="image_{{ forloop.counter }}"
                                          alt="{{ product.name }} image {{ forloop.counter }}"
                                          class="w-full" />
