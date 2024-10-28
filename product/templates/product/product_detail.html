@@ -53,16 +53,10 @@
                         </form>
                     </div>
                     <div class="flex flex-wrap gap-4 mt-8">
-                        <button type="submit"
-                                form="quantity_form_{{ product.pk }}"
-                                formaction="#"
-                                class="min-w-[200px] px-4 py-3 bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold rounded">
-                            Buy now
-                        </button>
                         <button hx-post={% url "add_to_cart" %}
                                 hx-include="#quantity_form_{{ product.pk }} *"
                                 hx-swap="none"
-                                class="min-w-[200px] px-4 py-2.5 border border-blue-600 bg-transparent hover:bg-gray-50 text-gray-800 text-sm font-semibold rounded">
+                                class="min-w-[200px] px-4 py-3 bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold rounded">
                             Add to cart
                         </button>
                     </div>
