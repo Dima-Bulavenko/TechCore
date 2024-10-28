@@ -23,6 +23,10 @@
         {% endblock basic_css %}
         {% block css_block %}
             {% tailwind_css %}
+            <!-- Mailchimp -->
+            <link href="//cdn-images.mailchimp.com/embedcode/classic-061523.css"
+                          rel="stylesheet"
+                          type="text/css">
         {% endblock css_block %}
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -42,6 +46,10 @@
         <script src="{% static 'js/flowbite/flowbite.min.js' %}" defer></script>
         <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.5/dist/js.cookie.min.js" defer></script>
         <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.1/dist/cdn.min.js"></script>
+        <!-- Mailchimp -->
+        <script type="text/javascript"
+        src="//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js" defer></script>
+        <script src="{% static "js/mailchimp.js" %}" defer></script>
         {% endblock js_block %}
     </head>
     <body hx-ext="morph" hx-on::after-request="initFlowbite()" hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
