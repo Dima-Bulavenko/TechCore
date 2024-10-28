@@ -19,10 +19,6 @@
         <div class="mt-4 flex flex-wrap items-center justify-between gap-4">
             <p class="text-2xl font-extrabold leading-tight text-gray-900 dark:text-white">${{ product.price }}</p>
             <div class="flex items-center gap-4">
-                <button type="button"
-                        class="inline-flex items-center rounded-lg self-stretch bg-yellow-300 px-3 py-2.5 text-sm font-medium text-black hover:bg-yellow-500 focus:outline-none focus:ring-4  focus:ring-blue-300 dark:hover:bg-yellow-700 dark:focus:ring-blue-800">
-                    Buy Now
-                </button>
                 <form hx-post="{% url "add_to_cart" %}"
                       hx-swap="none"
                       method="post"
