@@ -5,12 +5,13 @@ from django.shortcuts import redirect, resolve_url
 from django.views.generic import TemplateView
 from django_htmx.http import HttpResponseClientRedirect
 
+from cart.mixins import EmptyCartMixin
 from cart.services.cart import Cart
 from checkout.services.checkout import Checkout
 from checkout.services.stripe import Stripe
 
 
-class CheckoutView(TemplateView):
+class CheckoutView(EmptyCartMixin, TemplateView):
     template_name = "checkout/checkout.html"
 
     def setup(self, request, *args, **kwargs):

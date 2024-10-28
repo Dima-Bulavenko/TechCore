@@ -4,12 +4,13 @@ from django.shortcuts import get_object_or_404, render
 from django.template.loader import render_to_string
 from django.views.generic import View
 
+from cart.mixins import EmptyCartMixin
 from cart.services.cart import Cart
 from product.forms import ProductQuantityForm
 from product.models import Product
 
 
-class CartActionView(View):
+class CartActionView(EmptyCartMixin, View):
     def post(self, request, *args, **kwargs):
         form = ProductQuantityForm(request.POST)
         try:
@@ -60,7 +61,7 @@ class CartActionView(View):
         return HttpResponse(content)
 
 
-class CartDetailView(View):
+class CartDetailView(EmptyCartMixin, View):
     def get(self, request, *args, **kwargs):
         cart = Cart(request)
         return render(request, "cart/cart_detail.html", {"cart": cart})
