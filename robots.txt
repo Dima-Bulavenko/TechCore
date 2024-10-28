@@ -1,0 +1,8 @@
+User-agent: *
+Disallow: /accounts/
+Disallow: /cart/
+Disallow: /checkout/
+Disallow: /profile/
+Disallow: /orders/
+Disallow: /contact-us/
+Sitemap: https://techcore-e370dc0903ef.herokuapp.com/sitemap.xml

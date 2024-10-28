@@ -13,6 +13,10 @@
                 {{ title }}
             {% endblock head_title %}
         </title>
+        <meta name="description" content="{% block meta_content %}
+        Discover the best deals on high-performance CPUs and GPUs for gaming, video editing, and AI. Upgrade your PC with top-quality processors and graphics cards available at affordable prices. Shop now for the latest in computer hardware!
+        {% endblock meta_content %}">
+        <meta name="keywords" content="{% block meta_keywords %}Buy CPUs online, Best GPUs for gaming, processors and graphics cards, Shop GPUs for video editing, High-quality GPUs online, Graphics card, Buy processors online,{% endblock meta_keywords %}">
         <!-- CSS -->
         {% block basic_css %}
             <link rel="stylesheet" href="{% static 'css/style.css' %}" />
