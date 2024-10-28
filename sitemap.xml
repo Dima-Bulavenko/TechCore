@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
+
+
+<url>
+  <loc>https://techcore-e370dc0903ef.herokuapp.com/product/CPU</loc>
+  <lastmod>2024-10-27T23:44:07+00:00</lastmod>
+  <priority>1.00</priority>
+</url>
+<url>
+  <loc>https://techcore-e370dc0903ef.herokuapp.com/contact-us/</loc>
+  <lastmod>2024-10-27T23:44:07+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://techcore-e370dc0903ef.herokuapp.com/cart/</loc>
+  <lastmod>2024-10-27T23:44:07+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://techcore-e370dc0903ef.herokuapp.com/accounts/login/</loc>
+  <lastmod>2024-10-27T23:44:07+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://techcore-e370dc0903ef.herokuapp.com/accounts/signup/</loc>
+  <lastmod>2024-10-27T23:44:07+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://techcore-e370dc0903ef.herokuapp.com/product/94</loc>
+  <lastmod>2024-10-27T23:44:07+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://techcore-e370dc0903ef.herokuapp.com/product/95</loc>
+  <lastmod>2024-10-27T23:44:07+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://techcore-e370dc0903ef.herokuapp.com/product/96</loc>
+  <lastmod>2024-10-27T23:44:07+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://techcore-e370dc0903ef.herokuapp.com/product/97</loc>
+  <lastmod>2024-10-27T23:44:07+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://techcore-e370dc0903ef.herokuapp.com/product/98</loc>
+  <lastmod>2024-10-27T23:44:07+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://techcore-e370dc0903ef.herokuapp.com/product/99</loc>
+  <lastmod>2024-10-27T23:44:07+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://techcore-e370dc0903ef.herokuapp.com/product/100</loc>
+  <lastmod>2024-10-27T23:44:07+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://techcore-e370dc0903ef.herokuapp.com/product/101</loc>
+  <lastmod>2024-10-27T23:44:07+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://techcore-e370dc0903ef.herokuapp.com/product/102</loc>
+  <lastmod>2024-10-27T23:44:07+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://techcore-e370dc0903ef.herokuapp.com/product/103</loc>
+  <lastmod>2024-10-27T23:44:07+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://techcore-e370dc0903ef.herokuapp.com/privacy-policy/</loc>
+  <lastmod>2024-10-27T23:44:07+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://techcore-e370dc0903ef.herokuapp.com/terms-conditions/</loc>
+  <lastmod>2024-10-27T23:44:07+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://techcore-e370dc0903ef.herokuapp.com/checkout/</loc>
+  <lastmod>2024-10-27T23:44:07+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://techcore-e370dc0903ef.herokuapp.com/accounts/password/reset/</loc>
+  <lastmod>2024-10-27T23:44:07+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+
+
+</urlset>
