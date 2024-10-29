@@ -10,7 +10,7 @@ from product.forms import ProductQuantityForm
 from product.models import Product
 
 
-class CartActionView(EmptyCartMixin, View):
+class CartActionView(View):
     def post(self, request, *args, **kwargs):
         form = ProductQuantityForm(request.POST)
         try:
