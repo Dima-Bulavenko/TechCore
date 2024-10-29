@@ -63,9 +63,21 @@
 
 # Purpose
 
+TechCore is an e-commerce platform built with the Django framework, designed to provide a seamless shopping experience for tech enthusiasts looking for high-performance CPUs and GPUs. Leveraging Django's powerful backend capabilities, the application features user authentication, efficient data management, and precise routing for a smooth and secure shopping journey. The frontend is enriched with Django’s templating system and HTMX for interactive and dynamic content updates, reducing page reloads and improving responsiveness.
+
+Key features include a customizable price range filter, easy product browsing, a streamlined checkout process with Stripe integration, and a flexible cart system. These features are crafted to deliver a user-friendly and efficient shopping experience, catering to both casual tech shoppers and performance-focused enthusiasts.
+
 [Table of contents](#table-of-contents)
 
 # UX Design
+
+-   **PC Builders and Gamers**: Individuals who are building or upgrading custom PCs, especially gamers seeking high-performance components. TechCore offers a curated selection of CPUs and GPUs to meet their specific needs.
+
+-   **Tech Enthusiasts and Professionals**: Users interested in the latest advancements in computer hardware, including programmers, designers, and engineers who need powerful processors and graphics cards for intensive tasks.
+
+-   **Retail and Wholesale Buyers**: Businesses or individual buyers looking for reliable sources for bulk or retail purchases of CPUs and GPUs, with streamlined shopping features and flexible order quantities.
+
+-   **Price-Conscious Shoppers**: Users looking to find the best hardware within their budget range. TechCore’s price range filter allows them to explore options tailored to their budget.
 
 ## Epics
 
