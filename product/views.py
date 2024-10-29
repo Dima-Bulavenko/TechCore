@@ -18,7 +18,9 @@ class ProductListView(ListView):
         queryset = ProductFilter(
             category=self.kwargs.get("category"), data=self.request.GET
         ).filter()
-        return ProductOrder(queryset, self.request).order()
+        queryset = ProductOrder(queryset, self.request).order()
+
+        return queryset
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

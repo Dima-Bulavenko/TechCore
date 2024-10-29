@@ -33,18 +33,19 @@ class ProductFilterForm(forms.Form):
         self.set_filter_attributes(product_class)
 
     def set_filter_attributes(self, product_class):
-        for attr in product_class.get_filter_attributes():
-            attr_obj = Attribute.objects.get(name=attr)
-            attr_values = attr_obj.productattributevalue_set.filter(
+        f_attr = product_class.get_filter_attributes()
+        attributes = Attribute.objects.filter(name__in=f_attr)
+        for attribute in attributes:
+            attr_values = attribute.productattributevalue_set.filter(
                 product__category__name=product_class._category.value
             )
-            self.fields[f"attr_{attr.value.replace(' ', '_')}"] = (
+            self.fields[f"attr_{attribute.name.replace(' ', '_')}"] = (
                 AttributeModelMultipleChoiceFiled(
                     queryset=attr_values.values_list("value", named=True)
                     .distinct()
                     .order_by("value"),
                     widget=widgets.CheckboxSelectMultiple,
-                    label=attr.label,
+                    label=[i for i in f_attr if i == attribute.name][0].label,  # noqa: RUF015
                     required=False,
                     to_field_name="value",
                 )

@@ -83,8 +83,9 @@ class Product(models.Model):
 
     @property
     def rating(self):
-        if self.reviews.exists():
-            return round(self.reviews.aggregate(models.Avg('rating'))['rating__avg'], 1)
+        print("gav")
+        if reviews := self.reviews.all():
+            return sum([review.rating for review in reviews]) / len(reviews)
         return 0
 
     @property
@@ -117,19 +118,13 @@ class Product(models.Model):
         return dict(sorted(rating_summary.items(), reverse=True))
     
     @property
-    def product_title(self):
-        concrete_product_class = product_category_mapper.get_class(self.category.name)
-        if concrete_product_class:
-            concrete_product = concrete_product_class.objects.get(pk=self.pk)
-            return concrete_product.__str__()
-        return self.__str__()
-    
-    def get_attribute_value(self, attribute_name: str) -> str:
-        try:
-            attribute_value = self.productattributevalue_set.get(attribute__name=attribute_name)
-            return attribute_value.value
-        except ProductAttributeValue.DoesNotExist:
-            return None
+    def product_title(self) -> str:
+        messages_placeholders = []
+        title_names = [n.value for n in self.title_attributes()]
+        for pr_ar in self.productattributevalue_set.all():
+            if pr_ar.attribute.name in title_names:
+                messages_placeholders.append(pr_ar.value)  # noqa: PERF401
+        return self.title_format.format(self.name, *messages_placeholders)
 
 
 class ProductMixin:
@@ -152,12 +147,19 @@ class CPUProduct(ProductMixin, Product):
         proxy = True
         verbose_name = 'CPU product'
 
-    def __str__(self):
-        core = self.get_attribute_value(self.attrs.CORE_COUNT.value)
-        thread = self.get_attribute_value(self.attrs.THREAD_COUNT.value)
-        clock_speed = self.get_attribute_value(self.attrs.BASE_CLOCK_SPEED.value)
-        tdp = self.get_attribute_value(self.attrs.TDP.value)
-        return f"{self.name}, {core} Core, {thread} Thread, {clock_speed}, {tdp}"
+    @property
+    def title_format(self) -> str:
+        return "{0}, {1} Core, {2} Thread, {3}, {4}"
+    
+    @classmethod
+    def title_attributes(cls) -> list:
+        attrs = cls.attrs
+        return [
+            attrs.CORE_COUNT,
+            attrs.THREAD_COUNT,
+            attrs.BASE_CLOCK_SPEED,
+            attrs.TDP,
+        ]
     
     @classmethod
     def get_filter_attributes(cls):
@@ -182,12 +184,19 @@ class GPUProduct(ProductMixin, Product):
     class Meta:
         proxy = True
         verbose_name = 'GPU product'
-
-    def __str__(self):
-        memory = self.get_attribute_value(self.attrs.MEMORY_SIZE.value)
-        memory_type = self.get_attribute_value(self.attrs.MEMORY_TYPE.value)
-        outputs = self.get_attribute_value(self.attrs.OUTPUTS.value)
-        return f"{self.name}, {memory} Memory, {memory_type}, {outputs}"
+    
+    @property
+    def title_format(self) -> str:
+        return "{0}, {1} Memory, {2}, {3}"
+    
+    @classmethod
+    def title_attributes(cls) -> list:
+        attrs = cls.attrs
+        return [
+            attrs.MEMORY_SIZE,
+            attrs.MEMORY_TYPE,
+            attrs.OUTPUTS,
+        ]
     
     @classmethod
     def get_filter_attributes(cls):
