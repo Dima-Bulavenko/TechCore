@@ -10,6 +10,7 @@ from product.models import (
     Manufacturer,
     Product,
     ProductAttributeValue,
+    Review,
 )
 
 
@@ -79,4 +80,8 @@ class CPUProductAdmin(ProxyProductAdmin):
 
 @admin.register(GPUProduct)
 class GPUProductAdmin(ProxyProductAdmin):
+    pass
+
+@admin.register(Review)
+class ReviewAdmin(admin.ModelAdmin):
     pass
