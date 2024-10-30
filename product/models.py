@@ -83,7 +83,6 @@ class Product(models.Model):
 
     @property
     def rating(self):
-        print("gav")
         if reviews := self.reviews.all():
             return sum([review.rating for review in reviews]) / len(reviews)
         return 0
