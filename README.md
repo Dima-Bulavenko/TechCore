@@ -341,13 +341,37 @@ python manage.py test
 
 To validate the HTML code, I use the [W3C HTML Markup Validator](https://validator.w3.org/#validate_by_uri). Since I use htmx in my project, the validator will show some errors related to the htmx attributes, but these can be ignored.
 
--   :heavy_check_mark: [Home page](https://validator.w3.org/nu/?showsource=yes&doc=https%3A%2F%2Fwordnest-f67ad8aa67ee.herokuapp.com%2F)
+-   :heavy_check_mark: [Product list page](https://validator.w3.org/nu/?doc=https%3A%2F%2Ftechcore-e370dc0903ef.herokuapp.com%2Fproduct%2FCPU#cl3200c20)
+
+-   :heavy_check_mark: [Contact Us page](https://validator.w3.org/nu/?doc=https%3A%2F%2Ftechcore-e370dc0903ef.herokuapp.com%2Fcontact-us%2F#cl3200c20)
+
+-   :heavy_check_mark: [Authentication pages](https://validator.w3.org/nu/?doc=https%3A%2F%2Ftechcore-e370dc0903ef.herokuapp.com%2Faccounts%2Flogin%2F#cl3200c20)
+
+-   :heavy_check_mark: [Authentication pages](https://validator.w3.org/nu/?doc=https%3A%2F%2Ftechcore-e370dc0903ef.herokuapp.com%2Faccounts%2Flogin%2F#cl3200c20)
+
+-  <details>
+      <summary>Cart page</summary>
+      <img src="./docs/html_validator_cart_page.png"
+      alt="Cart page">
+    </details>
+
+-  <details>
+      <summary>Checkout page</summary>
+      <img src="./docs/html_validator.checkout_page.png"
+      alt="Checkout page">
+    </details>
+
+-  <details>
+      <summary>Profile page</summary>
+      <img src="./docs/html_validator_profile_page.png"
+      alt="Profile page">
+    </details>
 
 ### CSS Validation
 
 To validate the CSS code, I use the [W3 Jigsaw validator](https://jigsaw.w3.org/css-validator/#validate_by_uri).
 
--   :heavy_check_mark: [style.css, normalize.css](https://jigsaw.w3.org/css-validator/validator?uri=https%3A%2F%2Fwordnest-f67ad8aa67ee.herokuapp.com%2F&profile=css3svg&usermedium=all&warning=1&vextwarning=&lang=en)
+-   :heavy_check_mark: [dist/style.css](https://jigsaw.w3.org/css-validator/validator?uri=https%3A%2F%2Ftechcore-e370dc0903ef.herokuapp.com%2Fproduct%2FCPU&profile=css3svg&usermedium=all&warning=1&vextwarning=&lang=en). I was used tailwind css to create styles, so the validator shows some errors related to the tailwind classes, but these can be ignored.
 
 ### Python Validation
 
@@ -365,14 +389,13 @@ To validate the JS code I use [ESLint] VScode extension(https://eslint.org/).
 
 ## Lighthouse
 
--   :heavy_check_mark: [Welcome page](https://pagespeed.web.dev/analysis/https-wordnest-f67ad8aa67ee-herokuapp-com/7bjo7sh6r5?form_factor=mobile)
+-   :heavy_check_mark: [Product list page](https://pagespeed.web.dev/analysis/https-techcore-e370dc0903ef-herokuapp-com-product-CPU/yuvwsu6laa?form_factor=mobile)
 
--   <details>
-      <summary>Home page</summary>
-      <img src="./docs/home_page_lighthouse.PNG" alt="Home page">
-    </details>
+-   :heavy_check_mark: [Cart page](https://pagespeed.web.dev/analysis/https-techcore-e370dc0903ef-herokuapp-com-cart/kyj2thz1ul?form_factor=mobile)
 
--   :heavy_check_mark: [Register page](https://pagespeed.web.dev/analysis/https-wordnest-f67ad8aa67ee-herokuapp-com-accounts-signup/q9mozw7reu?form_factor=desktop)
+-   :heavy_check_mark: [Contact Us](https://pagespeed.web.dev/analysis/https-techcore-e370dc0903ef-herokuapp-com-contact-us/tocmkwpb38?form_factor=mobile)
+
+-   :heavy_check_mark: [Authentication pages](https://pagespeed.web.dev/analysis/https-techcore-e370dc0903ef-herokuapp-com-accounts-signup/jbuq2wn4dh?form_factor=mobile)
 
 [Back to the top](#table-of-contents)
 

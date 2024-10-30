@@ -38,22 +38,22 @@
             <div class="flex flex-col items-start gap-5 mt-7 md:flex-row">
                 <div>
                     <a href="{% url "account_change_password" %}">
-                        <button type="button"
+                        <div
                                 class="text-white bg-blue-700 hover:bg-blue-800 w-40 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
                             {% if user.has_usable_password %}
                                 Change Password
                             {% else %}
                                 Set Password
                             {% endif %}
-                        </button>
+                        </div>
                     </a>
                 </div>
                 <div>
                     <a href="{% url "account_logout" %}">
-                        <button type="button"
+                        <div
                                 class="text-white bg-blue-700 hover:bg-blue-800 w-40 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
                                 Logout
-                        </button>
+                        </div>
                     </a>
                 </div>
                 <div>
