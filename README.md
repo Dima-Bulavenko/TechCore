@@ -81,17 +81,21 @@ Key features include a customizable price range filter, easy product browsing, a
 
 ## Epics
 
+To manage the development of key features for TechCore, I organize epics on GitHub by creating issues tagged with the "Epic" label. Each epic contains a well-structured list of user stories and developer tasks that outline the required steps for feature implementation and testing.
+
+These epics ensure that the core functionalities, such as user authentication, shopping cart operations, price filtering, and payment processing, are developed in a systematic and organized manner.
+
+You can find all the epics [here](https://github.com/Dima-Bulavenko/TechCore/issues?q=is%3Aissue+label%3AEpic).
+
 ## User and Developer Stories
 
--   **User stories:**
-
--   **Developer stories:**
+-   **User stories:** To outline the features of TechCore, I used [user stories](https://github.com/Dima-Bulavenko/TechCore/issues?q=is%3Aissue+label%3A%22User+story%22). These stories help clarify the user’s needs and expectations, such as filtering products by price, managing the shopping cart, and completing a secure checkout process. Each story is designed to focus on the user’s interaction with the platform and the desired outcomes of each feature.
 
 [Back to the top](#table-of-contents)
 
 # Wireframes
 
-## Home page
+## Product List page
 
 -   <details>
       <summary>Mobile</summary>
@@ -137,7 +141,7 @@ Key features include a customizable price range filter, easy product browsing, a
 
 # Agile Development
 
-In this project, we use Agile methodology to manage and track development tasks. Here's a breakdown of how we apply Agile practices:
+In this project, I use Agile methodology to manage and track development tasks. Here's a breakdown of how I apply Agile practices:
 
 ## Task Management
 
@@ -149,7 +153,7 @@ In this project, we use Agile methodology to manage and track development tasks.
     -   `Would Have`
 -   **Milestones**:
     -   **Product Backlog**: This milestone includes all issues that have been identified but not yet assigned to a specific iteration. Issues in this milestone do not have time constraints.
-    -   **Iteration #number**: Each iteration has a specific duration (one week) and is assigned a milestone. Issues are moved to this milestone as they are scheduled for the current iteration.
+    -   **Iteration #number**: Each iteration has a specific duration (one week) and is assigned to a milestone. Issues are moved to this milestone as they are scheduled for the current iteration.
 
 ## Project Management
 
@@ -169,9 +173,9 @@ This structured approach ensures clear task prioritization and efficient trackin
 
 ## Color Scheme
 
-This color scheme was chosen to create a clean and modern look for the website.
+The color scheme for TechCore is based on Flowbite’s components, which were adjusted to complement the modern, tech-focused design of the site. This scheme aims to create a visually appealing and professional look, enhancing the shopping experience for tech enthusiasts.
 
-![Color Scheme](docs/color_scheme.PNG)
+![Color Scheme](docs/techcore_color_shceme.png)
 
 ## Typography
 
@@ -200,22 +204,38 @@ This project utilizes the Django allauth library to handle user registration, au
 
 ## User Profile and Notifications
 
--   **User Profile**: Provides users with a profile page where they can view and update their personal information.
+-   **User Profile**: Provides users with a profile page where they can view and update their personal information, check list of his orders and manage account settings (password rest, Logout, Delete Account).
 -   **Success and Error Toast Notifications**: Displays toast messages to inform users of success or errors during interactions.
+
+## Product Browsing and Filtering
+TechCore provides a seamless shopping experience with browsing and filtering options to help users find the right products.
+
+- **Browse Products**: Users can explore a variety of CPUs and GPUs.
+- **Price Range Filter**: Allows users to filter products based on their budget preferences.
+- **Product Details Page**: Displays detailed information about each product, including specifications and pricing.
+
+## Shopping Cart and Checkout
+The shopping cart and checkout system are designed to make purchasing as straightforward as possible.
+
+- **Add to Cart**: Users can add items to their cart with ease.
+- **Adjust Quantity in Cart**: Users can increase or decrease the quantity of items.
+- **Remove Item from Cart**: Enables users to remove specific items from the cart.
+- **Proceed to Checkout**: Streamlines the checkout process.
+- **Stripe Payment Integration**: Provides a secure and reliable payment method through Stripe.
+- **Order Summary**: Displays a summary of the order before completing the purchase.
+
+## Admin and Inventory Management
+The admin panel helps administrators manage inventory and customer orders efficiently.
+
+- **Product and Order Management**: Admins can add, update, and remove products and manage user orders.
+- **Inventory Tracking**g: Provides inventory management to ensure stock availability.
+
 
 # Database Schema
 
-The first schema is for the dictionary app, which includes models for dictionaries, words, and translations. The second schema is for the entire project, which includes models for user profiles, user dictionaries, and user translations.
+The database schema for TechCore is structured to support both product management and user interactions.
 
-<details>
-  <summary>Database Schema of dictionary app</summary>
-  <img src="./docs/database_scheme.png" alt="Database Schema of dictionary app">
-</details>
-
-<details>
-  <summary>Database Schema of whole project</summary>
-  <img src="./docs/database_scheme_project.png" alt="Database Schema of whole project">
-</details>
+![Database Schema](docs/db_schema.png)
 
 [Back to the top](#table-of-contents)
 
@@ -229,18 +249,55 @@ The first schema is for the dictionary app, which includes models for dictionari
 -   :heavy_check_mark: All links are working correctly.
 -   :heavy_check_mark: The burger menu functions correctly on mobile devices.
 -   :heavy_check_mark: Anonymous users do not see links that are only for authenticated users.
+-   :heavy_check_mark: **Cart icon is updated** items amount.
+-   :heavy_check_mark: **Product Search input** work correctly.
+-   :heavy_check_mark: **User profile button** work correctly.
 
 ### Footer
 
 -   :heavy_check_mark: Footer layout displays correctly on different screen sizes.
 -   :heavy_check_mark: All links are working correctly.
 -   :heavy_check_mark: The link to the GitHub repo opens in a new tab.
+-   :heavy_check_mark: The link to the Facebook page opens in a new tab.
+-   :heavy_check_mark: Email subscription works correctly.
 
-### Home page
+### Product List page
 
--   For anonymous users:
+-   :heavy_check_mark: **Add to cart** button works correctly.
+-   :heavy_check_mark: **Links to product detail** works correctly.
+-   :heavy_check_mark: **Filler product form** detail works correctly.
+-   :heavy_check_mark: **Clear filter** buttons works correctly.
+-   :heavy_check_mark: **Product rating stars** show correct information.
+-   :heavy_check_mark: **Product pagination** works correctly.
+-   :heavy_check_mark: **Product ordering** works correctly.
 
--   For authenticated users:
+### Contact Us page
+-   :heavy_check_mark: **Form** works correctly.
+-   :heavy_check_mark: **Form prefilled** with user email.
+
+### Cart page
+-   :heavy_check_mark: **Remove item** buttons work correctly.
+-   :heavy_check_mark: **Change item quantity** buttons work correctly.
+-   :heavy_check_mark: **Checkout and continue shopping** buttons work correctly.
+-   :heavy_check_mark: **Order Summary Calculation** works correctly.
+
+### Checkout page
+-   :heavy_check_mark: **Form** works correctly.
+-   :heavy_check_mark: **Form prefilled** with user data.
+-   :heavy_check_mark: **Payment form** works correctly.
+-   :heavy_check_mark: **Order Summary Calculation** works correctly.
+-   :heavy_check_mark: **Forms validation** works correctly.
+-   :heavy_check_mark: **Order items list** is displayed correctly.
+-   :heavy_check_mark: **Adjust Cart button** works correctly.
+-   :heavy_check_mark: **Complete Order button** works correctly.
+-   :heavy_check_mark: **Processing order backdrop** works correctly.
+
+### Payment processing
+-   :heavy_check_mark: **Payment success** works correctly.
+-   :heavy_check_mark: **Payment failure** works correctly.
+-   :heavy_check_mark: **Payment success email** is sended.
+-   :heavy_check_mark: **Payment with authentication success** works correctly.
+-   :heavy_check_mark: **Payment with authentication fail** works correctly.
 
 ### Profile page
 
@@ -250,19 +307,16 @@ The first schema is for the dictionary app, which includes models for dictionari
 
 -   For authenticated users:
     -   :heavy_check_mark: All links are working correctly.
-    -   :heavy_check_mark: The dictionary page displays correctly on different screen sizes..
     -   :heavy_check_mark: User can change the password.
     -   :heavy_check_mark: User can delete the account.
+    -   :heavy_check_mark: User can set/update shipping address.
+    -   :heavy_check_mark: User can set/update his details.
     -   :heavy_check_mark: User can seen general information about his account.
-    -   :heavy_check_mark: User can see amount of his dictionaries and delete them.
+    -   :heavy_check_mark: User can see list of his orders.
 
 ### Forms
-
-All forms were created using one template so that they have the same styles and functionality. An anonymous user can see all forms except **Set Password**, **Change Password**, and **Create Dictionary** forms.
-
--   For all users:
-    -   :heavy_check_mark: All forms are displayed correctly on different screen sizes.
-    -   :heavy_check_mark: All form fields, buttons, and hints work correctly.
+-   :heavy_check_mark: All forms are displayed correctly.
+-   :heavy_check_mark: All form fields and buttons work correctly.
 
 [Back to the top](#table-of-contents)
 
@@ -278,28 +332,8 @@ python manage.py test
 
 <details>
   <summary>Test results:</summary>
-  <img src="./docs/python_tests.PNG" alt="Python unit tests">
+  <img src="./docs/python_tests.png" alt="Python unit tests">
 </details>
-
-<details>
-  <summary>Test coverage:</summary>
-  <img src="./docs/python_test_coverage.PNG" alt="Python test coverage">
-</details>
-
-### JS unit tests
-
-JS unit testing was performed through [Jest](https://jestjs.io/). To run the tests, run the following command in the terminal:
-
-```bash
-npm test wordnest/static/js/__tests__/
-```
-
-<details>
-  <summary>Test results:</summary>
-  <img src="./docs/js_tests.PNG" alt="JavaScript unit tests">
-</details>
-
-[Back to the top](#table-of-contents)
 
 ## Code validation
 
