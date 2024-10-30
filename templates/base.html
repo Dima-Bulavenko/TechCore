@@ -19,7 +19,6 @@
         <meta name="keywords" content="{% block meta_keywords %}Buy CPUs online, Best GPUs for gaming, processors and graphics cards, Shop GPUs for video editing, High-quality GPUs online, Graphics card, Buy processors online,{% endblock meta_keywords %}">
         <!-- CSS -->
         {% block basic_css %}
-            <link rel="stylesheet" href="{% static 'css/style.css' %}" />
         {% endblock basic_css %}
         {% block css_block %}
             {% tailwind_css %}
@@ -35,12 +34,9 @@
               rel="stylesheet" />
         <!-- JS (use "defer" inside "script" tag) -->
         {% block basic_js %}
-            <script src="{% static 'js/script.js' %}" defer></script>
             <script src="{% static 'js/navbar_height.js' %}" defer></script>
             <script src="{% static 'js/htmx.min.js' %}" defer></script>
             <script src="https://unpkg.com/idiomorph@0.3.0/dist/idiomorph-ext.min.js" defer></script>
-            <!-- Stripe -->
-            <script src="https://js.stripe.com/v3/"></script>
         {% endblock basic_js %}
         {% block js_block %}
         <script src="{% static 'js/flowbite/flowbite.min.js' %}" defer></script>
