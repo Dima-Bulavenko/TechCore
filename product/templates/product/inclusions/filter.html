@@ -1,5 +1,5 @@
 <!-- drawer component -->
-<form {% if action %} action="{{ action }}" {% endif %} method="get">
+<form {% if action %} action="{{ action }}" {% endif %} id="filter_form" method="get">
     <div class="flex flex-col justify-between flex-1">
         <div class="space-y-6" data-accordion="open" data-active-classes="text-black dark:text_white">
             {% for field in filter_form %}

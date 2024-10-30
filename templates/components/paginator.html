@@ -2,6 +2,7 @@
 <nav aria-label="Page pagination"
     hx-target={{ hx_target|default:"#product_list" }}
     hx-select={{ hx_select|default:"#product_list" }}
+    hx-include="#filter_form, #navbar-search"
     hx-select-oob={{ hx_select_oob|default:"#pagination" }}
     hx-swap="outerHTML show:window:top"
     hx-push-url="true"
