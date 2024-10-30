@@ -1,8 +1,12 @@
-from django.views.generic import DetailView, ListView
+from django.contrib import messages
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic import DetailView, ListView, View
+from django_htmx.http import HttpResponseClientRefresh
+from django.http import HttpResponse
 
 from cart.services.cart import Cart
 from product.forms import ProductFilterForm, ProductQuantityForm, ReviewForm
-from product.models import Product, product_category_mapper
+from product.models import Product, product_category_mapper, Review
 from product.services.filter import ProductFilter
 from product.services.order import ProductOrder
 from product.services.search import ProductSearch
@@ -82,3 +86,22 @@ class ProductDetailView(DetailView):
             context["is_reviewed_by_user"] = False
 
         return context
+
+
+class ReviewActions(LoginRequiredMixin, View):
+    def post(self, request, *args, **kwargs):
+        try:
+            form = ReviewForm(request.POST)
+            if form.is_valid():
+                product = Product.objects.get(pk=request.POST.get("product_id"))
+                user = request.user
+                review = form.save(commit=False)
+                review.product = product
+                review.author = user
+                review.save()
+                messages.success(request, "Review added successfully")
+                return HttpResponseClientRefresh()
+        except Exception as e:
+            messages.error(request, "Review was not added. Some error occurred")
+        messages.error(request, "Review was not added. Some error occurred")
+        return HttpResponseClientRefresh()
