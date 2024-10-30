@@ -1,7 +1,10 @@
 from tech_core.settings.base import *  # noqa: F403
 
 # Database settings
-DATABASES = {"default": dj_database_url.parse(config("DATABASE_URL"))}
+DATABASES = {"default": dj_database_url.parse(
+    config("DATABASE_URL"),
+    conn_max_age=600,
+ )}
 
 # Bucket Config
 AWS_STORAGE_BUCKET_NAME = config('AWS_STORAGE_BUCKET_NAME')
@@ -44,20 +47,15 @@ DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 # Logging settings
 LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'handlers': {
-        'file': {
-            'level': 'DEBUG',
-            'class': 'logging.FileHandler',
-            'filename': 'debug.log',
+    "version": 1,
+    "disable_existing_loggers": False,
+    "handlers": {
+        "console": {
+            "class": "logging.StreamHandler",
         },
     },
-    'loggers': {
-        'django': {
-            'handlers': ['file'],
-            'level': 'DEBUG',
-            'propagate': True,
-        },
+    "root": {
+        "handlers": ["console"],
+        "level": "WARNING",
     },
 }
