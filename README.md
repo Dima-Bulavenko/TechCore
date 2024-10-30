@@ -1,6 +1,6 @@
 # TechCore (Milestone Project 5)
 
-![Responsive Mockup](docs/responsice_dispaly.PNG)
+![Responsive Mockup](docs/responsice_dispaly.png)
 
 ## Table of contents
 
@@ -63,7 +63,7 @@
 
 # Purpose
 
-TechCore is an e-commerce platform built with the Django framework, designed to provide a seamless shopping experience for tech enthusiasts looking for high-performance CPUs and GPUs. Leveraging Django's powerful backend capabilities, the application features user authentication, efficient data management, and precise routing for a smooth and secure shopping journey. The frontend is enriched with Django’s templating system and HTMX for interactive and dynamic content updates, reducing page reloads and improving responsiveness.
+[TechCore](https://techcore-e370dc0903ef.herokuapp.com/) is an e-commerce platform built with the Django framework, designed to provide a seamless shopping experience for tech enthusiasts looking for high-performance CPUs and GPUs. Leveraging Django's powerful backend capabilities, the application features user authentication, efficient data management, and precise routing for a smooth and secure shopping journey. The frontend is enriched with Django’s templating system and HTMX for interactive and dynamic content updates, reducing page reloads and improving responsiveness.
 
 Key features include a customizable price range filter, easy product browsing, a streamlined checkout process with Stripe integration, and a flexible cart system. These features are crafted to deliver a user-friendly and efficient shopping experience, catering to both casual tech shoppers and performance-focused enthusiasts.
 
@@ -138,6 +138,24 @@ You can find all the epics [here](https://github.com/Dima-Bulavenko/TechCore/iss
     </details>
 
 [Back to the Top](#help-u-website-milestone-project-4)
+
+# Marketing Strategy
+The marketing strategy for TechCore focuses on building a strong online presence, attracting tech-savvy customers, and increasing sales through various digital channels. This approach includes social media engagement, search engine optimization (SEO).
+
+## Social Media Presence
+
+To connect with technology enthusiasts and promote the latest CPU and GPU offerings, TechCore has established a presence on [Facebook](https://www.facebook.com/profile.php?id=61567371643508) platform.
+![Facebook](docs/facebook.png)
+
+## Search Engine Optimization (SEO)
+To enhance TechCore’s visibility on search engines and draw in more organic traffic, the following SEO practices are implemented:
+
+- [**robots.txt**](https://techcore-e370dc0903ef.herokuapp.com/robots.txt): Configured to guide web crawlers, ensuring that important pages are indexed properly and appear in search results.
+
+- [**Sitemap**](https://techcore-e370dc0903ef.herokuapp.com/sitemap.xml): A sitemap was created to help search engines navigate and index all TechCore’s pages, improving overall discoverability.
+
+- **Meta Descriptions**: Compelling meta descriptions are written for each page, improving click-through rates by providing a concise and attractive preview on search engine results pages (SERPs).
+
 
 # Agile Development
 
@@ -403,7 +421,7 @@ To validate the JS code I use [ESLint] VScode extension(https://eslint.org/).
 
 ## Languages
 
--   Python+Django, JavaScript, HTML, CSS
+-   Python+Django, JavaScript, HTML, CSS, Tailwind CSS.
 
 ## Programs, frameworks, libraries
 
@@ -413,7 +431,6 @@ To validate the JS code I use [ESLint] VScode extension(https://eslint.org/).
 -   [Google Fonts](https://fonts.google.com/) for typography.
 -   [GitHub](https://GitHub.com/) to host the source code.
 -   [Heroku](https://www.heroku.com/) to deploy and host the live app.
--   [Jest](https://jestjs.io/) for JS unit-testing.
 -   [Unittest](https://docs.python.org/3/library/unittest.html) for Python unit-testing.
 -   [W3C HTML Markup Validator](https://validator.w3.org/) to validate HTML code.
 -   [W3C Jigsaw CSS Validator](https://jigsaw.w3.org/css-validator/) to validate CSS code.
@@ -421,6 +438,11 @@ To validate the JS code I use [ESLint] VScode extension(https://eslint.org/).
 -   [dj-database-url](https://github.com/jazzband/dj-database-url/) - allows to use URLs to connect to DB
 -   [js-cookie](https://github.com/js-cookie/js-cookie/) - JavaScript API for handling cookies
 -   [django-htmx](https://django-htmx.readthedocs.io/en/latest/index.html) - make using htmx in Django easier.
+-   [django-tailwind](https://pypi.org/project/django-tailwind/) - helps to use tailwind css in Django.
+-   [htmx](https://htmx.org/) - helps to create dynamic and interactive web pages.
+-   [stripe](https://stripe.com/docs) - payment processing.
+-   [tailwindcss](https://tailwindcss.com/) - utility-first CSS framework.
+-   [flowbite](https://flowbite.com/) - HTML, CSS, and JS components.
 
 [Back to the top](#table-of-contents)
 
@@ -429,17 +451,35 @@ To validate the JS code I use [ESLint] VScode extension(https://eslint.org/).
 To run this project locally, you will need to create a `.env` file in the root directory of the project and add the following environment variables:
 
 ```bash
-SECRET_KEY=your_django_secret_key
+DJANGO_SETTINGS_MODULE=tech_core.settings.dev
+
+SECRET_KEY=
 DEBUG=True
+
+# STRIPE
+STRIPE_PUBLIC_KEY=
+STRIPE_SECRET_KEY=
+STRIPE_WH_SECRET=
+
+DB_TYPE=sqlite3
+DATABASE_URL=
 DB_NAME=
 DB_USER=
 DB_PASSWORD=
 DB_HOST=
 DB_PORT=
+EMAIL_HOST_USER=
+EMAIL_HOST_PASSWORD=
 GOOGLE_CLIENT_ID=
 GOOGLE_CLIENT_SECRET=
 FACEBOOK_CLIENT_ID=
 FACEBOOK_CLIENT_SECRET=
+
+# AWS
+AWS_SECRET_ACCESS_KEY=
+AWS_ACCESS_KEY_ID=
+AWS_STORAGE_BUCKET_NAME=
+AWS_S3_REGION_NAME=
 ```
 
 `GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET, FACEBOOK_CLIENT_ID, FACEBOOK_CLIENT_SECRET` used for user social authentication.
@@ -448,7 +488,7 @@ FACEBOOK_CLIENT_SECRET=
 
 ## Heroku
 
-The WordNest project was deployed on a Heroku hosting server. The following steps outline the process of deploying the WordNest project and can be applied to deploy another Django project with minor adjustments:
+The TechCore project was deployed on a Heroku hosting server. The following steps outline the process of deploying the TechCore project and can be applied to deploy another Django project with minor adjustments:
 
 1.  Navigate to your [Heroku dashboard](https://dashboard.heroku.com/apps) and create a new app with a unique name.
 
@@ -465,10 +505,10 @@ The WordNest project was deployed on a Heroku hosting server. The following step
 5.  Add following command to `Procfile` to run your server in production.
 
     ```
-    web: gunicorn wordnest.wsgi
+    web: gunicorn tech_core.wsgi
     ```
 
-    <sub>**Note**: Replace `wordnest` with your project name</sub>
+    <sub>**Note**: Replace `tech_core` with your project name</sub>
 
 6.  In the `settings.py` file update the `ALLOWED_HOSTS` variable.
 
@@ -523,7 +563,7 @@ The WordNest project was deployed on a Heroku hosting server. The following step
     DATABASE_URL=add_URL_of_a_remote_database
     ```
 
-    <sub>**Note**: For the WordNest I used database URL provided by `Code Institute` but you can use other database hosting services< such as [Amazon RDS for PostgreSQL](https://aws.amazon.com/rds/postgresql/)/sub>
+    <sub>**Note**: For the TechCore I used database URL provided by `Code Institute` but you can use other database hosting services< such as [Amazon RDS for PostgreSQL](https://aws.amazon.com/rds/postgresql/)/sub>
 
 12. **Reload your terminal** and run the following command in **terminal** to migrate remote database.
 
@@ -533,7 +573,7 @@ The WordNest project was deployed on a Heroku hosting server. The following step
 
 13. Replace `DEBUG=False` to `DEBUG=True` in the `.env` file.
 
-14. Return to the [Heroku dashboard](https://dashboard.heroku.com/apps/wordnest) navigate to the **Settings** tab and click on **Reveal Config Var** and add `DATABASE_URL` environment variable.
+14. Return to the [Heroku dashboard](https://dashboard.heroku.com/) navigate to the **Settings** tab and click on **Reveal Config Var** and add `DATABASE_URL` environment variable.
 
 15. Install [whitenoise](https://pypi.org/project/whitenoise/) to manage static files on production server.
 
@@ -620,7 +660,7 @@ The WordNest project was deployed on a Heroku hosting server. The following step
 ## Clone GitHub Repo
 
 1.  Log into your account on GitHub
-2.  Go to the repository of this project [WordNest](https://github.com/Dima-Bulavenko/wordnest)
+2.  Go to the repository of this project [TechCore](https://github.com/Dima-Bulavenko/TechCore)
 3.  Click on the **code** button, and copy your preferred clone link.
 4.  Open the terminal in your code editor and change the current working directory to the location you want to use for the cloned directory.
 5.  Type `git clone` into the terminal, paste the link you copied in step 3 and press enter.
