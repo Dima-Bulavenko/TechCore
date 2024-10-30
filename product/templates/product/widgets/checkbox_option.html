@@ -1,6 +1,6 @@
 <div class="flex items-center">
     {% with id=widget.attrs.id class=widget.attrs.class %}
-        <input {% if id %}id="{{ id }}"{% endif %}
+        <input
                type="{{ widget.type }}"
                name="{{ widget.name }}"
                {% if widget.value != None %}value="{{ widget.value|stringformat:'s' }}"{% endif %}

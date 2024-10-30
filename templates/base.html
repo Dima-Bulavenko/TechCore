@@ -10,7 +10,7 @@
               content='{ "responseHandling": [ {"code":"204", "swap": false}, {"code":"[23]..", "swap": true}, {"code":"422", "swap": true}, {"code":"404", "swap": true, "select": "#messages", "swapOverride": "none"}, {"code":"[45]..", "swap": false, "error": true} ] }'>
         <title>
             {% block head_title %}
-                {{ title }}
+                {{ title|default:"TechCore"  }}
             {% endblock head_title %}
         </title>
         <meta name="description" content="{% block meta_content %}
@@ -20,6 +20,8 @@
         <!-- CSS -->
         {% block basic_css %}
         {% endblock basic_css %}
+        <!-- Tab Icond -->
+        <link rel="icon" href="{% static 'img/logo.svg' %}" type="image/svg+xml">
         {% block css_block %}
             {% tailwind_css %}
             <!-- Mailchimp -->
@@ -61,10 +63,8 @@
             {% endblock content %}
             {% endblock main %}
         </main>
-        <footer>
-            {% block footer %}
-                {% include "components/footer.html" %}
-            {% endblock footer %}
-        </footer>
+        {% block footer %}
+            {% include "components/footer.html" %}
+        {% endblock footer %}
     </body>
 </html>

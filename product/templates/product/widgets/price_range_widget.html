@@ -3,11 +3,9 @@
         <div class="w-full">
             {% if forloop.counter == 1 %}
                 <label for="{{ w.name }}"
-                       :
                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">From</label>
             {% else %}
                 <label for="{{ w.name }}"
-                       :
                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">To</label>
             {% endif %}
             <input type="number"
