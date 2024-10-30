@@ -28,7 +28,5 @@ class ProductOrder:
     
     def annotated_order(self):
         des = "-" if self.order_value.startswith("-") else ""
-        field_name = f"{self.order_value}_avg".replace("-", "")
-        annotation = {field_name: Avg('reviews__rating')}
-        self.queryset.annotate(**annotation).order_by(f"{des + field_name}")
+        self.queryset = self.queryset.order_by(f"{des}rating_avg")
         return self.queryset

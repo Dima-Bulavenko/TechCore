@@ -1,5 +1,5 @@
 from django.conf import settings
-from django.db.models import CharField, OuterRef, Subquery, Value
+from django.db.models import Avg, CharField, OuterRef, Subquery, Value
 from django.db.models.functions import Concat
 
 from product.forms import ProductFilterForm
@@ -21,7 +21,8 @@ class ProductFilter:
                 Value(settings.MEDIA_URL),
                 Subquery(images.values("image")[:1]),
                 output_field=CharField(),
-            )
+            ),
+            rating_avg=Avg("reviews__rating", default=0),
         )
         self.queryset = queryset
         self.form = ProductFilterForm(product_category=category, data=data)
