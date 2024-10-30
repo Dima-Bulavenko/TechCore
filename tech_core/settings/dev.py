@@ -26,7 +26,14 @@ MIDDLEWARE = ["debug_toolbar.middleware.DebugToolbarMiddleware", *MIDDLEWARE]
 
 INSTALLED_APPS += [
     "debug_toolbar",
+    'django_extensions',
 ]
+
+# CLI attrs for django_extensions: https://django-extensions.readthedocs.io/en/latest/graph_models.html#default-settings
+GRAPH_MODELS = {
+  'app_labels': ["cart", "checkout", "core", "order", "product", "users"],
+}
+
 # Allauth settings
 ACCOUNT_RATE_LIMITS = False
 
