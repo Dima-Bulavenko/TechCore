@@ -11,7 +11,7 @@ class ContactForm(forms.Form):
     def send_email(self):
         send_mail(
             f"TechCore: {self.cleaned_data['subject']}",
-            self.cleaned_data['message'],
-            self.cleaned_data['email'],
+            self.cleaned_data["message"],
+            self.cleaned_data["email"],
             settings.MANAGERS,
         )

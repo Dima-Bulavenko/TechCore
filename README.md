@@ -4,60 +4,64 @@
 
 ## Table of contents
 
--   [Purpose](#purpose)
--   [UX Design](#ux-design)
-    -   [Epics](#epics)
-    -   [User and Developer Stories](#user-and-developer-stories)
--   [Wireframes](#wireframes)
-    -   [Welcome page](#welcome-page)
-    -   [Home page](#home-page)
-    -   [Profile page](#profile-page)
-    -   [Dictionary page](#dictionary-page)
-    -   [Form page](#form-page)
--   [Agile Development](#agile-development)
-    -   [Task Management](#task-management)
-    -   [Project Management](#project-management)
-    -   [Workflow](#workflow)
--   [Design](#design)
-    -   [Color Scheme](#color-scheme)
-    -   [Typography](#typography)
--   [Features](#features)
-    -   [User Registration and Authentication](#user-registration-and-authentication)
-    -   [Dictionary Management](#dictionary-management)
-    -   [Backend and API Integration](#backend-and-api-integration)
-    -   [User Profile and Notifications](#user-profile-and-notifications)
-    -   [Dynamic and Interactive Features](#dynamic-and-interactive-features)
--   [Database Schema](#database-schema)
--   [Testing](#testing)
-    -   [Manual Testing](#manual-testing)
-        -   [Navbar](#navbar)
-        -   [Footer](#footer)
-        -   [Home page](#home-page-1)
-        -   [Dictionary page](#dictionary-page-1)
-        -   [Profile page](#profile-page-1)
-        -   [Forms](#forms)
-    -   [Unit testing](#unit-testing)
-        -   [Python unit tests](#python-unit-tests)
-        -   [JS unit tests](#js-unit-tests)
-    -   [Code validation](#code-validation)
-        -   [HTML Validation](#html-validation)
-        -   [CSS Validation](#css-validation)
-        -   [Python Validation](#python-validation)
-        -   [JS Validation](#js-validation)
-    -   [Lighthouse](#lighthouse)
--   [Technologies](#technologies)
-    -   [Languages](#languages)
-    -   [Programs, frameworks, libraries](#programs--frameworks--libraries)
--   [Environment Variables](#environment-variables)
--   [Deployment](#deployment)
-    -   [Heroku](#heroku)
-    -   [Clone GitHub Repo](#clone-github-repo)
--   [Bugs](#bugs)
--   [Credits](#credits)
-    -   [Media](#media)
-    -   [Design Template](#design-template)
-    -   [Code](#code)
-    -   [Acknowledgements](#acknowledgements)
+- [Purpose](#purpose)
+- [E-commerce Business Model](#e-commerce-business-model)
+- [UX Design](#ux-design)
+- [Epics](#epics)
+- [User Stories](#user-stories)
+- [Wireframes](#wireframes)
+  * [Product List page](#product-list-page)
+  * [Profile page](#profile-page)
+  * [Form page](#form-page)
+- [Marketing Strategy](#marketing-strategy)
+  * [Social Media Presence](#social-media-presence)
+  * [Search Engine Optimization (SEO)](#search-engine-optimization--seo-)
+- [Agile Development](#agile-development)
+  * [Task Management](#task-management)
+  * [Project Management](#project-management)
+  * [Workflow](#workflow)
+- [Design](#design)
+  * [Color Scheme](#color-scheme)
+  * [Typography](#typography)
+- [Features](#features)
+  * [User Registration and Authentication](#user-registration-and-authentication)
+  * [User Profile and Notifications](#user-profile-and-notifications)
+  * [Product Browsing and Filtering](#product-browsing-and-filtering)
+  * [Shopping Cart and Checkout](#shopping-cart-and-checkout)
+  * [Admin and Inventory Management](#admin-and-inventory-management)
+- [Database Schema](#database-schema)
+- [Testing](#testing)
+  * [Manual Testing](#manual-testing)
+    + [Navbar](#navbar)
+    + [Footer](#footer)
+    + [Product List page](#product-list-page-1)
+    + [Contact Us page](#contact-us-page)
+    + [Cart page](#cart-page)
+    + [Checkout page](#checkout-page)
+    + [Payment processing](#payment-processing)
+    + [Profile page](#profile-page-1)
+    + [Forms](#forms)
+  * [Unit testing](#unit-testing)
+    + [Python unit tests](#python-unit-tests)
+  * [Code validation](#code-validation)
+    + [HTML Validation](#html-validation)
+    + [CSS Validation](#css-validation)
+    + [Python Validation](#python-validation)
+    + [JS Validation](#js-validation)
+  * [Lighthouse](#lighthouse)
+- [Technologies](#technologies)
+  * [Languages](#languages)
+  * [Programs, frameworks, libraries](#programs--frameworks--libraries)
+- [Environment Variables](#environment-variables)
+- [Deployment](#deployment)
+  * [Heroku](#heroku)
+  * [Clone GitHub Repo](#clone-github-repo)
+- [Bugs](#bugs)
+- [Credits](#credits)
+  * [Media](#media)
+  * [Design Template](#design-template)
+  * [Code](#code)
+  * [Acknowledgements](#acknowledgements)
 
 <small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
 
@@ -69,6 +73,18 @@ Key features include a customizable price range filter, easy product browsing, a
 
 [Table of contents](#table-of-contents)
 
+# E-commerce Business Model
+TechCore operates under a direct-to-consumer e-commerce model, specializing in selling high-performance CPUs and GPUs directly to customers without intermediaries. This model allows TechCore to maintain control over product selection, customer relationships, and service quality. Here’s how this business model aligns with TechCore's goals:
+
+Key Components
+
+- **Product Offering**: A curated selection of CPUs and GPUs, chosen to meet the needs of gamers, PC builders, and professionals seeking high-quality components.
+- **Customer Segmentation**: Targeting tech enthusiasts and performance-oriented users, with a user-friendly site that facilitates easy browsing, filtering, and purchasing.
+- **Revenue Streams**: Direct sales from the website, with Stripe integrated to offer a secure and seamless payment experience.
+- **Marketing and Sales Channels**: Focused on multi-channel marketing, including SEO and social media, to reach a broader audience and drive traffic directly to the site.
+
+By adopting this business model, TechCore not only aims to facilitate component sales but also seeks to build a trusted community for those passionate about high-performance hardware, providing an all-inclusive and reliable shopping experience.
+
 # UX Design
 
 -   **PC Builders and Gamers**: Individuals who are building or upgrading custom PCs, especially gamers seeking high-performance components. TechCore offers a curated selection of CPUs and GPUs to meet their specific needs.
@@ -79,7 +95,7 @@ Key features include a customizable price range filter, easy product browsing, a
 
 -   **Price-Conscious Shoppers**: Users looking to find the best hardware within their budget range. TechCore’s price range filter allows them to explore options tailored to their budget.
 
-## Epics
+# Epics
 
 To manage the development of key features for TechCore, I organize epics on GitHub by creating issues tagged with the "Epic" label. Each epic contains a well-structured list of user stories and developer tasks that outline the required steps for feature implementation and testing.
 
@@ -87,7 +103,7 @@ These epics ensure that the core functionalities, such as user authentication, s
 
 You can find all the epics [here](https://github.com/Dima-Bulavenko/TechCore/issues?q=is%3Aissue+label%3AEpic).
 
-## User and Developer Stories
+# User Stories
 
 -   **User stories:** To outline the features of TechCore, I used [user stories](https://github.com/Dima-Bulavenko/TechCore/issues?q=is%3Aissue+label%3A%22User+story%22). These stories help clarify the user’s needs and expectations, such as filtering products by price, managing the shopping cart, and completing a secure checkout process. Each story is designed to focus on the user’s interaction with the platform and the desired outcomes of each feature.
 
@@ -140,6 +156,7 @@ You can find all the epics [here](https://github.com/Dima-Bulavenko/TechCore/iss
 [Back to the Top](#help-u-website-milestone-project-4)
 
 # Marketing Strategy
+
 The marketing strategy for TechCore focuses on building a strong online presence, attracting tech-savvy customers, and increasing sales through various digital channels. This approach includes social media engagement, search engine optimization (SEO).
 
 ## Social Media Presence
@@ -148,14 +165,14 @@ To connect with technology enthusiasts and promote the latest CPU and GPU offeri
 ![Facebook](docs/facebook.png)
 
 ## Search Engine Optimization (SEO)
+
 To enhance TechCore’s visibility on search engines and draw in more organic traffic, the following SEO practices are implemented:
 
-- [**robots.txt**](https://techcore-e370dc0903ef.herokuapp.com/robots.txt): Configured to guide web crawlers, ensuring that important pages are indexed properly and appear in search results.
+-   [**robots.txt**](https://techcore-e370dc0903ef.herokuapp.com/robots.txt): Configured to guide web crawlers, ensuring that important pages are indexed properly and appear in search results.
 
-- [**Sitemap**](https://techcore-e370dc0903ef.herokuapp.com/sitemap.xml): A sitemap was created to help search engines navigate and index all TechCore’s pages, improving overall discoverability.
+-   [**Sitemap**](https://techcore-e370dc0903ef.herokuapp.com/sitemap.xml): A sitemap was created to help search engines navigate and index all TechCore’s pages, improving overall discoverability.
 
-- **Meta Descriptions**: Compelling meta descriptions are written for each page, improving click-through rates by providing a concise and attractive preview on search engine results pages (SERPs).
-
+-   **Meta Descriptions**: Compelling meta descriptions are written for each page, improving click-through rates by providing a concise and attractive preview on search engine results pages (SERPs).
 
 # Agile Development
 
@@ -226,28 +243,30 @@ This project utilizes the Django allauth library to handle user registration, au
 -   **Success and Error Toast Notifications**: Displays toast messages to inform users of success or errors during interactions.
 
 ## Product Browsing and Filtering
+
 TechCore provides a seamless shopping experience with browsing and filtering options to help users find the right products.
 
-- **Browse Products**: Users can explore a variety of CPUs and GPUs.
-- **Price Range Filter**: Allows users to filter products based on their budget preferences.
-- **Product Details Page**: Displays detailed information about each product, including specifications and pricing.
+-   **Browse Products**: Users can explore a variety of CPUs and GPUs.
+-   **Price Range Filter**: Allows users to filter products based on their budget preferences.
+-   **Product Details Page**: Displays detailed information about each product, including specifications and pricing.
 
 ## Shopping Cart and Checkout
+
 The shopping cart and checkout system are designed to make purchasing as straightforward as possible.
 
-- **Add to Cart**: Users can add items to their cart with ease.
-- **Adjust Quantity in Cart**: Users can increase or decrease the quantity of items.
-- **Remove Item from Cart**: Enables users to remove specific items from the cart.
-- **Proceed to Checkout**: Streamlines the checkout process.
-- **Stripe Payment Integration**: Provides a secure and reliable payment method through Stripe.
-- **Order Summary**: Displays a summary of the order before completing the purchase.
+-   **Add to Cart**: Users can add items to their cart with ease.
+-   **Adjust Quantity in Cart**: Users can increase or decrease the quantity of items.
+-   **Remove Item from Cart**: Enables users to remove specific items from the cart.
+-   **Proceed to Checkout**: Streamlines the checkout process.
+-   **Stripe Payment Integration**: Provides a secure and reliable payment method through Stripe.
+-   **Order Summary**: Displays a summary of the order before completing the purchase.
 
 ## Admin and Inventory Management
+
 The admin panel helps administrators manage inventory and customer orders efficiently.
 
-- **Product and Order Management**: Admins can add, update, and remove products and manage user orders.
-- **Inventory Tracking**g: Provides inventory management to ensure stock availability.
-
+-   **Product and Order Management**: Admins can add, update, and remove products and manage user orders.
+-   **Inventory Tracking**g: Provides inventory management to ensure stock availability.
 
 # Database Schema
 
@@ -290,16 +309,19 @@ The database schema for TechCore is structured to support both product managemen
 -   :heavy_check_mark: **Product ordering** works correctly.
 
 ### Contact Us page
+
 -   :heavy_check_mark: **Form** works correctly.
 -   :heavy_check_mark: **Form prefilled** with user email.
 
 ### Cart page
+
 -   :heavy_check_mark: **Remove item** buttons work correctly.
 -   :heavy_check_mark: **Change item quantity** buttons work correctly.
 -   :heavy_check_mark: **Checkout and continue shopping** buttons work correctly.
 -   :heavy_check_mark: **Order Summary Calculation** works correctly.
 
 ### Checkout page
+
 -   :heavy_check_mark: **Form** works correctly.
 -   :heavy_check_mark: **Form prefilled** with user data.
 -   :heavy_check_mark: **Payment form** works correctly.
@@ -311,6 +333,7 @@ The database schema for TechCore is structured to support both product managemen
 -   :heavy_check_mark: **Processing order backdrop** works correctly.
 
 ### Payment processing
+
 -   :heavy_check_mark: **Payment success** works correctly.
 -   :heavy_check_mark: **Payment failure** works correctly.
 -   :heavy_check_mark: **Payment success email** is sended.
@@ -333,6 +356,7 @@ The database schema for TechCore is structured to support both product managemen
     -   :heavy_check_mark: User can see list of his orders.
 
 ### Forms
+
 -   :heavy_check_mark: All forms are displayed correctly.
 -   :heavy_check_mark: All form fields and buttons work correctly.
 
@@ -367,23 +391,23 @@ To validate the HTML code, I use the [W3C HTML Markup Validator](https://validat
 
 -   :heavy_check_mark: [Authentication pages](https://validator.w3.org/nu/?doc=https%3A%2F%2Ftechcore-e370dc0903ef.herokuapp.com%2Faccounts%2Flogin%2F#cl3200c20)
 
--  <details>
-      <summary>Cart page</summary>
-      <img src="./docs/html_validator_cart_page.png"
-      alt="Cart page">
-    </details>
+-   <details>
+       <summary>Cart page</summary>
+       <img src="./docs/html_validator_cart_page.png"
+       alt="Cart page">
+     </details>
 
--  <details>
-      <summary>Checkout page</summary>
-      <img src="./docs/html_validator.checkout_page.png"
-      alt="Checkout page">
-    </details>
+-   <details>
+       <summary>Checkout page</summary>
+       <img src="./docs/html_validator.checkout_page.png"
+       alt="Checkout page">
+     </details>
 
--  <details>
-      <summary>Profile page</summary>
-      <img src="./docs/html_validator_profile_page.png"
-      alt="Profile page">
-    </details>
+-   <details>
+       <summary>Profile page</summary>
+       <img src="./docs/html_validator_profile_page.png"
+       alt="Profile page">
+     </details>
 
 ### CSS Validation
 

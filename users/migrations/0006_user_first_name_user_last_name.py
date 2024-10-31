@@ -4,20 +4,21 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('users', '0005_delete_address'),
+        ("users", "0005_delete_address"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='user',
-            name='first_name',
-            field=models.CharField(blank=True, max_length=40, verbose_name='First name'),
+            model_name="user",
+            name="first_name",
+            field=models.CharField(
+                blank=True, max_length=40, verbose_name="First name"
+            ),
         ),
         migrations.AddField(
-            model_name='user',
-            name='last_name',
-            field=models.CharField(blank=True, max_length=40, verbose_name='Last name'),
+            model_name="user",
+            name="last_name",
+            field=models.CharField(blank=True, max_length=40, verbose_name="Last name"),
         ),
     ]

@@ -5,7 +5,6 @@ from django.template.loader import render_to_string
 
 
 class HTMXCartMiddleware:
-
     def __init__(self, get_response: Callable[[HttpRequest], HttpResponse]):
         self._get_response = get_response
 
@@ -14,14 +13,13 @@ class HTMXCartMiddleware:
 
         response = self._get_response(request)
 
-        if request.htmx:    
+        if request.htmx:
             response.write(
                 render_to_string(
                     template_name="components/shopping_card_button.html",
                     context={"hx_oob": True},
-                    request=request
+                    request=request,
                 )
             )
-        
+
         return response
-            

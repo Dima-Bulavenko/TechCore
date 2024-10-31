@@ -23,9 +23,9 @@ class ProductOrder:
 
         if ORDER_OPTIONS[self.order_value]["annotated"]:
             return self.annotated_order()
-        
+
         return self.queryset.order_by(self.order_value)
-    
+
     def annotated_order(self):
         des = "-" if self.order_value.startswith("-") else ""
         self.queryset = self.queryset.order_by(f"{des}rating_avg")

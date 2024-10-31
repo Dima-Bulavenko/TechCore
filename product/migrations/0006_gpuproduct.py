@@ -5,22 +5,20 @@ from django.db import migrations
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('product', '0005_alter_review_rating'),
+        ("product", "0005_alter_review_rating"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='GPUProduct',
-            fields=[
-            ],
+            name="GPUProduct",
+            fields=[],
             options={
-                'verbose_name': 'GPU product',
-                'proxy': True,
-                'indexes': [],
-                'constraints': [],
+                "verbose_name": "GPU product",
+                "proxy": True,
+                "indexes": [],
+                "constraints": [],
             },
-            bases=(product.models.ProductMixin, 'product.product'),
+            bases=(product.models.ProductMixin, "product.product"),
         ),
     ]

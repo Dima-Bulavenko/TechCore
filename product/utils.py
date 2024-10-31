@@ -7,6 +7,7 @@ class ProductCategoryMapper:
             # Store the category-class pair in the instance dictionary
             self.category_class_pair[category] = cls
             return cls
+
         return decorator
 
     def get_class(self, category):

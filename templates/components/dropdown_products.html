@@ -4,14 +4,15 @@
   <ul class="py-2 text-sm text-gray-700 dark:text-gray-200"
       aria-labelledby="dropdownDefaultButton">
     {% for category in categories %}
-    {% with svg_path="svg_templates/"|add:category.name|lower|add:".svg" %}
-    <li >
-      <a href="{{ category.get_absolute_url }}"
-         class="flex items-center text-black px-2 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
-         {% include svg_path with class_attr="w-7 h-7 pr-2" %}{{ category.name }}
-      </a>
-    </li> 
-    {% endwith %}  
-    {% endfor %}      
+      {% with svg_path="svg_templates/"|add:category.name|lower|add:".svg" %}
+        <li>
+          <a href="{{ category.get_absolute_url }}"
+             class="flex items-center text-black px-2 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+            {% include svg_path with class_attr="w-7 h-7 pr-2" %}
+            {{ category.name }}
+          </a>
+        </li>
+      {% endwith %}
+    {% endfor %}
   </ul>
 </div>

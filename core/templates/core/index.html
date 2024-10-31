@@ -13,9 +13,9 @@
                 aria-controls="product-filter">{% include "svg_templates/filter.svg" %}</button>
     {% endif %}
     {% if products %}
-    <div class="max-w-52 mx-auto md:mx-0 mt-7">{% include "product/inclusions/ordering.html" %}</div>
+        <div class="max-w-52 mx-auto md:mx-0 mt-7">{% include "product/inclusions/ordering.html" %}</div>
     {% endif %}
-        <div class="flex gap-3 items-start mt-7">
+    <div class="flex gap-3 items-start mt-7">
         {% if not query %}
             <div id="product-filter"
                  class="lg:block lg:static lg:translate-x-0 lg:h-auto min-w-80 lg:border-2 lg:border-gray-300 lg:rounded-md lg:z-0 fixed top-0 left-0 z-40 h-screen p-4 overflow-y-auto transition-transform -translate-x-full bg-white w-80 dark:bg-gray-800">
@@ -41,26 +41,29 @@
         {% endif %}
         {% block content %}
             {% if products %}
-            <div class="flex flex-col gap-6 items-center">
-                <div id="product_list"
-                     class="mb-4 grid gap-4 sm:grid-cols-2 md:mb-8 lg:grid-cols-2 xl:grid-cols-3">
-                    {% for product in products %}
-                        {% include "components/product_cart.html" %}
-                    {% endfor %}
+                <div class="flex flex-col gap-6 items-center">
+                    <div id="product_list"
+                         class="mb-4 grid gap-4 sm:grid-cols-2 md:mb-8 lg:grid-cols-2 xl:grid-cols-3">
+                        {% for product in products %}
+                            {% include "components/product_cart.html" %}
+                        {% endfor %}
+                    </div>
+                    <div id="pagination">{% include "components/paginator.html" %}</div>
                 </div>
-                <div id="pagination">{% include "components/paginator.html" %}</div>
-            </div>
             {% endif %}
             {% if not products and query %}
-            <section class="bg-white dark:bg-gray-900 w-full">
-                <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
-                    <div class="mx-auto max-w-screen-sm text-center">
-                        <p class="mb-4 text-3xl tracking-tight font-bold text-gray-900 md:text-4xl dark:text-white">No products found</p>
-                        <p class="mb-4 text-lg font-light text-gray-500 dark:text-gray-400">Sorry, but it seems like the internet gremlins have taken all our products. Try searching again!</p>
-                        <a href="{% url "home" %}" class="inline-flex text-white bg-blue-600 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:focus:ring-blue-900 my-4">Back to Homepage</a>
-                    </div>   
-                </div>
-            </section>
+                <section class="bg-white dark:bg-gray-900 w-full">
+                    <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
+                        <div class="mx-auto max-w-screen-sm text-center">
+                            <p class="mb-4 text-3xl tracking-tight font-bold text-gray-900 md:text-4xl dark:text-white">No products found</p>
+                            <p class="mb-4 text-lg font-light text-gray-500 dark:text-gray-400">
+                                Sorry, but it seems like the internet gremlins have taken all our products. Try searching again!
+                            </p>
+                            <a href="{% url "home" %}"
+                               class="inline-flex text-white bg-blue-600 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:focus:ring-blue-900 my-4">Back to Homepage</a>
+                        </div>
+                    </div>
+                </section>
             {% endif %}
         {% endblock content %}
     </div>

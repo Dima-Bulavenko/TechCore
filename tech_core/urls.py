@@ -11,7 +11,7 @@ urlpatterns = [
         TemplateView.as_view(template_name="privacy_policy.html"),
         name="privacy_policy",
     ),
-        path(
+    path(
         "terms-conditions/",
         TemplateView.as_view(template_name="terms_conditions.html"),
         name="terms_conditions",

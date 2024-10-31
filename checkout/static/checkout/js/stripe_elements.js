@@ -29,12 +29,14 @@ cardCvc.mount("#cardCvc");
 
 // Handle realtime validation errors on the card element
 function addErrorMessage(event) {
-    let errorDiv = document.getElementById(event.elementType).nextElementSibling
+    let errorDiv = document.getElementById(
+        event.elementType
+    ).nextElementSibling;
     if (event.error) {
-        errorDiv.classList.remove("hidden")
+        errorDiv.classList.remove("hidden");
         errorDiv.textContent = event.error.message;
     } else {
-        errorDiv.classList.add("hidden")
+        errorDiv.classList.add("hidden");
         errorDiv.textContent = "";
     }
 }
@@ -61,7 +63,7 @@ form.addEventListener("htmx:confirm", async (event) => {
     if (!form.querySelector('input[name="payment_intent_id"]')) {
         event.preventDefault();
         const { paymentMethod, error } = await stripe.createPaymentMethod({
-            type: 'card',
+            type: "card",
             card: cardNumber,
         });
         if (error) {

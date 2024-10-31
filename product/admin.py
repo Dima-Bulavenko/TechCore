@@ -44,7 +44,9 @@ class ProductAttributeValueInline(admin.TabularInline):
     formset = forms.ProductAttributeValueFormSet
 
     def __init__(self, parent_model, admin_site):
-        self.product_attributes = Attribute.objects.filter(category__name=parent_model._category)
+        self.product_attributes = Attribute.objects.filter(
+            category__name=parent_model._category
+        )
         self.verbose_name = f"{parent_model._meta.verbose_name} attribute"  # noqa: SLF001
         super().__init__(parent_model, admin_site)
 
@@ -80,6 +82,7 @@ class CPUProductAdmin(ProxyProductAdmin):
 @admin.register(GPUProduct)
 class GPUProductAdmin(ProxyProductAdmin):
     pass
+
 
 @admin.register(Review)
 class ReviewAdmin(admin.ModelAdmin):

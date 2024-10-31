@@ -15,9 +15,9 @@ class ProductSearch:
             "productattributevalue_set__attribute",
             "reviews",
         ).filter(
-            Q(name__icontains=self.query) | 
-            Q(description__icontains=self.query) |
-            Q(manufacturer__name__icontains=self.query)
+            Q(name__icontains=self.query)
+            | Q(description__icontains=self.query)
+            | Q(manufacturer__name__icontains=self.query)
         )
 
         images = Image.objects.filter(product=OuterRef("pk"))

@@ -21,14 +21,14 @@ class AddressFormManager:
     def __init__(self, request):
         self.request = request
         self.form = self.get_form()
-    
+
     def get_form(self):
         user_address = self.request.user.addresses.first()
         form_kwargs = {}
 
         if user_address:
             form_kwargs["instance"] = user_address
-        
+
         if self.form_type in self.request.POST:
             form_kwargs["data"] = self.request.POST
 
@@ -52,7 +52,7 @@ class UserFormManager:
     def __init__(self, request):
         self.request = request
         self.form = self.get_form()
-    
+
     def get_form(self):
         form_kwargs = {}
 
@@ -80,17 +80,19 @@ class ProfileFormManager:
 
     def __init__(self, request):
         self.request = request
-        self.form_managers = [form_manager(request) for form_manager in self.form_managers]      
+        self.form_managers = [
+            form_manager(request) for form_manager in self.form_managers
+        ]
 
     def get_context_data(self):
         context = {}
         for form_manager in self.form_managers:
             context[form_manager.form_type] = form_manager.form
         return context
-    
+
     def save(self) -> list[ModelForm]:
         saved_forms = []
         for form_manager in self.form_managers:
             if form_manager.form_type in self.request.POST:
-                 saved_forms.append(form_manager.save())  # noqa: PERF401
+                saved_forms.append(form_manager.save())  # noqa: PERF401
         return saved_forms

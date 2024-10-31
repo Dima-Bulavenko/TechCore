@@ -50,7 +50,7 @@ class ProductSearchListView(ListView):
         for product in queryset:
             product.__class__ = product_category_mapper.get_class(product.category.name)
         return queryset
-        
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["page_range"] = context["paginator"].get_elided_page_range(

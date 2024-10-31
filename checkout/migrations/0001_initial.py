@@ -6,7 +6,6 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     initial = True
 
     dependencies = [
@@ -15,18 +14,51 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Address',
+            name="Address",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('address_line_1', models.CharField(max_length=100, verbose_name='Address Line 1')),
-                ('address_line_2', models.CharField(blank=True, max_length=100, verbose_name='Address Line 2')),
-                ('city', models.CharField(max_length=100, verbose_name='City')),
-                ('county', models.CharField(max_length=100, verbose_name='County')),
-                ('country', models.CharField(max_length=100, verbose_name='Country')),
-                ('postal_code', models.CharField(blank=True, max_length=20, verbose_name='Postal Code')),
-                ('phone_number', models.CharField(max_length=20, verbose_name='Phone Number')),
-                ('last_update', models.DateTimeField(auto_now=True)),
-                ('user', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='addresses', to=settings.AUTH_USER_MODEL)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "address_line_1",
+                    models.CharField(max_length=100, verbose_name="Address Line 1"),
+                ),
+                (
+                    "address_line_2",
+                    models.CharField(
+                        blank=True, max_length=100, verbose_name="Address Line 2"
+                    ),
+                ),
+                ("city", models.CharField(max_length=100, verbose_name="City")),
+                ("county", models.CharField(max_length=100, verbose_name="County")),
+                ("country", models.CharField(max_length=100, verbose_name="Country")),
+                (
+                    "postal_code",
+                    models.CharField(
+                        blank=True, max_length=20, verbose_name="Postal Code"
+                    ),
+                ),
+                (
+                    "phone_number",
+                    models.CharField(max_length=20, verbose_name="Phone Number"),
+                ),
+                ("last_update", models.DateTimeField(auto_now=True)),
+                (
+                    "user",
+                    models.ForeignKey(
+                        blank=True,
+                        null=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="addresses",
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
             ],
         ),
     ]
