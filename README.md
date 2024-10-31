@@ -28,7 +28,7 @@
   * [User Profile and Notifications](#user-profile-and-notifications)
   * [Product Browsing and Filtering](#product-browsing-and-filtering)
   * [Shopping Cart and Checkout](#shopping-cart-and-checkout)
-  * [Admin and Inventory Management](#admin-and-inventory-management)
+  * [Admin Management](#admin-management)
 - [Database Schema](#database-schema)
 - [Testing](#testing)
   * [Manual Testing](#manual-testing)
@@ -261,12 +261,11 @@ The shopping cart and checkout system are designed to make purchasing as straigh
 -   **Stripe Payment Integration**: Provides a secure and reliable payment method through Stripe.
 -   **Order Summary**: Displays a summary of the order before completing the purchase.
 
-## Admin and Inventory Management
+## Admin Management
 
-The admin panel helps administrators manage inventory and customer orders efficiently.
+The admin panel helps administrators manage customer orders efficiently.
 
 -   **Product and Order Management**: Admins can add, update, and remove products and manage user orders.
--   **Inventory Tracking**g: Provides inventory management to ensure stock availability.
 
 # Database Schema
 
@@ -693,9 +692,9 @@ The TechCore project was deployed on a Heroku hosting server. The following step
 
 # Bugs
 
--   All fixed bugs can be found [here]()
+-   All fixed bugs can be found [here](https://github.com/Dima-Bulavenko/TechCore/issues?q=is%3Aissue+is%3Aclosed+label%3Abug)
 
--   All unfixed bugs can be found [here]()
+-   All unfixed bugs can be found [here](https://github.com/Dima-Bulavenko/TechCore/issues?q=is%3Aissue+label%3Abug+is%3Aopen)
 
 [Back to top](#contents)
 
