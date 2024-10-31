@@ -13,7 +13,7 @@
            class="text-lg font-semibold leading-tight text-gray-900 hover:underline dark:text-white">{{ product.product_title }}</a>
         <div class="mt-2 flex items-center gap-2">
             <div class="flex items-center">{% render_stars product.rating star_id=product.id %}</div>
-             <p class="text-sm font-medium text-gray-900 dark:text-white">{{ product.rating|floatformat:1 }}</p>
+            <p class="text-sm font-medium text-gray-900 dark:text-white">{{ product.rating|floatformat:1 }}</p>
             <p class="text-sm font-medium text-gray-500 dark:text-gray-400">({{ product.review_count }})</p>
         </div>
         <div class="mt-4 flex flex-wrap items-center justify-between gap-4">
@@ -28,6 +28,7 @@
                     {% for field in quantity_form %}{{ field }}{% endfor %}
                 </form>
                 <button type="submit"
+                        aria-label="Add {{ product.name }} to cart"
                         form="add_to_cart_form_{{ product.pk }}"
                         class="inline-flex peer-[.htmx-request]:bg-opacity-70 peer-[.htmx-request]:pointer-events-none items-center rounded-lg bg-blue-700 px-2.5 py-2.5 text-lg font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4  focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                     <svg class="h-6 w-6"

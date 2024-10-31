@@ -6,35 +6,48 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('product', '0001_initial'),
+        ("product", "0001_initial"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='CPUProduct',
-            fields=[
-            ],
+            name="CPUProduct",
+            fields=[],
             options={
-                'verbose_name': 'CPU product',
-                'proxy': True,
-                'indexes': [],
-                'constraints': [],
+                "verbose_name": "CPU product",
+                "proxy": True,
+                "indexes": [],
+                "constraints": [],
             },
-            bases=(product.models.ProductMixin, 'product.product'),
+            bases=(product.models.ProductMixin, "product.product"),
         ),
         migrations.AlterField(
-            model_name='category',
-            name='description',
-            field=models.TextField(blank=True, default=''),
+            model_name="category",
+            name="description",
+            field=models.TextField(blank=True, default=""),
         ),
         migrations.CreateModel(
-            name='Image',
+            name="Image",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('image', models.ImageField(upload_to='products/images')),
-                ('product', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='images', to='product.product')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("image", models.ImageField(upload_to="products/images")),
+                (
+                    "product",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="images",
+                        to="product.product",
+                    ),
+                ),
             ],
         ),
     ]

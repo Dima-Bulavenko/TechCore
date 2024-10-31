@@ -4,14 +4,13 @@ from django.db import migrations
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('product', '0002_cpuproduct_alter_category_description_image'),
+        ("product", "0002_cpuproduct_alter_category_description_image"),
     ]
 
     operations = [
         migrations.AlterUniqueTogether(
-            name='product',
-            unique_together={('name', 'category')},
+            name="product",
+            unique_together={("name", "category")},
         ),
     ]

@@ -11,19 +11,7 @@
             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h16" />
         </svg>
     </button>
-    <input type="{{ widget.type }}" 
-            data-input-counter 
-            data-input-counter-min="{{ widget.attrs.min }}" 
-            data-input-counter-max="{{ widget.attrs.max }}" 
-            placeholder="{{ widget.attrs.min }} - {{ widget.attrs.max }}" 
-            name="{{ widget.name }}"
-            value="{{ widget.value }}" 
-            class="bg-gray-50 border-x-0 border-gray-300 h-11 text-center text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full py-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            {% for name, value in widget.attrs.items %}
-                {% if value is not False %} 
-                {{ name }}{% if value is not True and name != "class" %}="{{ value|stringformat:'s' }}"{% endif %}
-                {% endif %}
-            {% endfor %}/>
+    <input type="{{ widget.type }}" data-input-counter data-input-counter-min="{{ widget.attrs.min }}" data-input-counter-max="{{ widget.attrs.max }}" placeholder="{{ widget.attrs.min }} - {{ widget.attrs.max }}" name="{{ widget.name }}" value="{{ widget.value }}" class="bg-gray-50 border-x-0 border-gray-300 h-11 text-center text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full py-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" {% for name, value in widget.attrs.items %} {% if value is not False %} {{ name }}{% if value is not True and name != "class" %}="{{ value|stringformat:'s' }}"{% endif %} {% endif %} {% endfor %} />
     <button type="button"
             id="increment_button_{{ widget.attrs.id }}"
             data-input-counter-increment="{{ widget.attrs.id }}"

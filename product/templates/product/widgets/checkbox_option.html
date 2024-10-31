@@ -1,10 +1,9 @@
 <div class="flex items-center">
     {% with id=widget.attrs.id class=widget.attrs.class %}
-        <input {% if id %}id="{{ id }}"{% endif %}
-               type="{{ widget.type }}"
+        <input type="{{ widget.type }}"
                name="{{ widget.name }}"
                {% if widget.value != None %}value="{{ widget.value|stringformat:'s' }}"{% endif %}
-               class="{% if class %} {{ class }} {% endif %} w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" 
+               class="{% if class %} {{ class }} {% endif %} w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
                {% include "django/forms/widgets/attrs.html" %}>
         <label {% if id %}for="{{ id }}"{% endif %}
                class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{ widget.label }}</label>

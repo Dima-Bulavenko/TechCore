@@ -2,6 +2,8 @@
 {% load static %}
 {% block js_block %}
     {{ block.super }}
+    <!-- Stripe -->
+    <script src="https://js.stripe.com/v3/" defer></script>
     <script src="{% static 'checkout/js/stripe_elements.js' %}" defer></script>
 {% endblock js_block %}
 {% block content %}

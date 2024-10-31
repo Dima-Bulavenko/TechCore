@@ -7,7 +7,7 @@ from product.management.creators import AttributesCreator, ProductsCreator
 
 CREATOR_MAP = {
     "attributes": AttributesCreator,
-    'products': ProductsCreator,
+    "products": ProductsCreator,
 }
 
 
@@ -24,7 +24,9 @@ class Command(BaseCommand):
             "creator_type",
             type=str,
             choices=CREATOR_MAP.keys(),
-            help="The type of creator to use (must be one of: {})".format(", ".join(CREATOR_MAP.keys())),
+            help="The type of creator to use (must be one of: {})".format(
+                ", ".join(CREATOR_MAP.keys())
+            ),
         )
 
     def handle(self, *args, **options):
@@ -33,13 +35,13 @@ class Command(BaseCommand):
         creator_class = CREATOR_MAP[options["creator_type"]]
         creator = creator_class(data=self.data, command_obj=self)
         creator.create()
-        
+
     def get_json_data(self):
         self.validate_file_path()
 
         with self.file_path.open() as f:
             data = json.load(f)
-        
+
         return data
 
     def validate_file_path(self):

@@ -10,23 +10,24 @@
               content='{ "responseHandling": [ {"code":"204", "swap": false}, {"code":"[23]..", "swap": true}, {"code":"422", "swap": true}, {"code":"404", "swap": true, "select": "#messages", "swapOverride": "none"}, {"code":"[45]..", "swap": false, "error": true} ] }'>
         <title>
             {% block head_title %}
-                {{ title }}
+                {{ title|default:"TechCore" }}
             {% endblock head_title %}
         </title>
-        <meta name="description" content="{% block meta_content %}
-        Discover the best deals on high-performance CPUs and GPUs for gaming, video editing, and AI. Upgrade your PC with top-quality processors and graphics cards available at affordable prices. Shop now for the latest in computer hardware!
-        {% endblock meta_content %}">
-        <meta name="keywords" content="{% block meta_keywords %}Buy CPUs online, Best GPUs for gaming, processors and graphics cards, Shop GPUs for video editing, High-quality GPUs online, Graphics card, Buy processors online,{% endblock meta_keywords %}">
+        <meta name="description"
+              content="{% block meta_content %} Discover the best deals on high-performance CPUs and GPUs for gaming, video editing, and AI. Upgrade your PC with top-quality processors and graphics cards available at affordable prices. Shop now for the latest in computer hardware! {% endblock meta_content %}">
+        <meta name="keywords"
+              content="{% block meta_keywords %}Buy CPUs online, Best GPUs for gaming, processors and graphics cards, Shop GPUs for video editing, High-quality GPUs online, Graphics card, Buy processors online,{% endblock meta_keywords %}">
         <!-- CSS -->
         {% block basic_css %}
-            <link rel="stylesheet" href="{% static 'css/style.css' %}" />
         {% endblock basic_css %}
+        <!-- Tab Icond -->
+        <link rel="icon" href="{% static 'img/logo.svg' %}" type="image/svg+xml">
         {% block css_block %}
             {% tailwind_css %}
             <!-- Mailchimp -->
             <link href="//cdn-images.mailchimp.com/embedcode/classic-061523.css"
-                          rel="stylesheet"
-                          type="text/css">
+                  rel="stylesheet"
+                  type="text/css">
         {% endblock css_block %}
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -35,24 +36,27 @@
               rel="stylesheet" />
         <!-- JS (use "defer" inside "script" tag) -->
         {% block basic_js %}
-            <script src="{% static 'js/script.js' %}" defer></script>
             <script src="{% static 'js/navbar_height.js' %}" defer></script>
             <script src="{% static 'js/htmx.min.js' %}" defer></script>
-            <script src="https://unpkg.com/idiomorph@0.3.0/dist/idiomorph-ext.min.js" defer></script>
-            <!-- Stripe -->
-            <script src="https://js.stripe.com/v3/"></script>
+            <script src="https://unpkg.com/idiomorph@0.3.0/dist/idiomorph-ext.min.js"
+                    defer></script>
         {% endblock basic_js %}
         {% block js_block %}
-        <script src="{% static 'js/flowbite/flowbite.min.js' %}" defer></script>
-        <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.5/dist/js.cookie.min.js" defer></script>
-        <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.1/dist/cdn.min.js"></script>
-        <!-- Mailchimp -->
-        <script type="text/javascript"
-        src="//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js" defer></script>
-        <script src="{% static "js/mailchimp.js" %}" defer></script>
+            <script src="{% static 'js/flowbite/flowbite.min.js' %}" defer></script>
+            <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.5/dist/js.cookie.min.js"
+                    defer></script>
+            <script defer
+                    src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.1/dist/cdn.min.js"></script>
+            <!-- Mailchimp -->
+            <script type="text/javascript"
+                    src="//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js"
+                    defer></script>
+            <script src="{% static "js/mailchimp.js" %}" defer></script>
         {% endblock js_block %}
     </head>
-    <body hx-ext="morph" hx-on::after-request="initFlowbite()" hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
+    <body hx-ext="morph"
+          hx-on::after-request="initFlowbite()"
+          hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
         {% include "core/messages.html" %}
         <header>
             {% block header %}
@@ -61,14 +65,12 @@
         </header>
         <main id="main-content" class="px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12">
             {% block main %}
-            {% block content %}
-            {% endblock content %}
+                {% block content %}
+                {% endblock content %}
             {% endblock main %}
         </main>
-        <footer>
-            {% block footer %}
-                {% include "components/footer.html" %}
-            {% endblock footer %}
-        </footer>
+        {% block footer %}
+            {% include "components/footer.html" %}
+        {% endblock footer %}
     </body>
 </html>

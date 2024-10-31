@@ -99,10 +99,12 @@ class ProductModelTest(TestCase):
         self.assertEqual(product.dimensions, "")
         self.assertIsNone(product.release_date)
 
-        
+
 class CategoryModelTest(TestCase):
     def test_create_category(self):
-        category = Category.objects.create(name="Electronics", description="Electronic items")
+        category = Category.objects.create(
+            name="Electronics", description="Electronic items"
+        )
         self.assertEqual(category.name, "Electronics")
         self.assertEqual(category.description, "Electronic items")
 
@@ -128,7 +130,6 @@ User = get_user_model()
 
 
 class ReviewModelTest(TestCase):
-
     def setUp(self):
         # Create necessary related objects
         self.category = Category.objects.create(name="Electronics")
@@ -141,16 +142,16 @@ class ReviewModelTest(TestCase):
             manufacturer=self.manufacturer,
             weight=0.5,
             dimensions="5x3x0.3 inches",
-            release_date="2023-01-01"
+            release_date="2023-01-01",
         )
-        self.user = User.objects.create_user(email='test@gmail.com', password='12345')
+        self.user = User.objects.create_user(email="test@gmail.com", password="12345")
 
     def test_create_review(self):
         review = Review.objects.create(
             product=self.product,
             author=self.user,
             rating=5,
-            review="Excellent product!"
+            review="Excellent product!",
         )
         self.assertEqual(review.product, self.product)
         self.assertEqual(review.author, self.user)
@@ -161,28 +162,21 @@ class ReviewModelTest(TestCase):
 
     def test_review_rating_choices(self):
         review = Review.objects.create(
-            product=self.product,
-            author=self.user,
-            rating=3,
-            review="Average product"
+            product=self.product, author=self.user, rating=3, review="Average product"
         )
         self.assertIn(review.rating, [1, 2, 3, 4, 5])
 
     def test_review_auto_now_add(self):
         review = Review.objects.create(
-            product=self.product,
-            author=self.user,
-            rating=4,
-            review="Good product"
+            product=self.product, author=self.user, rating=4, review="Good product"
         )
-        self.assertAlmostEqual(review.created_at, timezone.now(), delta=timezone.timedelta(seconds=1))
+        self.assertAlmostEqual(
+            review.created_at, timezone.now(), delta=timezone.timedelta(seconds=1)
+        )
 
     def test_review_auto_now(self):
         review = Review.objects.create(
-            product=self.product,
-            author=self.user,
-            rating=4,
-            review="Good product"
+            product=self.product, author=self.user, rating=4, review="Good product"
         )
         old_updated_at = review.updated_at
         review.review = "Updated review"

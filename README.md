@@ -1,73 +1,89 @@
 # TechCore (Milestone Project 5)
 
-![Responsive Mockup](docs/responsice_dispaly.PNG)
+![Responsive Mockup](docs/responsice_dispaly.png)
 
 ## Table of contents
 
--   [Purpose](#purpose)
--   [UX Design](#ux-design)
-    -   [Epics](#epics)
-    -   [User and Developer Stories](#user-and-developer-stories)
--   [Wireframes](#wireframes)
-    -   [Welcome page](#welcome-page)
-    -   [Home page](#home-page)
-    -   [Profile page](#profile-page)
-    -   [Dictionary page](#dictionary-page)
-    -   [Form page](#form-page)
--   [Agile Development](#agile-development)
-    -   [Task Management](#task-management)
-    -   [Project Management](#project-management)
-    -   [Workflow](#workflow)
--   [Design](#design)
-    -   [Color Scheme](#color-scheme)
-    -   [Typography](#typography)
--   [Features](#features)
-    -   [User Registration and Authentication](#user-registration-and-authentication)
-    -   [Dictionary Management](#dictionary-management)
-    -   [Backend and API Integration](#backend-and-api-integration)
-    -   [User Profile and Notifications](#user-profile-and-notifications)
-    -   [Dynamic and Interactive Features](#dynamic-and-interactive-features)
--   [Database Schema](#database-schema)
--   [Testing](#testing)
-    -   [Manual Testing](#manual-testing)
-        -   [Navbar](#navbar)
-        -   [Footer](#footer)
-        -   [Home page](#home-page-1)
-        -   [Dictionary page](#dictionary-page-1)
-        -   [Profile page](#profile-page-1)
-        -   [Forms](#forms)
-    -   [Unit testing](#unit-testing)
-        -   [Python unit tests](#python-unit-tests)
-        -   [JS unit tests](#js-unit-tests)
-    -   [Code validation](#code-validation)
-        -   [HTML Validation](#html-validation)
-        -   [CSS Validation](#css-validation)
-        -   [Python Validation](#python-validation)
-        -   [JS Validation](#js-validation)
-    -   [Lighthouse](#lighthouse)
--   [Technologies](#technologies)
-    -   [Languages](#languages)
-    -   [Programs, frameworks, libraries](#programs--frameworks--libraries)
--   [Environment Variables](#environment-variables)
--   [Deployment](#deployment)
-    -   [Heroku](#heroku)
-    -   [Clone GitHub Repo](#clone-github-repo)
--   [Bugs](#bugs)
--   [Credits](#credits)
-    -   [Media](#media)
-    -   [Design Template](#design-template)
-    -   [Code](#code)
-    -   [Acknowledgements](#acknowledgements)
+- [Purpose](#purpose)
+- [E-commerce Business Model](#e-commerce-business-model)
+- [UX Design](#ux-design)
+- [Epics](#epics)
+- [User Stories](#user-stories)
+- [Wireframes](#wireframes)
+  * [Product List page](#product-list-page)
+  * [Profile page](#profile-page)
+  * [Form page](#form-page)
+- [Marketing Strategy](#marketing-strategy)
+  * [Social Media Presence](#social-media-presence)
+  * [Search Engine Optimization (SEO)](#search-engine-optimization--seo-)
+- [Agile Development](#agile-development)
+  * [Task Management](#task-management)
+  * [Project Management](#project-management)
+  * [Workflow](#workflow)
+- [Design](#design)
+  * [Color Scheme](#color-scheme)
+  * [Typography](#typography)
+- [Features](#features)
+  * [User Registration and Authentication](#user-registration-and-authentication)
+  * [User Profile and Notifications](#user-profile-and-notifications)
+  * [Product Browsing and Filtering](#product-browsing-and-filtering)
+  * [Shopping Cart and Checkout](#shopping-cart-and-checkout)
+  * [Admin and Inventory Management](#admin-and-inventory-management)
+- [Database Schema](#database-schema)
+- [Testing](#testing)
+  * [Manual Testing](#manual-testing)
+    + [Navbar](#navbar)
+    + [Footer](#footer)
+    + [Product List page](#product-list-page-1)
+    + [Contact Us page](#contact-us-page)
+    + [Cart page](#cart-page)
+    + [Checkout page](#checkout-page)
+    + [Payment processing](#payment-processing)
+    + [Profile page](#profile-page-1)
+    + [Forms](#forms)
+  * [Unit testing](#unit-testing)
+    + [Python unit tests](#python-unit-tests)
+  * [Code validation](#code-validation)
+    + [HTML Validation](#html-validation)
+    + [CSS Validation](#css-validation)
+    + [Python Validation](#python-validation)
+    + [JS Validation](#js-validation)
+  * [Lighthouse](#lighthouse)
+- [Technologies](#technologies)
+  * [Languages](#languages)
+  * [Programs, frameworks, libraries](#programs--frameworks--libraries)
+- [Environment Variables](#environment-variables)
+- [Deployment](#deployment)
+  * [Heroku](#heroku)
+  * [Clone GitHub Repo](#clone-github-repo)
+- [Bugs](#bugs)
+- [Credits](#credits)
+  * [Media](#media)
+  * [Design Template](#design-template)
+  * [Code](#code)
+  * [Acknowledgements](#acknowledgements)
 
 <small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
 
 # Purpose
 
-TechCore is an e-commerce platform built with the Django framework, designed to provide a seamless shopping experience for tech enthusiasts looking for high-performance CPUs and GPUs. Leveraging Django's powerful backend capabilities, the application features user authentication, efficient data management, and precise routing for a smooth and secure shopping journey. The frontend is enriched with Django’s templating system and HTMX for interactive and dynamic content updates, reducing page reloads and improving responsiveness.
+[TechCore](https://techcore-e370dc0903ef.herokuapp.com/) is an e-commerce platform built with the Django framework, designed to provide a seamless shopping experience for tech enthusiasts looking for high-performance CPUs and GPUs. Leveraging Django's powerful backend capabilities, the application features user authentication, efficient data management, and precise routing for a smooth and secure shopping journey. The frontend is enriched with Django’s templating system and HTMX for interactive and dynamic content updates, reducing page reloads and improving responsiveness.
 
 Key features include a customizable price range filter, easy product browsing, a streamlined checkout process with Stripe integration, and a flexible cart system. These features are crafted to deliver a user-friendly and efficient shopping experience, catering to both casual tech shoppers and performance-focused enthusiasts.
 
 [Table of contents](#table-of-contents)
+
+# E-commerce Business Model
+TechCore operates under a direct-to-consumer e-commerce model, specializing in selling high-performance CPUs and GPUs directly to customers without intermediaries. This model allows TechCore to maintain control over product selection, customer relationships, and service quality. Here’s how this business model aligns with TechCore's goals:
+
+Key Components
+
+- **Product Offering**: A curated selection of CPUs and GPUs, chosen to meet the needs of gamers, PC builders, and professionals seeking high-quality components.
+- **Customer Segmentation**: Targeting tech enthusiasts and performance-oriented users, with a user-friendly site that facilitates easy browsing, filtering, and purchasing.
+- **Revenue Streams**: Direct sales from the website, with Stripe integrated to offer a secure and seamless payment experience.
+- **Marketing and Sales Channels**: Focused on multi-channel marketing, including SEO and social media, to reach a broader audience and drive traffic directly to the site.
+
+By adopting this business model, TechCore not only aims to facilitate component sales but also seeks to build a trusted community for those passionate about high-performance hardware, providing an all-inclusive and reliable shopping experience.
 
 # UX Design
 
@@ -79,7 +95,7 @@ Key features include a customizable price range filter, easy product browsing, a
 
 -   **Price-Conscious Shoppers**: Users looking to find the best hardware within their budget range. TechCore’s price range filter allows them to explore options tailored to their budget.
 
-## Epics
+# Epics
 
 To manage the development of key features for TechCore, I organize epics on GitHub by creating issues tagged with the "Epic" label. Each epic contains a well-structured list of user stories and developer tasks that outline the required steps for feature implementation and testing.
 
@@ -87,7 +103,7 @@ These epics ensure that the core functionalities, such as user authentication, s
 
 You can find all the epics [here](https://github.com/Dima-Bulavenko/TechCore/issues?q=is%3Aissue+label%3AEpic).
 
-## User and Developer Stories
+# User Stories
 
 -   **User stories:** To outline the features of TechCore, I used [user stories](https://github.com/Dima-Bulavenko/TechCore/issues?q=is%3Aissue+label%3A%22User+story%22). These stories help clarify the user’s needs and expectations, such as filtering products by price, managing the shopping cart, and completing a secure checkout process. Each story is designed to focus on the user’s interaction with the platform and the desired outcomes of each feature.
 
@@ -138,6 +154,25 @@ You can find all the epics [here](https://github.com/Dima-Bulavenko/TechCore/iss
     </details>
 
 [Back to the Top](#help-u-website-milestone-project-4)
+
+# Marketing Strategy
+
+The marketing strategy for TechCore focuses on building a strong online presence, attracting tech-savvy customers, and increasing sales through various digital channels. This approach includes social media engagement, search engine optimization (SEO).
+
+## Social Media Presence
+
+To connect with technology enthusiasts and promote the latest CPU and GPU offerings, TechCore has established a presence on [Facebook](https://www.facebook.com/profile.php?id=61567371643508) platform.
+![Facebook](docs/facebook.png)
+
+## Search Engine Optimization (SEO)
+
+To enhance TechCore’s visibility on search engines and draw in more organic traffic, the following SEO practices are implemented:
+
+-   [**robots.txt**](https://techcore-e370dc0903ef.herokuapp.com/robots.txt): Configured to guide web crawlers, ensuring that important pages are indexed properly and appear in search results.
+
+-   [**Sitemap**](https://techcore-e370dc0903ef.herokuapp.com/sitemap.xml): A sitemap was created to help search engines navigate and index all TechCore’s pages, improving overall discoverability.
+
+-   **Meta Descriptions**: Compelling meta descriptions are written for each page, improving click-through rates by providing a concise and attractive preview on search engine results pages (SERPs).
 
 # Agile Development
 
@@ -208,28 +243,30 @@ This project utilizes the Django allauth library to handle user registration, au
 -   **Success and Error Toast Notifications**: Displays toast messages to inform users of success or errors during interactions.
 
 ## Product Browsing and Filtering
+
 TechCore provides a seamless shopping experience with browsing and filtering options to help users find the right products.
 
-- **Browse Products**: Users can explore a variety of CPUs and GPUs.
-- **Price Range Filter**: Allows users to filter products based on their budget preferences.
-- **Product Details Page**: Displays detailed information about each product, including specifications and pricing.
+-   **Browse Products**: Users can explore a variety of CPUs and GPUs.
+-   **Price Range Filter**: Allows users to filter products based on their budget preferences.
+-   **Product Details Page**: Displays detailed information about each product, including specifications and pricing.
 
 ## Shopping Cart and Checkout
+
 The shopping cart and checkout system are designed to make purchasing as straightforward as possible.
 
-- **Add to Cart**: Users can add items to their cart with ease.
-- **Adjust Quantity in Cart**: Users can increase or decrease the quantity of items.
-- **Remove Item from Cart**: Enables users to remove specific items from the cart.
-- **Proceed to Checkout**: Streamlines the checkout process.
-- **Stripe Payment Integration**: Provides a secure and reliable payment method through Stripe.
-- **Order Summary**: Displays a summary of the order before completing the purchase.
+-   **Add to Cart**: Users can add items to their cart with ease.
+-   **Adjust Quantity in Cart**: Users can increase or decrease the quantity of items.
+-   **Remove Item from Cart**: Enables users to remove specific items from the cart.
+-   **Proceed to Checkout**: Streamlines the checkout process.
+-   **Stripe Payment Integration**: Provides a secure and reliable payment method through Stripe.
+-   **Order Summary**: Displays a summary of the order before completing the purchase.
 
 ## Admin and Inventory Management
+
 The admin panel helps administrators manage inventory and customer orders efficiently.
 
-- **Product and Order Management**: Admins can add, update, and remove products and manage user orders.
-- **Inventory Tracking**g: Provides inventory management to ensure stock availability.
-
+-   **Product and Order Management**: Admins can add, update, and remove products and manage user orders.
+-   **Inventory Tracking**g: Provides inventory management to ensure stock availability.
 
 # Database Schema
 
@@ -272,16 +309,19 @@ The database schema for TechCore is structured to support both product managemen
 -   :heavy_check_mark: **Product ordering** works correctly.
 
 ### Contact Us page
+
 -   :heavy_check_mark: **Form** works correctly.
 -   :heavy_check_mark: **Form prefilled** with user email.
 
 ### Cart page
+
 -   :heavy_check_mark: **Remove item** buttons work correctly.
 -   :heavy_check_mark: **Change item quantity** buttons work correctly.
 -   :heavy_check_mark: **Checkout and continue shopping** buttons work correctly.
 -   :heavy_check_mark: **Order Summary Calculation** works correctly.
 
 ### Checkout page
+
 -   :heavy_check_mark: **Form** works correctly.
 -   :heavy_check_mark: **Form prefilled** with user data.
 -   :heavy_check_mark: **Payment form** works correctly.
@@ -293,6 +333,7 @@ The database schema for TechCore is structured to support both product managemen
 -   :heavy_check_mark: **Processing order backdrop** works correctly.
 
 ### Payment processing
+
 -   :heavy_check_mark: **Payment success** works correctly.
 -   :heavy_check_mark: **Payment failure** works correctly.
 -   :heavy_check_mark: **Payment success email** is sended.
@@ -315,6 +356,7 @@ The database schema for TechCore is structured to support both product managemen
     -   :heavy_check_mark: User can see list of his orders.
 
 ### Forms
+
 -   :heavy_check_mark: All forms are displayed correctly.
 -   :heavy_check_mark: All form fields and buttons work correctly.
 
@@ -341,13 +383,37 @@ python manage.py test
 
 To validate the HTML code, I use the [W3C HTML Markup Validator](https://validator.w3.org/#validate_by_uri). Since I use htmx in my project, the validator will show some errors related to the htmx attributes, but these can be ignored.
 
--   :heavy_check_mark: [Home page](https://validator.w3.org/nu/?showsource=yes&doc=https%3A%2F%2Fwordnest-f67ad8aa67ee.herokuapp.com%2F)
+-   :heavy_check_mark: [Product list page](https://validator.w3.org/nu/?doc=https%3A%2F%2Ftechcore-e370dc0903ef.herokuapp.com%2Fproduct%2FCPU#cl3200c20)
+
+-   :heavy_check_mark: [Contact Us page](https://validator.w3.org/nu/?doc=https%3A%2F%2Ftechcore-e370dc0903ef.herokuapp.com%2Fcontact-us%2F#cl3200c20)
+
+-   :heavy_check_mark: [Authentication pages](https://validator.w3.org/nu/?doc=https%3A%2F%2Ftechcore-e370dc0903ef.herokuapp.com%2Faccounts%2Flogin%2F#cl3200c20)
+
+-   :heavy_check_mark: [Authentication pages](https://validator.w3.org/nu/?doc=https%3A%2F%2Ftechcore-e370dc0903ef.herokuapp.com%2Faccounts%2Flogin%2F#cl3200c20)
+
+-   <details>
+       <summary>Cart page</summary>
+       <img src="./docs/html_validator_cart_page.png"
+       alt="Cart page">
+     </details>
+
+-   <details>
+       <summary>Checkout page</summary>
+       <img src="./docs/html_validator.checkout_page.png"
+       alt="Checkout page">
+     </details>
+
+-   <details>
+       <summary>Profile page</summary>
+       <img src="./docs/html_validator_profile_page.png"
+       alt="Profile page">
+     </details>
 
 ### CSS Validation
 
 To validate the CSS code, I use the [W3 Jigsaw validator](https://jigsaw.w3.org/css-validator/#validate_by_uri).
 
--   :heavy_check_mark: [style.css, normalize.css](https://jigsaw.w3.org/css-validator/validator?uri=https%3A%2F%2Fwordnest-f67ad8aa67ee.herokuapp.com%2F&profile=css3svg&usermedium=all&warning=1&vextwarning=&lang=en)
+-   :heavy_check_mark: [dist/style.css](https://jigsaw.w3.org/css-validator/validator?uri=https%3A%2F%2Ftechcore-e370dc0903ef.herokuapp.com%2Fproduct%2FCPU&profile=css3svg&usermedium=all&warning=1&vextwarning=&lang=en). I was used tailwind css to create styles, so the validator shows some errors related to the tailwind classes, but these can be ignored.
 
 ### Python Validation
 
@@ -365,14 +431,13 @@ To validate the JS code I use [ESLint] VScode extension(https://eslint.org/).
 
 ## Lighthouse
 
--   :heavy_check_mark: [Welcome page](https://pagespeed.web.dev/analysis/https-wordnest-f67ad8aa67ee-herokuapp-com/7bjo7sh6r5?form_factor=mobile)
+-   :heavy_check_mark: [Product list page](https://pagespeed.web.dev/analysis/https-techcore-e370dc0903ef-herokuapp-com-product-CPU/yuvwsu6laa?form_factor=mobile)
 
--   <details>
-      <summary>Home page</summary>
-      <img src="./docs/home_page_lighthouse.PNG" alt="Home page">
-    </details>
+-   :heavy_check_mark: [Cart page](https://pagespeed.web.dev/analysis/https-techcore-e370dc0903ef-herokuapp-com-cart/kyj2thz1ul?form_factor=mobile)
 
--   :heavy_check_mark: [Register page](https://pagespeed.web.dev/analysis/https-wordnest-f67ad8aa67ee-herokuapp-com-accounts-signup/q9mozw7reu?form_factor=desktop)
+-   :heavy_check_mark: [Contact Us](https://pagespeed.web.dev/analysis/https-techcore-e370dc0903ef-herokuapp-com-contact-us/tocmkwpb38?form_factor=mobile)
+
+-   :heavy_check_mark: [Authentication pages](https://pagespeed.web.dev/analysis/https-techcore-e370dc0903ef-herokuapp-com-accounts-signup/jbuq2wn4dh?form_factor=mobile)
 
 [Back to the top](#table-of-contents)
 
@@ -380,7 +445,7 @@ To validate the JS code I use [ESLint] VScode extension(https://eslint.org/).
 
 ## Languages
 
--   Python+Django, JavaScript, HTML, CSS
+-   Python+Django, JavaScript, HTML, CSS, Tailwind CSS.
 
 ## Programs, frameworks, libraries
 
@@ -390,7 +455,6 @@ To validate the JS code I use [ESLint] VScode extension(https://eslint.org/).
 -   [Google Fonts](https://fonts.google.com/) for typography.
 -   [GitHub](https://GitHub.com/) to host the source code.
 -   [Heroku](https://www.heroku.com/) to deploy and host the live app.
--   [Jest](https://jestjs.io/) for JS unit-testing.
 -   [Unittest](https://docs.python.org/3/library/unittest.html) for Python unit-testing.
 -   [W3C HTML Markup Validator](https://validator.w3.org/) to validate HTML code.
 -   [W3C Jigsaw CSS Validator](https://jigsaw.w3.org/css-validator/) to validate CSS code.
@@ -398,6 +462,11 @@ To validate the JS code I use [ESLint] VScode extension(https://eslint.org/).
 -   [dj-database-url](https://github.com/jazzband/dj-database-url/) - allows to use URLs to connect to DB
 -   [js-cookie](https://github.com/js-cookie/js-cookie/) - JavaScript API for handling cookies
 -   [django-htmx](https://django-htmx.readthedocs.io/en/latest/index.html) - make using htmx in Django easier.
+-   [django-tailwind](https://pypi.org/project/django-tailwind/) - helps to use tailwind css in Django.
+-   [htmx](https://htmx.org/) - helps to create dynamic and interactive web pages.
+-   [stripe](https://stripe.com/docs) - payment processing.
+-   [tailwindcss](https://tailwindcss.com/) - utility-first CSS framework.
+-   [flowbite](https://flowbite.com/) - HTML, CSS, and JS components.
 
 [Back to the top](#table-of-contents)
 
@@ -406,17 +475,35 @@ To validate the JS code I use [ESLint] VScode extension(https://eslint.org/).
 To run this project locally, you will need to create a `.env` file in the root directory of the project and add the following environment variables:
 
 ```bash
-SECRET_KEY=your_django_secret_key
+DJANGO_SETTINGS_MODULE=tech_core.settings.dev
+
+SECRET_KEY=
 DEBUG=True
+
+# STRIPE
+STRIPE_PUBLIC_KEY=
+STRIPE_SECRET_KEY=
+STRIPE_WH_SECRET=
+
+DB_TYPE=sqlite3
+DATABASE_URL=
 DB_NAME=
 DB_USER=
 DB_PASSWORD=
 DB_HOST=
 DB_PORT=
+EMAIL_HOST_USER=
+EMAIL_HOST_PASSWORD=
 GOOGLE_CLIENT_ID=
 GOOGLE_CLIENT_SECRET=
 FACEBOOK_CLIENT_ID=
 FACEBOOK_CLIENT_SECRET=
+
+# AWS
+AWS_SECRET_ACCESS_KEY=
+AWS_ACCESS_KEY_ID=
+AWS_STORAGE_BUCKET_NAME=
+AWS_S3_REGION_NAME=
 ```
 
 `GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET, FACEBOOK_CLIENT_ID, FACEBOOK_CLIENT_SECRET` used for user social authentication.
@@ -425,7 +512,7 @@ FACEBOOK_CLIENT_SECRET=
 
 ## Heroku
 
-The WordNest project was deployed on a Heroku hosting server. The following steps outline the process of deploying the WordNest project and can be applied to deploy another Django project with minor adjustments:
+The TechCore project was deployed on a Heroku hosting server. The following steps outline the process of deploying the TechCore project and can be applied to deploy another Django project with minor adjustments:
 
 1.  Navigate to your [Heroku dashboard](https://dashboard.heroku.com/apps) and create a new app with a unique name.
 
@@ -442,10 +529,10 @@ The WordNest project was deployed on a Heroku hosting server. The following step
 5.  Add following command to `Procfile` to run your server in production.
 
     ```
-    web: gunicorn wordnest.wsgi
+    web: gunicorn tech_core.wsgi
     ```
 
-    <sub>**Note**: Replace `wordnest` with your project name</sub>
+    <sub>**Note**: Replace `tech_core` with your project name</sub>
 
 6.  In the `settings.py` file update the `ALLOWED_HOSTS` variable.
 
@@ -500,7 +587,7 @@ The WordNest project was deployed on a Heroku hosting server. The following step
     DATABASE_URL=add_URL_of_a_remote_database
     ```
 
-    <sub>**Note**: For the WordNest I used database URL provided by `Code Institute` but you can use other database hosting services< such as [Amazon RDS for PostgreSQL](https://aws.amazon.com/rds/postgresql/)/sub>
+    <sub>**Note**: For the TechCore I used database URL provided by `Code Institute` but you can use other database hosting services< such as [Amazon RDS for PostgreSQL](https://aws.amazon.com/rds/postgresql/)/sub>
 
 12. **Reload your terminal** and run the following command in **terminal** to migrate remote database.
 
@@ -510,7 +597,7 @@ The WordNest project was deployed on a Heroku hosting server. The following step
 
 13. Replace `DEBUG=False` to `DEBUG=True` in the `.env` file.
 
-14. Return to the [Heroku dashboard](https://dashboard.heroku.com/apps/wordnest) navigate to the **Settings** tab and click on **Reveal Config Var** and add `DATABASE_URL` environment variable.
+14. Return to the [Heroku dashboard](https://dashboard.heroku.com/) navigate to the **Settings** tab and click on **Reveal Config Var** and add `DATABASE_URL` environment variable.
 
 15. Install [whitenoise](https://pypi.org/project/whitenoise/) to manage static files on production server.
 
@@ -597,7 +684,7 @@ The WordNest project was deployed on a Heroku hosting server. The following step
 ## Clone GitHub Repo
 
 1.  Log into your account on GitHub
-2.  Go to the repository of this project [WordNest](https://github.com/Dima-Bulavenko/wordnest)
+2.  Go to the repository of this project [TechCore](https://github.com/Dima-Bulavenko/TechCore)
 3.  Click on the **code** button, and copy your preferred clone link.
 4.  Open the terminal in your code editor and change the current working directory to the location you want to use for the cloned directory.
 5.  Type `git clone` into the terminal, paste the link you copied in step 3 and press enter.

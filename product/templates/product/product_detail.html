@@ -53,7 +53,7 @@
                         </form>
                     </div>
                     <div class="flex flex-wrap gap-4 mt-8">
-                        <button hx-post={% url "add_to_cart" %}
+                        <button hx-post="{% url "add_to_cart" %}"
                                 hx-include="#quantity_form_{{ product.pk }} *"
                                 hx-swap="none"
                                 class="min-w-[200px] px-4 py-3 bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold rounded">
@@ -175,7 +175,7 @@
                                 </button>
                             </div>
                             <!-- Modal body -->
-                            <form class="p-4 md:p-5">
+                            <form hx-post="{% url "review_create" %}" hx-swap="none" class="p-4 md:p-5">
                                 <div class="mb-4 grid grid-cols-2 gap-4">
                                     <div class="col-span-2">
                                         <label for="{{ review_form.rating.auto_id }}"
@@ -194,6 +194,7 @@
                                             Problems with the product or delivery? <a href="#" class="text-blue-600 hover:underline dark:text-blue-500">Send a report</a>.
                                         </p>
                                     </div>
+                                    <input type="hidden" name="product_id" value="{{ product.pk }}" />
                                 </div>
                                 <div class="border-t border-gray-200 pt-4 dark:border-gray-700 md:pt-5">
                                     <button type="submit"

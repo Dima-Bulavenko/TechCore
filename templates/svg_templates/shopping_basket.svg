@@ -1,5 +1,5 @@
 <svg
-    class="{{ class_attr}}"
+    class="{{ class_attr }}"
     height="24"
     viewBox="0 0 24 24"
     width="24"

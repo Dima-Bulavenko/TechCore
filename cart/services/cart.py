@@ -76,7 +76,7 @@ class Cart:
         return sum(
             Decimal(item["price"]) * item["quantity"] for item in self.cart.values()
         )
-    
+
     def get_delivery_cost(self):
         total_price = self.get_cart_total_price()
         return get_delivery_cost(total_price)
@@ -84,5 +84,5 @@ class Cart:
 
 def get_delivery_cost(total_price):
     if total_price > settings.FREE_DELIVERY_THRESHOLD:
-            return 0
+        return 0
     return settings.DELIVERY_COST

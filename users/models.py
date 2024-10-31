@@ -1,4 +1,3 @@
-
 from typing import ClassVar
 
 from django.contrib.auth.models import AbstractUser
@@ -19,7 +18,11 @@ class User(AbstractUser):
     first_name = CharField(_("First name"), max_length=40, blank=True)
     last_name = CharField(_("Last name"), max_length=40, blank=True)
     email = EmailField(_("email address"), unique=True)
-    image = ImageField(_("profile picture"), upload_to="profile_pics/", default="profile_pics/default.png")
+    image = ImageField(
+        _("profile picture"),
+        upload_to="profile_pics/",
+        default="profile_pics/default.png",
+    )
     username = None
 
     USERNAME_FIELD = "email"

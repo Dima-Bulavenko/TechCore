@@ -6,42 +6,109 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('checkout', '0001_initial'),
-        ('product', '0006_gpuproduct'),
+        ("checkout", "0001_initial"),
+        ("product", "0006_gpuproduct"),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='address',
-            name='phone_number',
+            model_name="address",
+            name="phone_number",
         ),
         migrations.CreateModel(
-            name='Order',
+            name="Order",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('phone_number', models.CharField(max_length=20, verbose_name='Phone Number')),
-                ('email_field', models.EmailField(max_length=254, verbose_name='Email')),
-                ('full_name', models.CharField(max_length=50, verbose_name='Full Name')),
-                ('order_number', models.CharField(editable=False, max_length=32, unique=True)),
-                ('create_date', models.DateTimeField(auto_now_add=True)),
-                ('delivery_cost', models.DecimalField(decimal_places=2, default=0, max_digits=6)),
-                ('order_total', models.DecimalField(decimal_places=2, default=0, max_digits=10)),
-                ('grand_total', models.DecimalField(decimal_places=2, default=0, max_digits=10)),
-                ('address', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='checkout.address')),
-                ('user', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='orders', to=settings.AUTH_USER_MODEL)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "phone_number",
+                    models.CharField(max_length=20, verbose_name="Phone Number"),
+                ),
+                (
+                    "email_field",
+                    models.EmailField(max_length=254, verbose_name="Email"),
+                ),
+                (
+                    "full_name",
+                    models.CharField(max_length=50, verbose_name="Full Name"),
+                ),
+                (
+                    "order_number",
+                    models.CharField(editable=False, max_length=32, unique=True),
+                ),
+                ("create_date", models.DateTimeField(auto_now_add=True)),
+                (
+                    "delivery_cost",
+                    models.DecimalField(decimal_places=2, default=0, max_digits=6),
+                ),
+                (
+                    "order_total",
+                    models.DecimalField(decimal_places=2, default=0, max_digits=10),
+                ),
+                (
+                    "grand_total",
+                    models.DecimalField(decimal_places=2, default=0, max_digits=10),
+                ),
+                (
+                    "address",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="checkout.address",
+                    ),
+                ),
+                (
+                    "user",
+                    models.ForeignKey(
+                        blank=True,
+                        null=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="orders",
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='OrderLineItem',
+            name="OrderLineItem",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('quantity', models.IntegerField(default=0)),
-                ('lineitem_total', models.DecimalField(decimal_places=2, editable=False, max_digits=6)),
-                ('order', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='lineitems', to='checkout.order')),
-                ('product', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='product.product')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("quantity", models.IntegerField(default=0)),
+                (
+                    "lineitem_total",
+                    models.DecimalField(decimal_places=2, editable=False, max_digits=6),
+                ),
+                (
+                    "order",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="lineitems",
+                        to="checkout.order",
+                    ),
+                ),
+                (
+                    "product",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="product.product",
+                    ),
+                ),
             ],
         ),
     ]

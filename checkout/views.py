@@ -39,7 +39,7 @@ class CheckoutView(EmptyCartMixin, TemplateView):
             stripe = Stripe(self.checkout.cart).stripe
             intent = stripe.PaymentIntent.confirm(
                 request.POST["payment_intent_id"],
-                return_url=request.build_absolute_uri(resolve_url("home"))
+                return_url=request.build_absolute_uri(resolve_url("home")),
             )
         else:
             forms = self.checkout.get_forms()
@@ -72,7 +72,7 @@ class CheckoutView(EmptyCartMixin, TemplateView):
                     status_params.update(cardError=e.user_message)
             else:
                 status_params.update(isFormValid=False)
-        if intent:        
+        if intent:
             if intent.status == "requires_action":
                 status_params.update(clientSecret=intent.client_secret)
                 status_params.update(requiredAction=True)

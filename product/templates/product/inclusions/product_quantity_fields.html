@@ -1,5 +1,4 @@
-<div id="quantity_fields" {% if hx_oob %}hx-swap-oob="morph:outerHTML"{% endif %}>
-    {% for field in form %}
-    {{ field }}
-    {% endfor %}
+<div id="quantity_fields"
+     {% if hx_oob %}hx-swap-oob="morph:outerHTML"{% endif %}>
+    {% for field in form %}{{ field }}{% endfor %}
 </div>

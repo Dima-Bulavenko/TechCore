@@ -5,67 +5,166 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Category',
+            name="Category",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(choices=[(None, 'Select a category'), ('CPU', 'CPU'), ('GPU', 'GPU')], max_length=100, unique=True)),
-                ('description', models.TextField(default='')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "name",
+                    models.CharField(
+                        choices=[
+                            (None, "Select a category"),
+                            ("CPU", "CPU"),
+                            ("GPU", "GPU"),
+                        ],
+                        max_length=100,
+                        unique=True,
+                    ),
+                ),
+                ("description", models.TextField(default="")),
             ],
         ),
         migrations.CreateModel(
-            name='Manufacturer',
+            name="Manufacturer",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(choices=[(None, 'Select a manufacturer'), ('Intel', 'Intel'), ('AMD', 'AMD'), ('NVIDIA', 'NVIDIA')], max_length=100, unique=True)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "name",
+                    models.CharField(
+                        choices=[
+                            (None, "Select a manufacturer"),
+                            ("Intel", "Intel"),
+                            ("AMD", "AMD"),
+                            ("NVIDIA", "NVIDIA"),
+                        ],
+                        max_length=100,
+                        unique=True,
+                    ),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='Attribute',
+            name="Attribute",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=100, unique=True)),
-                ('category', models.ManyToManyField(related_name='attributes', to='product.category')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=100, unique=True)),
+                (
+                    "category",
+                    models.ManyToManyField(
+                        related_name="attributes", to="product.category"
+                    ),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='Product',
+            name="Product",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=100)),
-                ('price', models.DecimalField(decimal_places=2, max_digits=10)),
-                ('description', models.TextField(default='')),
-                ('weight', models.DecimalField(blank=True, decimal_places=3, max_digits=10, null=True)),
-                ('dimensions', models.CharField(blank=True, max_length=100)),
-                ('release_date', models.DateField(blank=True, null=True)),
-                ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('updated_at', models.DateTimeField(auto_now=True)),
-                ('category', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='product.category')),
-                ('manufacturer', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='product.manufacturer')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=100)),
+                ("price", models.DecimalField(decimal_places=2, max_digits=10)),
+                ("description", models.TextField(default="")),
+                (
+                    "weight",
+                    models.DecimalField(
+                        blank=True, decimal_places=3, max_digits=10, null=True
+                    ),
+                ),
+                ("dimensions", models.CharField(blank=True, max_length=100)),
+                ("release_date", models.DateField(blank=True, null=True)),
+                ("created_at", models.DateTimeField(auto_now_add=True)),
+                ("updated_at", models.DateTimeField(auto_now=True)),
+                (
+                    "category",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="product.category",
+                    ),
+                ),
+                (
+                    "manufacturer",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="product.manufacturer",
+                    ),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='ProductAttributeValue',
+            name="ProductAttributeValue",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('value', models.CharField(max_length=255)),
-                ('attribute', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='product.attribute')),
-                ('product', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='product.product')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("value", models.CharField(max_length=255)),
+                (
+                    "attribute",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="product.attribute",
+                    ),
+                ),
+                (
+                    "product",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="product.product",
+                    ),
+                ),
             ],
             options={
-                'unique_together': {('product', 'attribute')},
+                "unique_together": {("product", "attribute")},
             },
         ),
         migrations.AddField(
-            model_name='product',
-            name='attributes',
-            field=models.ManyToManyField(related_name='products', through='product.ProductAttributeValue', to='product.attribute'),
+            model_name="product",
+            name="attributes",
+            field=models.ManyToManyField(
+                related_name="products",
+                through="product.ProductAttributeValue",
+                to="product.attribute",
+            ),
         ),
     ]
